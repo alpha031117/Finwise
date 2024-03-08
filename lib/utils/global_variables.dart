@@ -10,10 +10,12 @@ class GlobalVariables {
 
   static const skyBlueColor = Color.fromRGBO(91, 192, 236, 1);
   static const coinIconColor = Color.fromRGBO(252, 226, 0, 1);
-  static const darkPurple = Color(0xFF342763);
   //app Bar loco
   static const finwiseFont = GoogleFonts.squadaOne;
   static const titleFont = GoogleFonts.roboto;
   //subtitle and news text
   static const textFont = GoogleFonts.plusJakartaSans;
+  static const pointFont = GoogleFonts.rubik;
+  static const horizontalPadding = 20.0;
+  static const appBarAndBodyPadding = 10.0;
 }
