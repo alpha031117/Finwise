@@ -21,7 +21,7 @@ class SettingsScreen extends StatelessWidget {
                 fontFamily: GlobalVariables.titleFont().fontFamily,
                 fontWeight: FontWeight.bold,
                 color: GlobalVariables.tertiaryColor,
-                letterSpacing: 1
+                letterSpacing: 1,
             ),
           ),
         ),
