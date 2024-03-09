@@ -23,12 +23,41 @@ class SettingsScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Row(
-        children: <Widget>[
-          Image(
-            image: AssetImage('assets/profilepic.png'),
-          )
-        ],
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 10, 10, 20),
+        child: Row(
+          children: <Widget>[
+            Align(
+              alignment: Alignment.topLeft,
+              child: Image(
+                image: AssetImage('assets/profilepic.png'),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    'Leon Loo',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 32,
+                      fontFamily: GlobalVariables.textFont().fontFamily,
+                    )
+                    ),
+                  Text(
+                    'Student in UM',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontFamily: GlobalVariables.textFont().fontFamily,  
+                    )
+                    )
+                ],
+              ),
+            ),
+          ],
+        ),
       )
     );
   }
