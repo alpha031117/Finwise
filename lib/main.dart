@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'screens/bottom_nav_bar/my_bottom_nav_bar.dart';
+import 'simple_bloc_observer.dart';
 
 void main() {
+    //initialize the simple bloc observer
+  Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
 }
 
