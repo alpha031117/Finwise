@@ -28,106 +28,168 @@ class SettingsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Container(
-              // decoration: BoxDecoration(
-              //   border: Border.all(color: Colors.black),
-              // ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border.all(color: Colors.black),
-                    // ),
-                    child: Image(
-                      image: AssetImage('assets/profilepic.png'),
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border.all(color: Colors.black),
-                    // ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 25.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            'Leon Loo',
-                            style: TextStyle(
-                              fontSize: 32,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            'Student In University of 69',
-                            style: TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                        ]
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            displayProfile(),
             SizedBox(height: 10),
-            Container(
-              // decoration: BoxDecoration(
-              //   border: Border.all(color: Colors.black),
-              // ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                // textBaseline: TextBaseline.alphabetic, // Ensure the baseline is aligned with the text
-                children: <Widget>[
-                  Text(
-                    '8869',
-                    style: TextStyle(
-                      fontSize: 48,
-                      fontFamily: GlobalVariables.pointFont().fontFamily,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xff7E89EB),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Text(
-                      ' pts',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: GlobalVariables.pointFont().fontFamily,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xff7E89EB),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Center(
-              child: TextButton(
-                onPressed: (){} ,
-                style: TextButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: GlobalVariables.primaryColor,
-                  fixedSize: Size(200,28)
-                ), 
-                child: Text(
-                  'Redeem Rewards',
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ),
+            displayPoints(),
+            redeemRewardsButton(),
+            SizedBox(height: 70),
+            buttonList(Icons.border_color, 'Edit Profile'),
+            SizedBox(height: 23),
+            buttonList(Icons.settings, 'Settings'),
+            SizedBox(height: 23),
+            buttonList(Icons.help, 'Help & Support'),
+            SizedBox(height: 23),
+            buttonList(Icons.logout, 'Log Out'),
           ],
         ),
       ),
     );
   }
+
+  Widget displayProfile() {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            child: Image(
+              image: AssetImage('assets/profilepic.png'),
+            ),
+          ),
+          SizedBox(width: 10),
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 25.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    'Leon Loo',
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'Student In University of 69',
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                ]
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+}
+
+  Widget displayPoints() {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            '8869',
+            style: TextStyle(
+              fontSize: 48,
+              fontFamily: GlobalVariables.pointFont().fontFamily,
+              fontWeight: FontWeight.w900,
+              color: Color(0xff7E89EB),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Text(
+              ' pts',
+              style: TextStyle(
+                fontSize: 20,
+                fontFamily: GlobalVariables.pointFont().fontFamily,
+                fontWeight: FontWeight.bold,
+                color: Color(0xff7E89EB),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget redeemRewardsButton() {
+    return Center(
+      child: TextButton(
+        onPressed: (){} ,
+        style: TextButton.styleFrom(
+          foregroundColor: Colors.white,
+          backgroundColor: GlobalVariables.primaryColor,
+          fixedSize: Size(200,28)
+        ), 
+        child: Text(
+          'Redeem Rewards',
+          style: TextStyle(
+            fontSize: 16,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buttonList(IconData buttonIcon, String buttonText) {
+    return Center(
+      child: Container(
+        height: 45,
+        width: 330,
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(
+            Radius.circular(10.0),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Color(0xFF000000).withOpacity(0.10),
+              spreadRadius: 5,
+              blurRadius: 5, 
+              offset: Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Center(
+          child: TextButton(
+            onPressed: () {},
+            style: TextButton.styleFrom(
+              backgroundColor: Colors.white,
+              fixedSize: Size(330,45),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Icon( 
+                  buttonIcon,
+                  color: Colors.black,
+                  size: 24,
+                ),
+                SizedBox(width: 10),
+                Text(
+                  buttonText,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontSize: 18,
+                    letterSpacing: 0.0,
+                    color: Color(0xFF646464),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+  
 }
