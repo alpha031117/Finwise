@@ -24,7 +24,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
     const HomeScreen(),
     const LeaderBoardScreen(),
     const CalculatorScreen(),
-    const SettingsScreen(),
+    SettingsScreen(),
   ];
 
   @override
@@ -39,7 +39,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
         const HomeScreen(),
         const LeaderBoardScreen(),
         const CalculatorScreen(),
-        const SettingsScreen()
+        SettingsScreen()
       ];
     }
 

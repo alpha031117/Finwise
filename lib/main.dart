@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vhack_finwise_app/screens/settings/ui/redeem_rewards.dart';
 
 import 'screens/bottom_nav_bar/my_bottom_nav_bar.dart';
 
@@ -19,6 +20,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: MyBottomNavBar(),
+      routes: {
+        "/redeemRewards": (context) => redeemRewards(), // Assuming RedeemRewards is the correct widget to navigate to
+      },
     );
   }
 }
