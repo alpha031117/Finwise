@@ -163,47 +163,49 @@ class SettingsScreen extends StatelessWidget {
             ),
           ],
         ),
-        child: Center(
-          child: TextButton(
-            onPressed: () {
-              switch (buttonText) {
-                case 'Edit Profile':
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => editProfile()));
-                  break;
-                case 'Settings':
-                  break;
-                case 'Help & Support':
-                  break;
-                case 'Log Out':
-                  break;
-              }
-            },
-            style: TextButton.styleFrom(
-              backgroundColor: Colors.white,
-              fixedSize: Size(330,45),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
+        child: SingleChildScrollView(
+          child: Center(
+            child: TextButton(
+              onPressed: () {
+                switch (buttonText) {
+                  case 'Edit Profile':
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => editProfile()));
+                    break;
+                  case 'Settings':
+                    break;
+                  case 'Help & Support':
+                    break;
+                  case 'Log Out':
+                    break;
+                }
+              },
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.white,
+                fixedSize: Size(330,45),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Icon( 
-                  buttonIcon,
-                  color: Colors.black,
-                  size: 24,
-                ),
-                SizedBox(width: 10),
-                Text(
-                  buttonText,
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 18,
-                    letterSpacing: 0.0,
-                    color: Color(0xFF646464),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Icon( 
+                    buttonIcon,
+                    color: Colors.black,
+                    size: 24,
                   ),
-                ),
-              ],
+                  SizedBox(width: 10),
+                  Text(
+                    buttonText,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontSize: 18,
+                      letterSpacing: 0.0,
+                      color: Color(0xFF646464),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
