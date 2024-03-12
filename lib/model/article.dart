@@ -1,15 +1,16 @@
 class Article {
   String title;
-  String subtitle;
+
   DateTime date;
   String author;
-  String text;
+  String type;
+
+  static var length;
 
   Article({
     required this.title,
-    required this.subtitle,
     required this.date,
     required this.author,
-    required this.text,
+    required this.type,
   });
 }
