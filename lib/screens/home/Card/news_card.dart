@@ -14,6 +14,13 @@ class news_card extends StatefulWidget {
 }
 
 class _news_cardState extends State<news_card> {
+  bool isBookmarked = false;
+
+  void toggleBookmark() {
+    setState(() {
+      isBookmarked = !isBookmarked;
+    });
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -60,10 +67,13 @@ class _news_cardState extends State<news_card> {
               style: TextStyle(fontSize: 11.0, color: Colors.grey),
             ),
             IconButton(
-              icon: Icon(Icons.save),
-              onPressed: () {
-                print('Article : ${article.title}');
-              },
+              icon: Icon(
+              isBookmarked ? Icons.bookmark : Icons.bookmark_border,
+              color: isBookmarked ? Colors.blue : null,
+          ),
+            onPressed: () {
+            toggleBookmark();
+          },
             ),
           ],
           

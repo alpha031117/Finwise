@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:vhack_finwise_app/data/infos.dart';
+import 'package:vhack_finwise_app/model/info.dart';
+import 'package:vhack_finwise_app/screens/home/Card/info_card.dart';
 import 'package:vhack_finwise_app/screens/home/Card/news_card.dart'; // Import corrected file name
 import 'package:vhack_finwise_app/screens/home/Card/option_card.dart';
 import 'package:vhack_finwise_app/model/article.dart';
@@ -14,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String name = 'Alan';
   final List<Article> articless = ArticleDatabase.article; // Access articles from data source
-  
+  final List<info> infoss = InfoDatabase.infos;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +80,9 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
               child: news_card(articless: articless), // Use NewsCard widget with articles list
             ),
-            
+            Expanded(
+              child: info_card(infoss: infoss), // Use NewsCard widget with articles list
+            ),
           ],
         ),
       ),

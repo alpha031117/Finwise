@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vhack_finwise_app/screens/home/Card/news_card.dart'; // Import corrected file name
-import 'package:vhack_finwise_app/screens/home/Card/option_card.dart';
-import 'package:vhack_finwise_app/model/article.dart';
-import 'package:vhack_finwise_app/data/articles.dart'; // Import ArticleDatabase
+
 
 class NewsScreen extends StatefulWidget {
   const NewsScreen({Key? key}) : super(key: key); // Fix the super constructor
@@ -18,8 +15,30 @@ class _NewsScreenState extends State<NewsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        
-      ),
+  // Leftmost icon button
+  leading: IconButton(
+    icon: Icon(Icons.arrow_back),
+    onPressed: () {
+      // Implement functionality for leftmost icon button
+    },
+  ),
+  // Rightmost icon buttons
+  actions: <Widget>[
+    IconButton(
+      icon: Icon(Icons.bookmark_border),
+      onPressed: () {
+        // Implement functionality for search icon button
+      },
+    ),
+    SizedBox(width: 10), // Space between the icon buttons
+    IconButton(
+      icon: Icon(Icons.share_rounded),
+      onPressed: () {
+        // Implement functionality for settings icon button
+      },
+    ),
+  ],
+)
       
     );
   }
