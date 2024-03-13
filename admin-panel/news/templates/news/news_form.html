@@ -1,0 +1,35 @@
+{% extends "base/_base.html" %}
+
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Domain
+{% endblock %}
+{% block custom_body_class %}
+    custom-background
+{% endblock custom_body_class %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item active">News</li>
+{% endblock breadcrumb %}
+
+{% block content %}
+<div class="container-fluid h-100" style="margin-top: 100px;">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="col-md-6">
+            {% if object %}
+                <h2 class="text-center mb-4">Update News</h2>
+            {% else %}
+                <h2 class="text-center mb-4">Add News</h2>
+            {% endif %}
+            <div class="border p-4 rounded">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                    <input type="submit" class="btn btn-primary d-block mx-auto" value="{% if object %}Edit News{% else %}Add News{% endif %}"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

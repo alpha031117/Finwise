@@ -1,0 +1,95 @@
+{% extends "base/_base.html" %}
+
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Domain
+{% endblock %}
+{% block custom_body_class %}
+    custom-background
+{% endblock custom_body_class %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item active">Domain</li>
+{% endblock breadcrumb %}
+
+{% block content %}
+
+        <script>
+            // Set a timer to close the alert after 5 seconds
+            setTimeout(function() {
+                document.querySelector('.alert').remove();
+            }, 5000); 
+        </script>
+
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'error' %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ message }}
+                    </div>
+                {% elif message.tags == 'success' %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% else %}
+                    <div class="alert alert-info" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        <div class="container">
+            <div class="mt-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="d-flex align-items-center">
+                        <h2>Domain</h2>
+                    </div>
+                    <a href="{% url 'base:domain-create' %}" class="btn btn-primary">Create New Domain</a>
+                </div>
+                <table class="table table-bordered my-2">
+                    <thead>
+                        <tr class="cell-input">
+                            <th width="5%">No. </th>
+                            <th>Domain Name</th>
+                            <th width="13%" style="text-align: center;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for domain in domain_data %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ domain.name }}</td>
+                                <td style="text-align: center;">
+                                    <a href="{% url 'base:domain-update' domain.pk %}" class="btn btn-primary">Update</a>
+                                    <a href="{% url 'base:domain-delete' domain.pk %}" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="container mt-4">
+            <!-- Pagination -->
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-end">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">...</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div> 
+{% endblock %}

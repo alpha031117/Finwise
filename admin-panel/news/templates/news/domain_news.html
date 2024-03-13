@@ -1,0 +1,88 @@
+{% extends "base/_base.html" %}
+
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  News
+{% endblock %}
+{% block custom_body_class %}
+    custom-background
+{% endblock custom_body_class %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item active">News</li>
+{% endblock breadcrumb %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="col-lg-6">
+        <h2>{{ domain }}</h2>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <p class="text-body-secondary">Current News: {{ all_news.count }}</p>
+        </div>
+        <div class="col-lg-6">
+            <div class="dropdown">
+                <a class="btn btn-primary float-end" href="{% url 'news:news-create' domain_slug=domain.slug %}">
+                    <i class="fa-solid fa-plus"></i> Add News
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+    {% for news in all_news %}
+        <div class="container mt-4">
+            <div class="card-header">
+                <h4>{{ news.info_type }}</h4>
+            </div>
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-1 mt-4">
+                        <img src="{{ news.image.url }}" class="img-fluid rounded-start mx-auto d-block ms-2" alt="news-image" style="max-width: 100px; height: auto;">
+                    </div>
+                    <div class="col-md-11">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ news.title }}</h5>
+                            <p class="card-text">{{ news.content }}</p>
+                            <p class="card-text">
+                                <small class="text-body-secondary">
+                                    Last updated {{ news.posted_at|timesince }} ago
+                                    <span class="float-end"><i class="bi bi-hand-thumbs-up"></i> Likes: {{ news.likes }} &nbsp;&nbsp; <i class="bi bi-chat"></i> Comments: {{ news.comments }}</span>
+                                </small>
+                            </p>
+                            <div>
+                                <a href="#" class="btn btn-secondary mb-2 ms-2"><i class="fa fa-pencil"></i></a>
+                                <a href="#" class="btn btn-danger mb-2"><i class="fa fa-trash-o"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="container mt-4">
+        <!-- Pagination -->
+        <div class="row">
+            <div class="col-md-12 d-flex justify-content-end">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">...</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div> 
+{% endblock %}

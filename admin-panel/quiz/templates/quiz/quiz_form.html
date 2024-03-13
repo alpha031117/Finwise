@@ -1,0 +1,41 @@
+{% extends "base/_base.html" %}
+
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Quiz
+{% endblock %}
+{% block custom_body_class %}
+    custom-background
+{% endblock custom_body_class %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item active">Quiz</li>
+{% endblock breadcrumb %}
+
+{% block content %}
+<div class="container-fluid h-100" style="margin-top: 100px;">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="col-md-6">
+            {% if object %}
+                <h2 class="text-center mb-4">Update Question</h2>
+            {% else %}
+                <h2 class="text-center mb-4">Add Question</h2>
+            {% endif %}
+            <div class="border p-4 rounded">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+
+                    <!-- Formset for choices -->
+                    {{ formset.management_form }}
+                    {% for choice_form in formset.forms %}
+                        {{ choice_form | crispy }}
+                    {% endfor %}
+                    <input type="submit" class="btn btn-primary d-block mx-auto" value="{% if object %}Edit Question{% else %}Add Question{% endif %}"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

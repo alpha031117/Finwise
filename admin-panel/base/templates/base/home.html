@@ -1,0 +1,98 @@
+{% extends "base/_base.html" %}
+{% load static %}
+{% block title %}
+    FinWise
+{% endblock title %}
+{% block custom_body_class %}
+    custom-background
+{% endblock custom_body_class %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item active">Home</li>
+{% endblock breadcrumb %}
+{% block content %}
+    <div class="container">
+        <div class="mt-3">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="d-flex align-items-center">
+                    <h2>Welcome Admin.</h2>
+                </div>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-3 row-cols-lg-3 g-4 mb-5">
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-inline-flex align-items-center">
+                                <img src="{% static 'domain-logo.png' %}" class="me-2" height="20px" width="20px" alt="Logo">
+                                <a href="{% url 'base:domain-list' %}" style="text-decoration: none; color: black;"><h5 class="mb-0">Number of Domains</h5></a>
+                            </div>
+                            <h3 style="text-align: center; padding: 10px;">
+                                <a href="{% url 'base:domain-list' %}"
+                                    class="card-text" style="text-decoration: none;">
+                                        {{ domains.count }}
+                                </a>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-inline-flex align-items-center">
+                                <h5 class="mb-0"><i class="bi bi-newspaper"></i> Total Number of News</h5>
+                            </div>
+                            <h3 style="text-align: center; padding: 10px;">
+                                <a href="{% url 'news:all-news-list' %}"
+                                    class="card-text" style="text-decoration: none;">
+                                        74
+                                </a>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-inline-flex align-items-center">
+                                <h5 class="mb-0"><i class="bi bi-question-circle"> </i>Total Number of Quizes</h5>
+                            </div>
+                            <h3 style="text-align: center; padding: 10px;">
+                                <a href="{% url 'quiz:all-quiz-list' %}"
+                                    class="card-text" style="text-decoration: none;">
+                                        30
+                                </a>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% for domain in domains %}
+                <h3 class="mt-5 mb-3">{{ domain.name }}</h5>
+                <div class="row mb-5">
+                    {% for info_type in domain.infotype_set.all %}
+                        <div class="col-md-4 col-lg-3 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h3>
+                                        {% if info_type.type == 'News' %}
+                                            <a href="{% url 'news:domain-news' domain_slug=domain.slug %}" class="primary-link stretched-link">
+                                                {{ info_type.type }}
+                                            </a>
+                                        {% elif info_type.type == 'Quizes' %}
+                                            <a href="{% url 'quiz:domain-quiz' domain_slug=domain.slug %}" class="primary-link stretched-link">
+                                                {{ info_type.type }}
+                                            </a>
+                                        {% endif %}
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

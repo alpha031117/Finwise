@@ -1,0 +1,116 @@
+{% extends "base/_base.html" %}
+
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Podcast
+{% endblock %}
+{% block custom_body_class %}
+    custom-background
+{% endblock custom_body_class %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item active">Podcast/li>
+{% endblock breadcrumb %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>Podcast</h2>
+                <p class="text-body-secondary">Current Podcast: {{ podcasts.count }}</p>
+            </div>
+            <div class="col-lg-6">
+                <div class="dropdown float-end">
+                    <a class="btn btn-primary" href="{% url 'podcast:podcast-create' %}">
+                        <i class="fa-solid fa-plus"></i> Add New Podcast
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            {% for podcast in podcasts %}
+                <div class="col-md-4">
+                    <div class="card h-100 mb-3 ">
+                        <br/>
+                        <img src="{{ podcast.cover_image.url }}" class="card-img-top mx-auto d-block img-fluid rounded" alt="podcast-image" style="max-width: 60%; max-height: 200px; height: auto;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ podcast.title }}</h5>
+                            <p class="card-text">
+                                {{ podcast.description|truncatewords:20 }}
+                                <br/>
+                                {% if podcast.description|length > 20 %}
+                                     <!-- Button trigger modal -->
+                                    <a type="button" class="card-text text-primary" data-bs-toggle="modal" data-bs-target="#detailsModal{{ podcast.id }}" style="text-decoration: none;">
+                                        See More...
+                                    </a>
+                                {% endif %}
+                            </p> 
+                            
+                            <!-- Modal -->
+                            <div class="modal fade" id="detailsModal{{ podcast.id }}" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{ podcast.title }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <img src="{{ podcast.cover_image.url }}" class="card-img-top mx-auto d-block img-fluid rounded" alt="podcast-image" style="max-width: 60%; max-height: 200px; height: auto;">
+                                        <br/>
+                                        <p> 
+                                            {{ podcast.description }} 
+                                            <br/>
+                                            <br/>
+                                            <b>Hosted By:</b> {{ podcast.host }}
+                                            <br/>
+                                            <b>Date:</b> {{ podcast.session_date }}
+                                            <br/>
+                                            <b>Time:</b> {{ podcast.session_time }}
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <p>
+                                    <small>Last updated {{ podcast.published_at|timesince }} ago</small>
+                                </p>
+                                <div>
+                                    <a href="#" class="btn btn-secondary mb-2 ms-2"><i class="fa fa-pencil"></i></a>
+                                    <a href="#" class="btn btn-danger mb-2"><i class="fa fa-trash-o"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="container mt-4">
+        <!-- Pagination -->
+        <div class="row">
+            <div class="col-md-12 d-flex justify-content-end">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">...</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div> 
+{% endblock %}

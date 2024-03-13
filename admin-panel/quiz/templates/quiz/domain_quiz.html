@@ -1,0 +1,88 @@
+{% extends "base/_base.html" %}
+
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Quiz
+{% endblock %}
+{% block custom_body_class %}
+    custom-background
+{% endblock custom_body_class %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item active">Quiz</li>
+{% endblock breadcrumb %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="col-lg-6">
+            <h2>{{ domain }}</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <p class="text-body-secondary">Current Quiz: {{ all_quiz.count }}</p>
+            </div>
+            <div class="col-lg-6">
+                <div class="dropdown">
+                    <a class="btn btn-primary float-end" href="{% url 'quiz:quiz-create' domain_slug=domain.slug %}">
+                        <i class="fa-solid fa-plus"></i> Add Question
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="container mt-4">
+            {% for quiz in all_quiz %}
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ forloop.counter }}. {{ quiz.question_text }}</h5>
+                        <br/>
+                        <ol class="list-group list-group-numbered">
+                            {% for choice in quiz.choices.all %}
+                                <li class="list-group-item {% if choice.is_correct %}text-primary fw-bold{% endif %}">
+                                    {{ choice.choice_text }}
+                                </li>
+                            {% endfor %}
+                        </ol>
+                        <br/>
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <span class="badge bg-secondary">{{ quiz.info_type }}</span>
+                                <span class="badge {% if quiz.status == 'Not Published' %}bg-danger{% else %}bg-success{% endif %}">
+                                    {{ quiz.status }}
+                                </span>
+                            </div>
+                            <div class="col-auto">
+                                <a href="#" class="btn btn-danger me-2" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                <a href="#" class="btn btn-secondary" title="Edit"><i class="fa fa-pencil"></i></a>
+                            </div>
+                        </div>
+                        <p class="card-text text-muted">
+                            <small>Last updated {{ quiz.created_at|timesince }} ago</small>
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="container mt-4">
+            <!-- Pagination -->
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-end">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">...</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div> 
+{% endblock %}
