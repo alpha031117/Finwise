@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:vhack_finwise_app/model/user.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/redeem_rewards.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/edit_profile.dart';
+import 'package:vhack_finwise_app/screens/settings/ui/setting.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
 import 'package:vhack_finwise_app/data/users.dart';
 
@@ -148,7 +149,7 @@ class SettingsScreen extends StatelessWidget {
   Widget buttonList(IconData buttonIcon, String buttonText, BuildContext context) {
     return Center(
       child: Container(
-        height: 45,
+        height: 60,
         width: 330,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(
@@ -172,6 +173,7 @@ class SettingsScreen extends StatelessWidget {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => editProfile()));
                     break;
                   case 'Settings':
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => settingPage()));
                     break;
                   case 'Help & Support':
                     break;
@@ -181,7 +183,7 @@ class SettingsScreen extends StatelessWidget {
               },
               style: TextButton.styleFrom(
                 backgroundColor: Colors.white,
-                fixedSize: Size(330,45),
+                fixedSize: Size(330,60),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -201,7 +203,7 @@ class SettingsScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 18,
                       letterSpacing: 0.0,
-                      color: Color(0xFF646464),
+                      color: Colors.black,
                     ),
                   ),
                 ],
