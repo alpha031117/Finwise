@@ -52,7 +52,7 @@ class _editProfileState extends State<editProfile> {
                 child: Stack(
                   children: [
                     Image(
-                      image: AssetImage('assets/profilepic.png'),
+                      image: AssetImage('assets/ProfilePicture.png'),
                     ),
                     Positioned(
                       bottom: 10,

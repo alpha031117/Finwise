@@ -60,7 +60,7 @@ class SettingsScreen extends StatelessWidget {
         children: <Widget>[
           Container(
             child: Image(
-              image: AssetImage('assets/profilepic.png'),
+              image: AssetImage('assets/ProfilePicture.png'),
             ),
           ),
           SizedBox(width: 10),
