@@ -7,13 +7,14 @@ class CalculatorTextField extends StatefulWidget {
   final String title;
   final bool isAnnualReturn;
   final bool radioButton;
+  final Function(String)? radioButtonValue;
   final TextEditingController controller;
   const CalculatorTextField({
     super.key,
     required this.title,
     required this.radioButton,
     required this.isAnnualReturn,
-    required this.controller,
+    required this.controller, this.radioButtonValue,
   });
 
   @override
@@ -94,6 +95,7 @@ class _CalculatorTextFieldState extends State<CalculatorTextField> {
                         groupValue: selectedOption,
                         onChanged: (value) {
                           setState(() {
+                            widget.radioButtonValue!('Annually');
                             selectedOption = value!;
                             print("Button value: $value");
                           });
@@ -110,6 +112,7 @@ class _CalculatorTextFieldState extends State<CalculatorTextField> {
                         groupValue: selectedOption,
                         onChanged: (value) {
                           setState(() {
+                            widget.radioButtonValue!('Monthly');
                             selectedOption = value!;
                             print("Button value: $value");
                           });
@@ -126,6 +129,7 @@ class _CalculatorTextFieldState extends State<CalculatorTextField> {
                         groupValue: selectedOption,
                         onChanged: (value) {
                           setState(() {
+                            widget.radioButtonValue!('Weekly');
                             selectedOption = value!;
                             print("Button value: $value");
                           });
