@@ -3,10 +3,30 @@ import 'package:flutter/widgets.dart';
 import 'package:vhack_finwise_app/data/infos.dart';
 import 'package:vhack_finwise_app/model/info.dart';
 import 'package:vhack_finwise_app/screens/home/Card/info_card.dart';
-import 'package:vhack_finwise_app/screens/home/Card/news_card.dart'; // Import corrected file name
+
 import 'package:vhack_finwise_app/screens/home/Card/option_card.dart';
+
 import 'package:vhack_finwise_app/model/article.dart';
 import 'package:vhack_finwise_app/data/articles.dart'; // Import ArticleDatabase
+import 'package:vhack_finwise_app/screens/home/Card/article_card.dart';
+
+import 'package:vhack_finwise_app/model/new.dart';
+import 'package:vhack_finwise_app/data/news.dart';
+import 'package:vhack_finwise_app/screens/home/Card/news_card.dart';
+
+import 'package:vhack_finwise_app/model/article1.dart';
+import 'package:vhack_finwise_app/data/articles1.dart';
+import 'package:vhack_finwise_app/screens/home/Card/article1_card.dart';
+
+import 'package:vhack_finwise_app/model/quiz.dart';
+import 'package:vhack_finwise_app/data/quizz.dart';
+import 'package:vhack_finwise_app/screens/home/Card/quiz_card.dart';
+import 'package:vhack_finwise_app/screens/home/Card/option_quiz.dart';
+
+import 'package:vhack_finwise_app/model/quiz1.dart';
+import 'package:vhack_finwise_app/data/quizz1.dart';
+import 'package:vhack_finwise_app/screens/home/Card/quiz_card1.dart';
+import 'package:vhack_finwise_app/screens/home/Card/option_quiz1.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key); // Fix the super constructor
@@ -17,9 +37,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String name = 'Alan';
-  final List<Article> articless =
-      ArticleDatabase.article; // Access articles from data source
-  final List<info> infoss = InfoDatabase.infos;
+    final List<New> newss = NewDatabase.newss; // Access articles from data source
+    final List<info> infoss = InfoDatabase.infos;
+    final List<Article> articless = ArticleDatabase.article;
+    final List<Article1> articless1 = Article1Database.article1;
+    final List<quiz> quizz = QuizDatabase.quizz;
+    final List<quiz1> quizz1 = Quiz1Database.quizz1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,8 +54,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 30.0),
-          child: Column(
+          padding: EdgeInsets.all(15.0),
+           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Row(
@@ -78,17 +102,49 @@ class _HomeScreenState extends State<HomeScreen> {
                 ]),
                 SizedBox(
                   height: 150, // Adjust the height as needed
-                  child: news_card(articless: articless),
+                  child: news_card(newss: newss),
                 ),
 
                 SizedBox(
-                  height: 200, // Adjust the height as needed
+                  height: 240, // Adjust the height as needed
                   child: info_card(infoss: infoss),
                 ),
-
+                SizedBox(height: 15),
+                Text(
+                    'Articles',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
                 SizedBox(
-                  height: 200, // Adjust the height as needed
-                  child: info_card(infoss: infoss),
+                  height: 140, // Adjust the height as needed
+                  child: article_card(articless: articless),
+                ),
+                SizedBox(
+                  height: 140, // Adjust the height as needed
+                  child: article1_card(articless1: articless1),
+                ),
+                Text(
+                    'Learns &',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 3),
+                Text(
+                  '   Earn Credits ',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 10),
+                SizedBox(
+                  height: 350, // Adjust the height as needed
+                  child: quiz_card(quizz: quizz),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  "You don't just stop there ! :)",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 20),
+                SizedBox(
+                  height: 150, // Adjust the height as needed
+                  child: quiz_card1(quizz1: quizz1),
                 ),
               ]),
         ),

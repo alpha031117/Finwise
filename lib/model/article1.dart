@@ -1,10 +1,10 @@
-class Article {
+class Article1 {
   String title;
   String type;
 
   static var length;
 
-  Article({
+  Article1({
     required this.title,
     required this.type,
   });

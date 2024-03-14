@@ -34,7 +34,7 @@ class _info_cardState extends State<info_card> {
       children: [
         Expanded( // Wrap SizedBox with Expanded
           child: SizedBox(
-            height: 250,
+            height: 240,
             child: PageView.builder(
               controller: _pageController,
               onPageChanged: (int page) {
@@ -45,7 +45,7 @@ class _info_cardState extends State<info_card> {
             itemBuilder: (_, index) {
               final info = widget.infoss[index];
               return Container(
-                margin: const EdgeInsets.symmetric(horizontal: 35.0, vertical: 8.0),
+                margin: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 0.0),
                 width: MediaQuery.of(context).size.width * 0.8, // Adjust width as needed
                 decoration: BoxDecoration(
                   borderRadius:BorderRadius.circular(12.0),
@@ -58,14 +58,14 @@ class _info_cardState extends State<info_card> {
                        padding: const EdgeInsets.all(8.0),
                        child: Text(
                           info.title, // Access title property
-                          style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold, color: Colors.grey[400]),
+                          style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.grey[400]),
                           ),
                      ),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 8.0), // Adjust the horizontal padding as needed
                           child: Text(
                           '${info.text}', // Access author property
-                          style: TextStyle(fontSize: 11.0, color: Colors.white),
+                          style: TextStyle(fontSize: 12.0, color: Colors.white),
                         ),
                     ),
                         
@@ -79,12 +79,13 @@ class _info_cardState extends State<info_card> {
             ),
           ),
         ),
+        SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(
             widget.infoss.length,
             (index) => Container(
-              margin: EdgeInsets.all(2.0),
+              margin: EdgeInsets.all(3.0),
               width: 8.0,
               height: 8.0,
               decoration: BoxDecoration(
