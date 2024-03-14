@@ -3,20 +3,20 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/rendering.dart';
-import 'package:vhack_finwise_app/data/quizz1.dart';
+import 'package:vhack_finwise_app/data/quizz2.dart';
 
-import 'package:vhack_finwise_app/model/quiz1.dart';
-import 'package:vhack_finwise_app/screens/home/Card/option_quiz1.dart';
+import 'package:vhack_finwise_app/model/quiz2.dart';
+import 'package:vhack_finwise_app/screens/home/Card/option_quiz2.dart';
 
-class quiz_card1 extends StatefulWidget {
-  final List<quiz1> quizz1; // Pass articles list from parent widget
-  quiz_card1({required this.quizz1}); // Constructor to receive articles
+class quiz_card2 extends StatefulWidget {
+  final List<quiz2> quizz2; // Pass articles list from parent widget
+  quiz_card2({required this.quizz2}); // Constructor to receive articles
 
   @override
-  State<quiz_card1> createState() => _quiz_card1State();
+  State<quiz_card2> createState() => _quiz_card2State();
 }
 
-class _quiz_card1State extends State<quiz_card1> {
+class _quiz_card2State extends State<quiz_card2> {
   int _currentPage = 0;
   bool isPressed = false;
   late final PageController _pageController;
@@ -54,7 +54,7 @@ Widget build(BuildContext context) {
               });
             },
             itemBuilder: (_, index) {
-              final quizz1 = widget.quizz1[index];
+              final quizz2 = widget.quizz2[index];
               return Container(
                 margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
                 width: MediaQuery.of(context).size.width * 0.8,
@@ -68,7 +68,7 @@ Widget build(BuildContext context) {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.0),
                       child: Text(
-                        quizz1.title,
+                        quizz2.title,
                         style: TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold,
@@ -87,7 +87,7 @@ Widget build(BuildContext context) {
                         OptionWidget(
                           option: 'True', // Assuming 'True' is always the first option
                           color: isPressed
-                              ? widget.quizz1[index].options['True'] == true
+                              ? widget.quizz2[index].options['True'] == true
                                   ? Colors.green
                                   : Colors.red
                               : Colors.white,
@@ -96,7 +96,7 @@ Widget build(BuildContext context) {
                         OptionWidget(
                           option: 'False', // Assuming 'False' is always the second option
                           color: isPressed
-                              ? widget.quizz1[index].options['False'] == true
+                              ? widget.quizz2[index].options['False'] == true
                                   ? Colors.green
                                   : Colors.red
                               : Colors.white,
@@ -108,7 +108,7 @@ Widget build(BuildContext context) {
                 ),
               );
             },
-            itemCount: widget.quizz1.length,
+            itemCount: widget.quizz2.length,
             physics: PageScrollPhysics(),
           ),
         ),

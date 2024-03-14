@@ -28,6 +28,11 @@ import 'package:vhack_finwise_app/data/quizz1.dart';
 import 'package:vhack_finwise_app/screens/home/Card/quiz_card1.dart';
 import 'package:vhack_finwise_app/screens/home/Card/option_quiz1.dart';
 
+import 'package:vhack_finwise_app/model/quiz2.dart';
+import 'package:vhack_finwise_app/data/quizz2.dart';
+import 'package:vhack_finwise_app/screens/home/Card/quiz_card2.dart';
+import 'package:vhack_finwise_app/screens/home/Card/option_quiz2.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key); // Fix the super constructor
 
@@ -43,6 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final List<Article1> articless1 = Article1Database.article1;
     final List<quiz> quizz = QuizDatabase.quizz;
     final List<quiz1> quizz1 = Quiz1Database.quizz1;
+    final List<quiz2> quizz2 = Quiz2Database.quizz2;
 
   @override
   Widget build(BuildContext context) {
@@ -143,10 +149,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(height: 20),
                 SizedBox(
-                  height: 150, // Adjust the height as needed
+                  height: 170, // Adjust the height as needed
                   child: quiz_card1(quizz1: quizz1),
                 ),
                 SizedBox(height: 20),
+                SizedBox(
+                  height: 170, // Adjust the height as needed
+                  child: quiz_card2(quizz2: quizz2),
+                ),
               ]),
         ),
       ),
