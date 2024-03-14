@@ -146,6 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 150, // Adjust the height as needed
                   child: quiz_card1(quizz1: quizz1),
                 ),
+                SizedBox(height: 20),
               ]),
         ),
       ),

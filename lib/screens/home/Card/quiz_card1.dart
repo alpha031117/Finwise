@@ -60,7 +60,7 @@ Widget build(BuildContext context) {
                 width: MediaQuery.of(context).size.width * 0.8,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12.0),
-                  color: Colors.blue[500],
+                  color: const Color.fromARGB(255, 1, 22, 39),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
