@@ -8,20 +8,28 @@ class CalculatorTextField extends StatefulWidget {
   final bool isAnnualReturn;
   final bool radioButton;
 <<<<<<< HEAD
+<<<<<<< HEAD
   final Function(String)? radioButtonValue;
 =======
 >>>>>>> e4277d0 (updated new calculator)
+=======
+  final Function(String)? radioButtonValue;
+>>>>>>> 495e632 (fix)
   final TextEditingController controller;
   const CalculatorTextField({
     super.key,
     required this.title,
     required this.radioButton,
     required this.isAnnualReturn,
+<<<<<<< HEAD
     required this.controller,
 <<<<<<< HEAD
     this.radioButtonValue,
 =======
 >>>>>>> e4277d0 (updated new calculator)
+=======
+    required this.controller, this.radioButtonValue,
+>>>>>>> 495e632 (fix)
   });
 
   @override
@@ -208,6 +216,7 @@ class _CalculatorTextFieldState extends State<CalculatorTextField> {
                         groupValue: selectedOption,
                         onChanged: (value) {
                           setState(() {
+                            widget.radioButtonValue!('Annually');
                             selectedOption = value!;
                             print("Button value: $value");
                           });
@@ -224,6 +233,7 @@ class _CalculatorTextFieldState extends State<CalculatorTextField> {
                         groupValue: selectedOption,
                         onChanged: (value) {
                           setState(() {
+                            widget.radioButtonValue!('Monthly');
                             selectedOption = value!;
                             print("Button value: $value");
                           });
@@ -240,6 +250,7 @@ class _CalculatorTextFieldState extends State<CalculatorTextField> {
                         groupValue: selectedOption,
                         onChanged: (value) {
                           setState(() {
+                            widget.radioButtonValue!('Weekly');
                             selectedOption = value!;
                             print("Button value: $value");
                           });

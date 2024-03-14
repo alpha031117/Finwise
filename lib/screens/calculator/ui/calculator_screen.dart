@@ -253,32 +253,42 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       },
 =======
   //getters for controllers
-  String get principal => initialDepositController.text;
+  //get the string value of the text fields
+  String get principal => initialDepositController.text; //P
   String get contributions => contributionsController.text;
-  String get interestRate => annualReturnController.text;
+  String get interestRate => annualReturnController.text; // r
 
   void calculate() {
-    double totalContribution = 0.0;
-    int contributionTimespan = 0;
+    double totalContribution = 0.0; //initial
+    int contributionTimespan = 0; //intial
     switch (selectedContribution) {
       case "Weekly":
-        contributionTimespan = int.parse(yearsToGrow) * 52;
+        contributionTimespan =
+            int.parse(yearsToGrow) * 52; //52 is total weeks in a year
         break;
       case "Monthly":
-        contributionTimespan = int.parse(yearsToGrow) * 12;
+        contributionTimespan =
+            int.parse(yearsToGrow) * 12; // 12 is total months in a year
         break;
       case "Yearly":
+        //t
         contributionTimespan = int.parse(yearsToGrow);
+
         break;
     }
+    //total contribution = (contribution * years to grow)
+    print('contributions : $contributions');
     totalContribution =
         int.parse(contributions).toDouble() * contributionTimespan;
+    print('contributions : $totalContribution');
+    //future amount = principal + total contribution
     futureAmount = int.parse(principal) + totalContribution;
     for (int i = 0; i < int.parse(yearsToGrow); i++) {
       futureAmount = futureAmount * (1 + int.parse(interestRate) / 100);
       print('year $i: $futureAmount');
     }
-    print('future amout: $futureAmount');
+
+    print('future amount: $futureAmount');
   }
 
   @override
@@ -359,6 +369,11 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                   radioButton: true,
                   isAnnualReturn: false,
                   controller: contributionsController,
+                  radioButtonValue: (value) {
+                    setState(() {
+                      selectedContribution = value;
+                    });
+                  },
                 ),
                 const SizedBox(
                   height: 20,
@@ -384,6 +399,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                 //calculate my estimate button
                 TextButton(
                     onPressed: () {
+                      print(selectedContribution);
                       calculate();
                     },
                     child: Text('Calculate My Estimate'))
