@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:vhack_finwise_app/data/users.dart';
 import 'package:vhack_finwise_app/model/user.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/setting.dart';
+import 'package:vhack_finwise_app/screens/settings/ui/test.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
 
 class redeemRewards extends StatefulWidget {

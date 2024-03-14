@@ -5,6 +5,7 @@ import 'package:vhack_finwise_app/model/user.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/redeem_rewards.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/edit_profile.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/setting.dart';
+import 'package:vhack_finwise_app/screens/settings/ui/test.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
 import 'package:vhack_finwise_app/data/users.dart';
 
@@ -176,6 +177,7 @@ class SettingsScreen extends StatelessWidget {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => settingPage()));
                     break;
                   case 'Help & Support':
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => myCalculator()));
                     break;
                   case 'Log Out':
                     break;
