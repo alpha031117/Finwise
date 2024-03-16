@@ -54,7 +54,7 @@ class _SearchScreenState extends State<SearchScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                'Search for news',
+                'Search for News',
                 style: TextStyle(
                   color: const Color.fromARGB(255, 5, 44, 102),
                   fontSize: 22.0,

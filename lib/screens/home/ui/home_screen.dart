@@ -32,7 +32,10 @@ import 'package:vhack_finwise_app/model/quiz2.dart';
 import 'package:vhack_finwise_app/data/quizz2.dart';
 import 'package:vhack_finwise_app/screens/home/Card/quiz_card2.dart';
 import 'package:vhack_finwise_app/screens/home/Card/option_quiz2.dart';
+import 'package:vhack_finwise_app/screens/home/ui/more_screen.dart';
 import 'package:vhack_finwise_app/screens/home/ui/search_screen.dart';
+
+import 'package:vhack_finwise_app/screens/home/ui/news_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key); // Fix the super constructor
@@ -110,9 +113,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       'More',
                       style: TextStyle(fontSize: 18.0, color: Colors.blue),
                     ),
-                    onPressed: () {
-                      print('Click');
-                    },
+                    onPressed: () => {
+                        Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => more_screen(),
+                      ),
+                    ),
+                          
+                      },
                   ),
                 ]),
                 SizedBox(
