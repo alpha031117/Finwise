@@ -32,6 +32,7 @@ import 'package:vhack_finwise_app/model/quiz2.dart';
 import 'package:vhack_finwise_app/data/quizz2.dart';
 import 'package:vhack_finwise_app/screens/home/Card/quiz_card2.dart';
 import 'package:vhack_finwise_app/screens/home/Card/option_quiz2.dart';
+import 'package:vhack_finwise_app/screens/home/ui/search_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key); // Fix the super constructor
@@ -41,7 +42,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String name = 'Alan';
+    String name = 'Alan';
     final List<New> newss = NewDatabase.newss; // Access articles from data source
     final List<info> infoss = InfoDatabase.infos;
     final List<Article> articless = ArticleDatabase.article;
@@ -73,7 +74,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     IconButton(
                       icon: Icon(Icons.search),
                       color: Colors.blue,
-                      onPressed: () => {},
+                      onPressed: () => {
+                        Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SearchScreen(),
+                      ),
+                    ),
+                          
+                      },
                     )
                   ],
                 ),
