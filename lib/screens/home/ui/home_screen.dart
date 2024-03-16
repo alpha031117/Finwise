@@ -4,7 +4,7 @@ import 'package:vhack_finwise_app/data/infos.dart';
 import 'package:vhack_finwise_app/model/info.dart';
 import 'package:vhack_finwise_app/screens/home/Card/info_card.dart';
 
-import 'package:vhack_finwise_app/screens/home/Card/option_card.dart';
+import 'package:vhack_finwise_app/screens/home/Card/choice_card.dart';
 
 import 'package:vhack_finwise_app/model/article.dart';
 import 'package:vhack_finwise_app/data/articles.dart'; // Import ArticleDatabase
