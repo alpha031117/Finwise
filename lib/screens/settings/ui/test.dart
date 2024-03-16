@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, camel_case_types, prefer_const_constructors, non_constant_identifier_names, avoid_print, unrelated_type_equality_checks, unused_local_variable
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
 import 'dart:math';
 
@@ -13,13 +14,15 @@ class myCalculator extends StatefulWidget {
 
 class Calculation {
 
-  static double calculateFutureInvestmentValue (double initialInvestment, double interestRate, double years, String compoundFrequency, double additionalContribution, double depositAmount, String period) {
+  static double calculateFutureInvestmentValue (double initialInvestment, double interestRate, double years, String compoundFrequency, String additionalContribution, double depositAmount, String period) {
     double compoundInterval = 0;
-    double onlyBeginning = 0;
+    double x = initialInvestment;
+    List<double> futureInvestmentValueList = [];
+
     switch (compoundFrequency) {
       case 'Daily':
-        compoundInterval = 365;
-        break;
+          compoundInterval = 365;
+          break;
       case 'Weekly':
         compoundInterval = 52;
         break;
@@ -31,22 +34,42 @@ class Calculation {
         break;
       case 'Annually':
         compoundInterval = 1;
+        for (int i = 0; i < years; i++) {
+            if (period == 'End') {
+              x = (x * (interestRate / 100)) + x;
+              x = x + depositAmount;
+            } else if (period == 'Beginning') {
+              x = x + depositAmount;
+              x = (x * (interestRate / 100)) + x;
+            } else {
+              x = (x * (interestRate / 100)) + x;
+            }
+            futureInvestmentValueList.add(x);
+        }
+        print(futureInvestmentValueList);
         break;
     }
 
-    if (period == 'Beginning') {
-      onlyBeginning = ( 1 + (interestRate / 100) / compoundInterval);
-    } else {
-      onlyBeginning = 1;
-    }
+    for (int i = 0 ; i < years; i++) {
+            for (int k = 0; k < compoundInterval; k++) {
+                if (period == 'End') {
+                    x = (x * (interestRate / 100) * 0.25) + x;
+                    x = x + depositAmount;
+                } else if (period == 'Beginning') {
+                    x = x + depositAmount;
+                    x = (x * (interestRate / 100) * 0.25) + x;
+                } else {
+                    x = (x * (interestRate / 100) * 0.25) + x;
+                }
+            }
+            futureInvestmentValueList.add(x);
+            print(futureInvestmentValueList);
+        }
 
-    double futureInvestmentValue = initialInvestment * pow((1 + ((interestRate / 100) / compoundInterval)), (compoundInterval * years));
-
-    if (depositAmount != 0) {
-      futureInvestmentValue = futureInvestmentValue + (depositAmount * ((pow((1 + ((interestRate / 100) / compoundInterval)), (compoundInterval * years))) - 1) / ((interestRate / 100) / compoundInterval)) * onlyBeginning;
-    } 
-    return futureInvestmentValue;
+   return x;
   }
+
+
 
 }
 
@@ -65,11 +88,13 @@ class _myCalculatorState extends State<myCalculator> {
   double years = 0;
   String compoundFrequency = "";
   double futureInvestmentValue = 0;
-  List compoundFrequencyList = ['Daily', 'Monthly', 'Annually'];
+  List compoundFrequencyList = ['Daily', 'Weekly', 'Monthly', 'Quaterly', 'Annually'];
   List periodList = ['Beginning', 'End'];
+  List contributionList = ['Yes', 'No'];
+  String additionalContribution = "";
   String period = "";
-  double additionalContribution = 0;
   double depositAmount = 0;
+  double initial = 0;
 
 
   @override
@@ -229,7 +254,7 @@ class _myCalculatorState extends State<myCalculator> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: DropdownButtonFormField<String>(
-                          value: compoundFrequencyList.first,
+                          value: compoundFrequencyList[4],
                           onChanged: (newValue) {
                             setState(() {
                               compoundFrequency = newValue!;
@@ -260,51 +285,7 @@ class _myCalculatorState extends State<myCalculator> {
                       ),
                     ),
                     SizedBox(height: 20),
-                   Container(
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5), // shadow color
-                          spreadRadius: 5, // spread radius
-                          blurRadius: 7, // blur radius
-                          offset: Offset(0, 3), // changes position of shadow
-                        ),
-                      ],
-                    ),
-                    child: Material(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: TextFormField(
-                        controller: depositAmountController,
-                        keyboardType: TextInputType.number,
-                        textCapitalization: TextCapitalization.words, // Capitalize first letter of each name
-                        decoration: InputDecoration(
-                          label: Text('Deposit Amount (Optional)'),
-                          border: InputBorder.none,
-                          prefixIcon: Icon(Icons.attach_money),
-                          labelStyle: TextStyle(
-                            color: Colors.black,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.black,
-                              width: 2,
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        onChanged: (value) {
-                          // Trigger UI update when the deposit amount changes.
-                          setState(() {});
-                        },
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Visibility(
-                    visible: depositAmountController.text.isNotEmpty,
-                    child: Container(
+                     Container(
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
@@ -320,13 +301,13 @@ class _myCalculatorState extends State<myCalculator> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: DropdownButtonFormField<String>(
-                          value: periodList.first,
+                          value: contributionList.last,
                           onChanged: (newValue) {
                             setState(() {
-                              period = newValue!;
+                              additionalContribution = newValue!;
                             });
                           },
-                          items: <String>['Beginning', 'End']
+                          items: <String>['Yes', 'No']
                               .map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
@@ -334,7 +315,7 @@ class _myCalculatorState extends State<myCalculator> {
                             );
                           }).toList(),
                           decoration: InputDecoration(
-                            labelText: 'Point in period to make deposit (Optional)',
+                            labelText: 'Additional Contribution (Optional)',
                             prefixIcon: Icon(Icons.attach_money),
                             labelStyle: TextStyle(
                               color: Colors.black,
@@ -350,8 +331,98 @@ class _myCalculatorState extends State<myCalculator> {
                         ),
                       ),
                     ),
-    ),
+                    SizedBox(height: 20), 
+                    Visibility(
+                      visible: additionalContribution == 'Yes',
+                      child: Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5), // shadow color
+                              spreadRadius: 5, // spread radius
+                              blurRadius: 7, // blur radius
+                              offset: Offset(0, 3), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                        child: Material(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: TextFormField(
+                            // initialValue: initial.toString(),
+                            controller: depositAmountController,
+                            keyboardType: TextInputType.number,
+                            textCapitalization: TextCapitalization.words, // Capitalize first letter of each name
+                            decoration: InputDecoration(
+                              label: Text('Deposit Amount (Optional)'),
+                              border: InputBorder.none,
+                              prefixIcon: Icon(Icons.attach_money),
+                              labelStyle: TextStyle(
+                                color: Colors.black,
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                     SizedBox(height: 20),
+                    Visibility(
+                      visible: additionalContribution == 'Yes',
+                      child: Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5), // shadow color
+                              spreadRadius: 5, // spread radius
+                              blurRadius: 7, // blur radius
+                              offset: Offset(0, 3), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                        child: Material(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: DropdownButtonFormField<String>(
+                            value: periodList.last,
+                            onChanged: (newValue) {
+                              setState(() {
+                                period = newValue!;
+                              });
+                            },
+                            items: <String>['Beginning', 'End']
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            decoration: InputDecoration(
+                              labelText: 'Point in period to make deposit (Optional)',
+                              prefixIcon: Icon(Icons.attach_money),
+                              labelStyle: TextStyle(
+                                color: Colors.black,
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                     TextButton(
                       onPressed: (){
                         setState(() {
@@ -359,11 +430,23 @@ class _myCalculatorState extends State<myCalculator> {
                           interestRate = double.parse(interestRateController.text);
                           years = double.parse(yearsController.text);
 
+                          if (compoundFrequency.isNotEmpty) {
+                            compoundFrequency = compoundFrequency;
+                          } else {
+                            compoundFrequency = 'Annually';
+                          }
+
                           if (depositAmountController.text.isNotEmpty) {
                             depositAmount = double.parse(depositAmountController.text);
                           } else {
                             depositAmount = 0;
                           } 
+
+                          if (period.isNotEmpty) {
+                            period = period;
+                          } else {
+                            period = 'End';
+                          }
 
                           futureInvestmentValue = Calculation.calculateFutureInvestmentValue(initialInvestment, interestRate, years, compoundFrequency, additionalContribution, depositAmount, period);
                         });
@@ -381,102 +464,6 @@ class _myCalculatorState extends State<myCalculator> {
                       ),
                     ),
                     SizedBox(height: 20),
-
-                    // Container(
-                    //   padding: EdgeInsets.all(8.0),
-                    //   decoration: BoxDecoration(
-                    //     color: Colors.blueGrey,
-                    //     borderRadius: BorderRadius.circular(10),
-                    //   ),
-                    //   child: Text(
-                    //     'Initial Investment: $initialInvestment',
-                    //     style: TextStyle(
-                    //       color: Colors.white,
-                    //       fontSize: 16,
-                    //     ),
-                    //   ),
-                    // ),
-                    // SizedBox(height: 5),
-
-                    // Container(
-                    //   padding: EdgeInsets.all(8.0),
-                    //   decoration: BoxDecoration(
-                    //     color: Colors.blueGrey,
-                    //     borderRadius: BorderRadius.circular(10),
-                    //   ),
-                    //   child: Text(
-                    //     'Interest Rate: $interestRate',
-                    //     style: TextStyle(
-                    //       color: Colors.white,
-                    //       fontSize: 16,
-                    //     ),
-                    //   ),
-                    // ),
-                    // SizedBox(height: 5),
-
-                    // Container(
-                    //   padding: EdgeInsets.all(8.0),
-                    //   decoration: BoxDecoration(
-                    //     color: Colors.blueGrey,
-                    //     borderRadius: BorderRadius.circular(10),
-                    //   ),
-                    //   child: Text(
-                    //     'Years : $years',
-                    //     style: TextStyle(
-                    //       color: Colors.white,
-                    //       fontSize: 16,
-                    //     ),
-                    //   ),
-                    // ),
-                    // SizedBox(height: 5),
-
-                    // Container(
-                    //   padding: EdgeInsets.all(8.0),
-                    //   decoration: BoxDecoration(
-                    //     color: Colors.blueGrey,
-                    //     borderRadius: BorderRadius.circular(10),
-                    //   ),
-                    //   child: Text(
-                    //     'Compound Frequency: $compoundFrequency',
-                    //     style: TextStyle(
-                    //       color: Colors.white,
-                    //       fontSize: 16,
-                    //     ),
-                    //   ),
-                    // ),
-                    // SizedBox(height: 5),
-
-                    // Container(
-                    //   padding: EdgeInsets.all(8.0),
-                    //   decoration: BoxDecoration(
-                    //     color: Colors.blueGrey,
-                    //     borderRadius: BorderRadius.circular(10),
-                    //   ),
-                    //   child: Text(
-                    //     'Additional Contribution: $additionalContribution',
-                    //     style: TextStyle(
-                    //       color: Colors.white,
-                    //       fontSize: 16,
-                    //     ),
-                    //   ),
-                    // ),
-                    // SizedBox(height: 5),
-
-                    // Container(
-                    //   padding: EdgeInsets.all(8.0),
-                    //   decoration: BoxDecoration(
-                    //     color: Colors.blueGrey,
-                    //     borderRadius: BorderRadius.circular(10),
-                    //   ),
-                    //   child: Text(
-                    //     'Deposit Amount: $depositAmount',
-                    //     style: TextStyle(
-                    //       color: Colors.white,
-                    //       fontSize: 16,
-                    //     ),
-                    //   ),
-                    // ),
-                    // SizedBox(height: 5),
 
                     Container(
                       padding: EdgeInsets.all(8.0),
