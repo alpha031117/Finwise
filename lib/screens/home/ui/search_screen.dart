@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:vhack_finwise_app/model/new.dart';
-import 'package:vhack_finwise_app/data/news.dart';
-import 'package:vhack_finwise_app/screens/home/ui/news_screen.dart';
+import 'package:vhack_finwise_app/model/search_screen_model.dart';
+import 'package:vhack_finwise_app/data/search_screen_data.dart';
+import 'package:vhack_finwise_app/screens/home/ui/news_search_screen.dart';
 
 
 class SearchScreen extends StatefulWidget {
@@ -13,20 +13,26 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  List<New> newsdata = NewDatabase.newss;
+  late final PageController _pageController;
+  List<search_screen_new> search_screen_newss = SerachScreenNewDatabase.search_screen_newss;
 
   
 
   @override
   void initState() {
+    _pageController = PageController();
     super.initState();
-    
+  }
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
 
   void updateList(String value) {
     setState(() {
-      newsdata = NewDatabase.newss.where((element) =>element.title.toLowerCase().contains(value.toLowerCase())||
+      search_screen_newss = SerachScreenNewDatabase.search_screen_newss.where((element) =>element.title.toLowerCase().contains(value.toLowerCase())||
       element.date.year.toString().contains(value.toLowerCase())||
       element.date.month.toString().contains(value.toLowerCase())||
       element.date.day.toString().contains(value.toLowerCase())||
@@ -80,15 +86,16 @@ class _SearchScreenState extends State<SearchScreen> {
               SizedBox(height: 10.0),
               Expanded(
               child: ListView.builder(
-                itemCount: newsdata.length,
+                itemCount: search_screen_newss.length,
                 itemBuilder: (context, index) => InkWell(
+                  
                   onTap: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) =>  NewsScreen(articlenewss: newsdata),
-                    //   ),
-                    // );
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => news_search_screen(search_screen_newss: search_screen_newss[index]),
+                    ),
+                  );
                   },
                   child: Card(
                     elevation: 3,
@@ -99,7 +106,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            newsdata[index].title,
+                            search_screen_newss[index].title,
                             style: TextStyle(
                               color: const Color.fromARGB(255, 5, 49, 85),
                               fontWeight: FontWeight.bold,
@@ -107,7 +114,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           ),
                           SizedBox(height: 8.0),
                           Text(
-                            '${newsdata[index].date.year}-${newsdata[index].date.month}-${newsdata[index].date.day}',
+                            '${search_screen_newss[index].date.year}-${search_screen_newss[index].date.month}-${search_screen_newss[index].date.day}',
                             style: TextStyle(
                               fontSize: 11.0,
                               color: const Color.fromARGB(255, 5, 49, 85),
@@ -115,7 +122,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           ),
                           SizedBox(height: 4.0),
                           Text(
-                            '${newsdata[index].author}',
+                            '${search_screen_newss[index].author}',
                             style: TextStyle(
                               fontSize: 11.0,
                               color: const Color.fromARGB(255, 5, 49, 85),

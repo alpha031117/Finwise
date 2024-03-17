@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:vhack_finwise_app/model/new.dart';
-import 'package:vhack_finwise_app/data/news.dart';
+import 'package:vhack_finwise_app/model/more_screen_model.dart';
+import 'package:vhack_finwise_app/data/more_screen_data.dart';
+import 'package:vhack_finwise_app/screens/home/ui/news_more_screen.dart';
 
-class more_screen extends StatefulWidget {
-  const more_screen({Key? key}) : super(key: key);
+
+class new_more_screen extends StatefulWidget {
+  final List<more_screen_new> more_screen_newss; // Pass articles list from parent widget
+  new_more_screen({required this.more_screen_newss}); // Constructor to receive articles
 
   @override
-  State<more_screen> createState() => _more_screenState();
+  State<new_more_screen> createState() => _new_more_screenState();
 }
 
-class _more_screenState extends State<more_screen> {
-  List<New> newsdata = NewDatabase.newss;
+class _new_more_screenState extends State<new_more_screen> {
+  List<more_screen_new> more_screen_newss = MoreScreenNewDatabase.more_screen_newss;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,15 +36,15 @@ class _more_screenState extends State<more_screen> {
               SizedBox(height: 10.0),
               Expanded(
               child: ListView.builder(
-                itemCount: newsdata.length,
+                itemCount: more_screen_newss.length,
                 itemBuilder: (context, index) => InkWell(
                   onTap: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) =>  NewsScreen(articlenewss: newsdata),
-                    //   ),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>  news_more_screen(more_screen_newss: widget.more_screen_newss[index]),
+                      ),
+                    );
                   },
                   child: Card(
                     elevation: 3,
@@ -52,7 +55,7 @@ class _more_screenState extends State<more_screen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            newsdata[index].title,
+                            more_screen_newss[index].title,
                             style: TextStyle(
                               color: const Color.fromARGB(255, 5, 49, 85),
                               fontWeight: FontWeight.bold,
@@ -60,7 +63,7 @@ class _more_screenState extends State<more_screen> {
                           ),
                           SizedBox(height: 8.0),
                           Text(
-                            '${newsdata[index].date.year}-${newsdata[index].date.month}-${newsdata[index].date.day}',
+                            '${more_screen_newss[index].date.year}-${more_screen_newss[index].date.month}-${more_screen_newss[index].date.day}',
                             style: TextStyle(
                               fontSize: 11.0,
                               color: const Color.fromARGB(255, 5, 49, 85),
@@ -68,7 +71,7 @@ class _more_screenState extends State<more_screen> {
                           ),
                           SizedBox(height: 4.0),
                           Text(
-                            '${newsdata[index].author}',
+                            '${more_screen_newss[index].author}',
                             style: TextStyle(
                               fontSize: 11.0,
                               color: const Color.fromARGB(255, 5, 49, 85),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:vhack_finwise_app/model/new.dart';
 import 'package:vhack_finwise_app/data/news.dart';
+import 'package:vhack_finwise_app/screens/home/ui/news_screen_card.dart';
 
 class news_card extends StatefulWidget {
   final List<New> newss; // Pass articles list from parent widget
@@ -13,7 +13,7 @@ class news_card extends StatefulWidget {
 
 class _news_cardState extends State<news_card> {
   late final PageController _pageController;
-
+  List<New> newsdata = NewDatabase.newss;
 
   @override
   void initState() {
@@ -27,7 +27,6 @@ class _news_cardState extends State<news_card> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -38,52 +37,66 @@ class _news_cardState extends State<news_card> {
             controller: _pageController,
             itemBuilder: (_, index) {
               final newss = widget.newss[index];
-              return Container(
-                margin: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 6.0),
-                width: MediaQuery.of(context).size.width * 0.8, // Adjust width as needed
-                decoration: BoxDecoration(
-                  borderRadius:BorderRadius.circular(12.0),
-                  color: Colors.white,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                     Text(
-                        newss.title, // Access title property
-                        style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => news_screen(news: widget.newss[index]),
+                    ),
+                  );
+                },
+                child: Container(
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 50.0,
+                    vertical: 6.0,
+                  ),
+                  width: MediaQuery.of(context).size.width *
+                      0.8, // Adjust width as needed
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12.0),
+                    color: Colors.white,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        newss.title, // Access title property directly
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       SizedBox(height: 8.0),
                       Text(
-                      '${newss.date.year}-${newss.date.month}-${newss.date.day}', // Format date
-                      style: TextStyle(fontSize: 11.0, color: Colors.grey),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text
-                            (
-                            'By ${newss.author}', // Access author property
+                        '${newss.date.year}-${newss.date.month}-${newss.date.day}',
+                        style: TextStyle(fontSize: 11.0, color: Colors.grey),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'By ${newss.author}',
                             style: TextStyle(fontSize: 11.0, color: Colors.grey),
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              newss.isBookMarked // Use isBookMarked from newss directly
+                                  ? Icons.bookmark
+                                  : Icons.bookmark_border,
+                              color: newss.isBookMarked ? Colors.blue : null,
                             ),
-                            IconButton
-                            (
-                              icon: Icon
-                              (
-                                widget.newss[index].isBookMarked ? Icons.bookmark : Icons.bookmark_border,
-                                  color: widget.newss[index].isBookMarked ? Colors.blue : null,
-                              ),
-                                onPressed: () 
-                                {
-                                  setState(() {
-                                    widget.newss[index].isBookMarked = !widget.newss[index].isBookMarked;
-                                    });
-                                  },
-                            ),
-
-                          ],
-                        ),
-
-                  ],
+                            onPressed: () {
+                              setState(() {
+                                newss.isBookMarked = !newss.isBookMarked;
+                              });
+                              // You may want to save the updated bookmark status here
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               );
             },

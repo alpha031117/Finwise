@@ -1,5 +1,5 @@
 
-class New {
+class search_screen_new{
   String title;
   String text;
   String text2;
@@ -15,7 +15,7 @@ class New {
   bool isBookMarked;
   static var length;
 
-  New({
+  search_screen_new({
     required this.title,
     required this.com,
     required this.date,

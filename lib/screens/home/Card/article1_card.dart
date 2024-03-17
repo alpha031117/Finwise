@@ -80,7 +80,7 @@ class _article1_cardState extends State<article1_card> {
                       ),
                     ],
                   ),
-    );
+                );
             },
             itemCount: widget.articless1.length,
             physics: PageScrollPhysics(), // Enable smooth scrolling

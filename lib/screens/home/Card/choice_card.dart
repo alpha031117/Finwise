@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:vhack_finwise_app/screens/home/ui/global_screen.dart';
 import 'package:vhack_finwise_app/screens/home/ui/local_screen.dart';
 
+import 'package:vhack_finwise_app/model/new.dart';
+import 'package:vhack_finwise_app/data/news.dart';
+
 class choice_card extends StatelessWidget {
+  List<New> newsdata = NewDatabase.newss;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -12,7 +16,7 @@ class choice_card extends StatelessWidget {
             Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>  global_screen(),
+                        builder: (context) =>  global_screen(newss:newsdata),
                       ),
                     );
           },
@@ -49,7 +53,7 @@ class choice_card extends StatelessWidget {
             Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>  local_screen(),
+                        builder: (context) =>  local_screen(newss:newsdata),
                       ),
                     );
           },

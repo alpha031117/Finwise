@@ -72,6 +72,16 @@ flutter:
     - assets/local.jpg
     - assets/stocks.jpg
     - assets/savings.jpg
+    - assets/cds.jpg
+    - assets/oracle.jpg
+    - assets/mortage.jpg
+    - assets/rivan.jpg
+    - assets/marketnews.jpg
+    - assets/economy.jpg
+    - assets/takeways.jpg
+    - assets/bitcoin.jpg
+    - assets/etf.jpg
+    - assets/retirement.jpg
  
 
   # An image asset can refer to one or more resolution-specific "variants", see
