@@ -7,6 +7,8 @@ class Article1 {
   String text5;
   String com;
   String imagePath; // Add imagePath property
+  int followers;
+  int following;
 
   DateTime date;
   String author;
@@ -26,6 +28,8 @@ class Article1 {
     required this.text4,
     required this.text5,
     required this.isBookMarked,
-    required this.imagePath
+    required this.imagePath,
+    required this.followers,
+    required this.following,
   });
 }

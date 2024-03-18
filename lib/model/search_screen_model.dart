@@ -14,6 +14,8 @@ class search_screen_new{
   String type;
   bool isBookMarked;
   static var length;
+  int followers;
+  int following;
 
   search_screen_new({
     required this.title,
@@ -27,6 +29,8 @@ class search_screen_new{
     required this.text4,
     required this.text5,
     required this.isBookMarked,
-    required this.imagePath
+    required this.imagePath,
+    required this.followers,
+    required this.following,
   });
 }

@@ -101,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(height: 10),
                 choice_card(), // Assuming you have this widget defined elsewhere
-                SizedBox(height: 20),
+                SizedBox(height: 10),
                 Row(children: <Widget>[
                   Text(
                     'Trending',

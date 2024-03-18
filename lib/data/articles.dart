@@ -20,7 +20,10 @@ class ArticleDatabase {
             'Treasury yields bounced around following the report. The yield on the 10-year and 2-year notes dropped as low as 4.04% and 4.42%, respectively, before climbing back up to their pre-report levels.',
         text5:
             'Costco (COST) shares fell after it reported slower sales growth than analysts had been expecting in its 2024 fiscal second quarter.',
-        imagePath: 'assets/marketnews.jpg'),
+        imagePath: 'assets/marketnews.jpg',         
+        followers: 3000,
+        following: 5500,
+        ),
     
   ];
 }

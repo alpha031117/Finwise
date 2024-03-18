@@ -1,4 +1,6 @@
 class GlobalNews {
+    int followers;
+  int following;
   String title;
   String text;
   String text2;
@@ -26,6 +28,8 @@ class GlobalNews {
     required this.text4,
     required this.text5,
     required this.isBookMarked,
-    required this.imagePath
+    required this.imagePath,
+    required this.followers,
+    required this.following,
   });
 }

@@ -32,6 +32,26 @@ String getMonthName(int month) {
   }
 }
 
+String getfollowers(int followers) {
+  if (followers >= 1000) {
+    return 'k';
+  } else if(followers >= 10000)
+    return 'm';
+  else{
+    return '';
+  }
+}
+
+double getfollowersNum(int followers) {
+  if (followers >= 1000) {
+    return followers/1000;
+  } else if(followers >= 10000)
+    return followers/10000;
+  else{
+    return followers.toDouble();
+  }
+}
+
 class news_search_screen extends StatefulWidget {
   final search_screen_new search_screen_newss;
   const news_search_screen({Key? key, required this.search_screen_newss}) : super(key: key);
@@ -209,7 +229,67 @@ class news_search_screenState extends State<news_search_screen> {
                       ),
                     ),
               SizedBox(height: 20),
-              Divider(), 
+              Divider(),
+                Container(
+                margin: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 8.0),
+                padding: const EdgeInsets.all(5.0),
+                decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12.0),
+                color: Colors.grey[200],
+                ),
+                child: Row(
+                  children: <Widget>[
+                    CircleAvatar(
+                    backgroundImage: AssetImage(widget.search_screen_newss.imagePath),
+                    radius: 50,
+                  ),
+                  SizedBox(width: 12.0),
+                  Expanded(
+                    child: Stack(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '${widget.search_screen_newss.com}',
+                              style: TextStyle(
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.bold),
+                              maxLines: 2, // Adjust as needed
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            SizedBox(width: 8.0),
+                            SizedBox(height: 3.0),
+                            Text(
+                              getfollowersNum(widget.search_screen_newss.followers).toString()+getfollowers(widget.search_screen_newss.followers)+' '+'followers' ,
+                              style:
+                                  TextStyle(fontSize: 14.0, color: Colors.grey),
+                            ),
+                          ],
+                        ),
+                        Positioned(
+                          top: 2.5,
+                          right: 85,
+                          child: Container(
+                            padding: EdgeInsets.all(2),
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(
+                              Icons.check,
+                              color: Colors.white,
+                              size: 16,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ],
+                ),
+                ),
+                Divider(), 
             ],
           ),
         ),
