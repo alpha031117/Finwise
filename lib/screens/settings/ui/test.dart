@@ -1,9 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, camel_case_types, prefer_const_constructors, non_constant_identifier_names, avoid_print, unrelated_type_equality_checks, unused_local_variable
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
-import 'dart:math';
 
 class myCalculator extends StatefulWidget {
   const myCalculator({super.key});
@@ -17,20 +15,27 @@ class Calculation {
   static double calculateFutureInvestmentValue (double initialInvestment, double interestRate, double years, String compoundFrequency, String additionalContribution, double depositAmount, String period) {
     double compoundInterval = 0;
     double x = initialInvestment;
+    double y = 0;
     List<double> futureInvestmentValueList = [];
+
+    print(compoundFrequency);
 
     switch (compoundFrequency) {
       case 'Daily':
           compoundInterval = 365;
+          y = 1/365;
           break;
       case 'Weekly':
         compoundInterval = 52;
+        y = 1/52;
         break;
       case 'Monthly':
         compoundInterval = 12;
+        y = 1/12;
         break;
       case 'Quaterly':
         compoundInterval = 4;
+        y = 1/4;
         break;
       case 'Annually':
         compoundInterval = 1;
@@ -50,21 +55,39 @@ class Calculation {
         break;
     }
 
-    for (int i = 0 ; i < years; i++) {
-            for (int k = 0; k < compoundInterval; k++) {
-                if (period == 'End') {
-                    x = (x * (interestRate / 100) * 0.25) + x;
-                    x = x + depositAmount;
-                } else if (period == 'Beginning') {
-                    x = x + depositAmount;
-                    x = (x * (interestRate / 100) * 0.25) + x;
-                } else {
-                    x = (x * (interestRate / 100) * 0.25) + x;
-                }
+    if( compoundFrequency != 'Annually') {
+      for (int i = 0 ; i < years; i++) {
+        for (int k = 0; k < compoundInterval; k++) {
+            if (period == 'End') {
+                x = (x * (interestRate / 100) * y) + x;
+                x = x + depositAmount;
+            } else if (period == 'Beginning') {
+                x = x + depositAmount;
+                x = (x * (interestRate / 100) * y) + x;
+            } else {
+                x = (x * (interestRate / 100) * y) + x;
             }
-            futureInvestmentValueList.add(x);
-            print(futureInvestmentValueList);
         }
+        futureInvestmentValueList.add(x);
+        print(futureInvestmentValueList);
+      }
+    }
+
+    // for (int i = 0 ; i < years; i++) {
+    //     for (int k = 0; k < compoundInterval; k++) {
+    //         if (period == 'End') {
+    //             x = (x * (interestRate / 100) * 0.25) + x;
+    //             x = x + depositAmount;
+    //         } else if (period == 'Beginning') {
+    //             x = x + depositAmount;
+    //             x = (x * (interestRate / 100) * 0.25) + x;
+    //         } else {
+    //             x = (x * (interestRate / 100) * 0.25) + x;
+    //         }
+    //     }
+    //     futureInvestmentValueList.add(x);
+    //     print(futureInvestmentValueList);
+    // }
 
    return x;
   }
