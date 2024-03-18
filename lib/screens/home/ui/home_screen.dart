@@ -47,8 +47,8 @@ class _HomeScreenState extends State<HomeScreen> {
     String name = 'Alan';
     final List<New> newss = NewDatabase.newss; // Access articles from data source
     final List<info> infoss = InfoDatabase.infos;
-    final List<Article> articless = ArticleDatabase.article;
-    final List<Article1> articless1 = Article1Database.article1;
+    final List<Article> articless = ArticleDatabase.articless;
+    final List<Article1> articles1 = Article1Database.articles1;
     final List<quiz> quizz = QuizDatabase.quizz;
     final List<quiz1> quizz1 = Quiz1Database.quizz1;
     final List<quiz2> quizz2 = Quiz2Database.quizz2;
@@ -144,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(
                   height: 140, // Adjust the height as needed
-                  child: article1_card(articless1: articless1),
+                  child: article1_card(articles1: articles1),
                 ),
                 Text(
                     'Learns &',

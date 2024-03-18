@@ -1,4 +1,4 @@
-class Article {
+class LocalMoreNews {
   String title;
   String text;
   String text2;
@@ -14,7 +14,7 @@ class Article {
   bool isBookMarked;
   static var length;
 
-  Article({
+  LocalMoreNews({
     required this.title,
     required this.com,
     required this.date,

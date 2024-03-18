@@ -1,12 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:vhack_finwise_app/model/new.dart';
-import 'package:vhack_finwise_app/data/news.dart';
+import 'package:vhack_finwise_app/model/local_screen_news_model.dart';
+import 'package:vhack_finwise_app/data/local_screen_news_data.dart';
 
+import 'package:vhack_finwise_app/model/local_screen_more_news_model.dart';
+import 'package:vhack_finwise_app/data/local_screen_more_news_data.dart';
+
+import 'package:vhack_finwise_app/screens/home/ui/local_screen_more_news.dart';
+import 'package:vhack_finwise_app/screens/home/ui/local_screen_news.dart';
 class local_screen extends StatefulWidget {
-  final List<New> newss; // Pass articles list from parent widget
-  const local_screen({required this.newss});
+  final List<LocalNews> localnews; // Pass articles list from parent widget
+  final List<LocalMoreNews> localmorenews; // Pass articles list from parent widget
+  const local_screen({required this.localnews,required this.localmorenews});
 
 
   @override
@@ -16,7 +22,8 @@ class local_screen extends StatefulWidget {
 class _local_screenState extends State<local_screen> {
   
   late final PageController _pageController;
-  List<New> newsdata = NewDatabase.newss;
+    List<LocalMoreNews> localmorenews = LocalMoreNewsDatabase.localmorenews;
+    List<LocalNews> localnews = LocalNewsDatabase.localnews;
 
   @override
   void initState() {
@@ -61,58 +68,70 @@ class _local_screenState extends State<local_screen> {
                 child: PageView.builder(
                   controller: _pageController,
                   itemBuilder: (_, index) {
-                    New newsItem = widget.newss[index];
-                    return Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 6.0),
-                      width: MediaQuery.of(context).size.width * 0.3,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12.0),
-                        color: Colors.white,
+                    LocalNews localnews = widget.localnews[index];
+                    return GestureDetector(
+
+                      onTap: () {
+                          Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>  local_news_screen( 
+                          localnews: widget.localnews[index]),
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: double.infinity,
-                            height: 150, // Adjust image height as needed
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.vertical(top: Radius.circular(12.0)),
-                              image: DecorationImage(
-                                image: AssetImage(newsItem.imagePath), // Use AssetImage for local assets
-                                fit: BoxFit.cover,
+                    );
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 6.0),
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                          color: Colors.white,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              height: 150, // Adjust image height as needed
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.vertical(top: Radius.circular(12.0)),
+                                image: DecorationImage(
+                                  image: AssetImage(localnews.imagePath), // Use AssetImage for local assets
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(height: 8.0),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  newsItem.title,
-                                  style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                SizedBox(height: 4.0),
-                                Text(
-                                  'Author: ${newsItem.author}',
-                                  style: TextStyle(fontSize: 12.0, color: Colors.grey),
-                                ),
-                                SizedBox(height: 4.0),
-                                Text(
-                                  'Date: ${newsItem.date.toString()}',
-                                  style: TextStyle(fontSize: 12.0, color: Colors.grey),
-                                ),
-                              ],
+                            SizedBox(height: 8.0),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                   localnews.title,
+                                    style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  SizedBox(height: 4.0),
+                                  Text(
+                                    'Author: ${localnews.author}',
+                                    style: TextStyle(fontSize: 12.0, color: Colors.grey),
+                                  ),
+                                  SizedBox(height: 4.0),
+                                  Text(
+                                    'Date: ${localnews.date.toString()}',
+                                    style: TextStyle(fontSize: 12.0, color: Colors.grey),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     );
                   },
-                  itemCount: widget.newss.length,
+                  itemCount: widget.localnews.length,
                   physics: PageScrollPhysics(),
                 ),
               ),
@@ -130,58 +149,69 @@ class _local_screenState extends State<local_screen> {
               SizedBox(
                 height: 300,
                 child: ListView.builder(
-                  itemCount: widget.newss.length,
+                  itemCount: widget.localmorenews.length,
                   itemBuilder: (context, index) {
-                    New newsItem = widget.newss[index];
-                    return Container(
-                      margin: const EdgeInsets.symmetric(
-                      horizontal: 5.0, vertical: 8.0),
-                      padding: const EdgeInsets.all(5.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12.0),
-                        color: Colors.white,
+                    LocalMoreNews localmorenews= widget.localmorenews[index];
+                    return GestureDetector(
+                     onTap: () {
+                          Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>  local_more_news_screen( 
+                          localmorenews: widget.localmorenews[index]),
                       ),
-                      child: Row(
-                        children: [
-                          Container(
-                                width: 80.0, // Adjust image width as needed
-                                height: 80.0, // Adjust image height as needed
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12.0),
-                                  image: DecorationImage(
-                                    image: AssetImage(newsItem.imagePath), // Use AssetImage for local assets
-                                    fit: BoxFit.cover,
+                    );
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(
+                        horizontal: 5.0, vertical: 8.0),
+                        padding: const EdgeInsets.all(5.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                          color: Colors.white,
+                        ),
+                        child: Row(
+                          children: [
+                            Container(
+                                  width: 80.0, // Adjust image width as needed
+                                  height: 80.0, // Adjust image height as needed
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12.0),
+                                    image: DecorationImage(
+                                      image: AssetImage(localmorenews.imagePath), // Use AssetImage for local assets
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
+                            SizedBox(width: 12.0),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    localmorenews.title,
+                                    style: TextStyle(
+                                        fontSize: 14.0, fontWeight: FontWeight.bold),
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  SizedBox(height: 8.0),
+                                  Text(
+                                    'Date: ${localmorenews.date.toString()}',
+                                    style:
+                                        TextStyle(fontSize: 12.0, color: Colors.grey),
+                                  ),
+                                  SizedBox(height: 4.0),
+                                  Text(
+                                    'Author: ${localmorenews.author}',
+                                    style:
+                                        TextStyle(fontSize: 12.0, color: Colors.grey),
+                                  ),
+                                ],
                               ),
-                          SizedBox(width: 12.0),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  newsItem.title,
-                                  style: TextStyle(
-                                      fontSize: 14.0, fontWeight: FontWeight.bold),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                SizedBox(height: 8.0),
-                                Text(
-                                  'Date: ${newsItem.date.toString()}',
-                                  style:
-                                      TextStyle(fontSize: 12.0, color: Colors.grey),
-                                ),
-                                SizedBox(height: 4.0),
-                                Text(
-                                  'Author: ${newsItem.author}',
-                                  style:
-                                      TextStyle(fontSize: 12.0, color: Colors.grey),
-                                ),
-                              ],
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     );
                   },

@@ -1,13 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:vhack_finwise_app/model/new.dart';
-import 'package:vhack_finwise_app/data/news.dart';
+import 'package:vhack_finwise_app/model/global_screen_news_model.dart';
+import 'package:vhack_finwise_app/data/global_screen_news_data.dart';
 
+import 'package:vhack_finwise_app/model/global_screen_more_news_model.dart';
+import 'package:vhack_finwise_app/data/global_screen_more_news_data.dart';
+import 'package:vhack_finwise_app/screens/home/ui/global_screen_more_news.dart';
+import 'package:vhack_finwise_app/screens/home/ui/global_screen_news.dart';
 
 class global_screen extends StatefulWidget {
-  final List<New> newss; // Pass articles list from parent widget
-  const global_screen({required this.newss});
+  final List<GlobalNews> globalnews; // Pass articles list from parent widget
+  final List<GlobalMoreNews> globalmorenews; // Pass articles list from parent widget
+  const global_screen({required this.globalnews,required this.globalmorenews});
 
   @override
   State<global_screen> createState() => _global_screenState();
@@ -15,7 +20,8 @@ class global_screen extends StatefulWidget {
 
 class _global_screenState extends State<global_screen> {
   late final PageController _pageController;
-  List<New> newsdata = NewDatabase.newss;
+  List<GlobalNews> globalnews = GlobalNewsDatabase.globalnews;
+  List<GlobalMoreNews> globalmorenews = GlobalMoreNewsDatabase.globalmorenews;
 
   @override
   void initState() {
@@ -60,13 +66,20 @@ class _global_screenState extends State<global_screen> {
                 child: PageView.builder(
                   controller: _pageController,
                   itemBuilder: (_, index) {
-                    New newsItem = widget.newss[index];
+                    GlobalNews globalnews = widget.globalnews[index];
                     return GestureDetector(
                       onTap: () {
-                                
+                          Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>  global_news_screen( 
+                          globalnews: widget.globalnews[index]),
+                      ),
+                    );
                       },
                       child: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 6.0),
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 30.0, vertical: 6.0),
                         width: MediaQuery.of(context).size.width * 0.3,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12.0),
@@ -79,34 +92,41 @@ class _global_screenState extends State<global_screen> {
                               width: double.infinity,
                               height: 150, // Adjust image height as needed
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.vertical(top: Radius.circular(12.0)),
+                                borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(12.0)),
                                 image: DecorationImage(
-                                  image: AssetImage(newsItem.imagePath), // Use AssetImage for local assets
+                                  image: AssetImage(globalnews
+                                      .imagePath), // Use AssetImage for local assets
                                   fit: BoxFit.cover,
                                 ),
                               ),
                             ),
                             SizedBox(height: 8.0),
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 12.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    newsItem.title,
-                                    style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+                                    globalnews.title,
+                                    style: TextStyle(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.bold),
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                   SizedBox(height: 4.0),
                                   Text(
-                                    'Author: ${newsItem.author}',
-                                    style: TextStyle(fontSize: 12.0, color: Colors.grey),
+                                    'Author: ${globalnews.author}',
+                                    style: TextStyle(
+                                        fontSize: 12.0, color: Colors.grey),
                                   ),
                                   SizedBox(height: 4.0),
                                   Text(
-                                    'Date: ${newsItem.date.toString()}',
-                                    style: TextStyle(fontSize: 12.0, color: Colors.grey),
+                                    'Date: ${globalnews.date.toString()}',
+                                    style: TextStyle(
+                                        fontSize: 12.0, color: Colors.grey),
                                   ),
                                 ],
                               ),
@@ -116,11 +136,10 @@ class _global_screenState extends State<global_screen> {
                       ),
                     );
                   },
-                  itemCount: widget.newss.length,
+                  itemCount: widget.globalnews.length,
                   physics: PageScrollPhysics(),
                 ),
               ),
-
               SizedBox(height: 10.0),
               Text(
                 'More News',
@@ -134,58 +153,71 @@ class _global_screenState extends State<global_screen> {
               SizedBox(
                 height: 300,
                 child: ListView.builder(
-                  itemCount: widget.newss.length,
+                  itemCount: widget.globalmorenews.length,
                   itemBuilder: (context, index) {
-                    New newsItem = widget.newss[index];
-                    return Container(
-                      margin: const EdgeInsets.symmetric(
-                      horizontal: 5.0, vertical: 8.0),
-                      padding: const EdgeInsets.all(5.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12.0),
-                        color: Colors.white,
+                    GlobalMoreNews globalmorenews = widget.globalmorenews[index];
+                    return GestureDetector(
+                      onTap: () {
+                          Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>  global_more_news_screen( 
+                          globalmorenews: widget.globalmorenews[index]),
                       ),
-                      child: Row(
-                        children: [
-                          Container(
-                                width: 80.0, // Adjust image width as needed
-                                height: 80.0, // Adjust image height as needed
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12.0),
-                                  image: DecorationImage(
-                                    image: AssetImage(newsItem.imagePath), // Use AssetImage for local assets
-                                    fit: BoxFit.cover,
-                                  ),
+                    );
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 5.0, vertical: 8.0),
+                        padding: const EdgeInsets.all(5.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                          color: Colors.white,
+                        ),
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 80.0, // Adjust image width as needed
+                              height: 80.0, // Adjust image height as needed
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12.0),
+                                image: DecorationImage(
+                                  image: AssetImage(globalmorenews
+                                      .imagePath), // Use AssetImage for local assets
+                                  fit: BoxFit.cover,
                                 ),
                               ),
-                          SizedBox(width: 12.0),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  newsItem.title,
-                                  style: TextStyle(
-                                      fontSize: 14.0, fontWeight: FontWeight.bold),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                SizedBox(height: 8.0),
-                                Text(
-                                  'Date: ${newsItem.date.toString()}',
-                                  style:
-                                      TextStyle(fontSize: 12.0, color: Colors.grey),
-                                ),
-                                SizedBox(height: 4.0),
-                                Text(
-                                  'Author: ${newsItem.author}',
-                                  style:
-                                      TextStyle(fontSize: 12.0, color: Colors.grey),
-                                ),
-                              ],
                             ),
-                          ),
-                        ],
+                            SizedBox(width: 12.0),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    globalmorenews.title,
+                                    style: TextStyle(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.bold),
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  SizedBox(height: 8.0),
+                                  Text(
+                                    'Date: ${globalmorenews.date.toString()}',
+                                    style: TextStyle(
+                                        fontSize: 12.0, color: Colors.grey),
+                                  ),
+                                  SizedBox(height: 4.0),
+                                  Text(
+                                    'Author: ${globalmorenews.author}',
+                                    style: TextStyle(
+                                        fontSize: 12.0, color: Colors.grey),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   },
