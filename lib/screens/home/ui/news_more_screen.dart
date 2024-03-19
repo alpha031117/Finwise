@@ -65,6 +65,7 @@ class _news_more_screen_State extends State<news_more_screen> {
   late final PageController _pageController;
   bool isPressed = false;
   int _currentPage = 0;
+  bool isBookmarked = false;
 
       void changeColor() {
     setState(() {
@@ -72,14 +73,38 @@ class _news_more_screen_State extends State<news_more_screen> {
     });
   }
 
+      void toggleBookmark() {
+    setState(() {
+      isBookmarked = !isBookmarked;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: PreferredSize(
+         appBar: PreferredSize(
           preferredSize: Size.fromHeight(60.0),
           child: AppBar(
             backgroundColor: Colors.white,
             elevation: 0.0,
+            actions: <Widget>[
+        IconButton(
+          icon: Icon(
+            isBookmarked ? Icons.bookmark : Icons.bookmark_border,
+            color: isBookmarked ? Colors.blue : null,
+          ),
+          onPressed: () {
+            toggleBookmark();
+          },
+        ),
+        SizedBox(width: 3), // Space between the icon buttons
+        IconButton(
+          icon: Icon(Icons.share_rounded),
+          onPressed: () {
+            // Implement functionality for settings icon button
+          },
+        ),
+      ],
           ),
         ),
         backgroundColor:

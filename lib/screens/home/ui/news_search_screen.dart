@@ -64,6 +64,7 @@ class news_search_screen extends StatefulWidget {
 class news_search_screenState extends State<news_search_screen> {
   late final PageController _pageController;
   bool isPressed = false;
+  bool isBookmarked = false;
 
 
   void changeColor() {
@@ -71,17 +72,41 @@ class news_search_screenState extends State<news_search_screen> {
       isPressed = true;
     });
   }
+
+      void toggleBookmark() {
+    setState(() {
+      isBookmarked = !isBookmarked;
+    });
+  }
   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60.0),
-        child: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0.0,
+          preferredSize: Size.fromHeight(60.0),
+          child: AppBar(
+            backgroundColor: Colors.white,
+            elevation: 0.0,
+            actions: <Widget>[
+        IconButton(
+          icon: Icon(
+            isBookmarked ? Icons.bookmark : Icons.bookmark_border,
+            color: isBookmarked ? Colors.blue : null,
+          ),
+          onPressed: () {
+            toggleBookmark();
+          },
         ),
-      ),
+        SizedBox(width: 3), // Space between the icon buttons
+        IconButton(
+          icon: Icon(Icons.share_rounded),
+          onPressed: () {
+            // Implement functionality for settings icon button
+          },
+        ),
+      ],
+          ),
+        ),
       backgroundColor: Colors.grey[200], // Set the background color of the body here
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),

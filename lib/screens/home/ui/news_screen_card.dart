@@ -66,11 +66,18 @@ class news_screen extends StatefulWidget {
 class _news_screenState extends State<news_screen> {
   int _currentPage = 0;
   bool isPressed = false;
+  bool isBookmarked = false;
   late final PageController _pageController;
 
     void changeColor() {
     setState(() {
       isPressed = true;
+    });
+  }
+
+    void toggleBookmark() {
+    setState(() {
+      isBookmarked = !isBookmarked;
     });
   }
   
@@ -83,6 +90,24 @@ class _news_screenState extends State<news_screen> {
           child: AppBar(
             backgroundColor: Colors.white,
             elevation: 0.0,
+            actions: <Widget>[
+        IconButton(
+          icon: Icon(
+            isBookmarked ? Icons.bookmark : Icons.bookmark_border,
+            color: isBookmarked ? Colors.blue : null,
+          ),
+          onPressed: () {
+            toggleBookmark();
+          },
+        ),
+        SizedBox(width: 3), // Space between the icon buttons
+        IconButton(
+          icon: Icon(Icons.share_rounded),
+          onPressed: () {
+            // Implement functionality for settings icon button
+          },
+        ),
+      ],
           ),
         ),
         backgroundColor:

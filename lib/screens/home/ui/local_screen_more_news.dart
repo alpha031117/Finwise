@@ -66,6 +66,7 @@ class  _local_more_news_screen_State extends State<local_more_news_screen> {
   int _currentPage = 0;
 
   bool isPressed = false;
+  bool isBookmarked = false;
 
     void changeColor() {
     setState(() {
@@ -73,16 +74,40 @@ class  _local_more_news_screen_State extends State<local_more_news_screen> {
     });
   }
 
+      void toggleBookmark() {
+    setState(() {
+      isBookmarked = !isBookmarked;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60.0),
-        child: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0.0,
+          preferredSize: Size.fromHeight(60.0),
+          child: AppBar(
+            backgroundColor: Colors.white,
+            elevation: 0.0,
+            actions: <Widget>[
+        IconButton(
+          icon: Icon(
+            isBookmarked ? Icons.bookmark : Icons.bookmark_border,
+            color: isBookmarked ? Colors.blue : null,
+          ),
+          onPressed: () {
+            toggleBookmark();
+          },
         ),
-      ),
+        SizedBox(width: 3), // Space between the icon buttons
+        IconButton(
+          icon: Icon(Icons.share_rounded),
+          onPressed: () {
+            // Implement functionality for settings icon button
+          },
+        ),
+      ],
+          ),
+        ),
       backgroundColor: Colors.grey[200], // Set the background color of the body here
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
