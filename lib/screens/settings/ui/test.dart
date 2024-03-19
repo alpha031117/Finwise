@@ -73,22 +73,6 @@ class Calculation {
       }
     }
 
-    // for (int i = 0 ; i < years; i++) {
-    //     for (int k = 0; k < compoundInterval; k++) {
-    //         if (period == 'End') {
-    //             x = (x * (interestRate / 100) * 0.25) + x;
-    //             x = x + depositAmount;
-    //         } else if (period == 'Beginning') {
-    //             x = x + depositAmount;
-    //             x = (x * (interestRate / 100) * 0.25) + x;
-    //         } else {
-    //             x = (x * (interestRate / 100) * 0.25) + x;
-    //         }
-    //     }
-    //     futureInvestmentValueList.add(x);
-    //     print(futureInvestmentValueList);
-    // }
-
    return x;
   }
 

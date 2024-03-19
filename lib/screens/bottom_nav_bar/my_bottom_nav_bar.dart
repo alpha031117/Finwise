@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:vhack_finwise_app/screens/calculator/ui/calculator_screen.dart';
 import 'package:vhack_finwise_app/screens/home/ui/home_screen.dart';
 import 'package:vhack_finwise_app/screens/leaderboard/ui/leaderboard_screen.dart';

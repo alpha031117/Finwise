@@ -98,7 +98,7 @@ class _aboutUsState extends State<aboutUs> {
                     ),
                     SizedBox(height: 10),
                     Text(
-                      'A vision statement describes what a company desires to achieve in the long-run, generally in a time frame of five to ten years, or sometimes even longer.',
+                      'Empowering individuals worldwide with financial knowledge and resources to achieve economic freedom and prosperity.',
                       style: TextStyle(
                         fontSize: 15,
                         fontFamily: GlobalVariables.textFont().fontFamily,
@@ -120,7 +120,7 @@ class _aboutUsState extends State<aboutUs> {
         Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(0, 120, 0, 0),
+              padding: const EdgeInsets.fromLTRB(0, 180, 0, 0),
               child: Container( 
                 height: 300,
                 width: 300,
@@ -149,7 +149,7 @@ class _aboutUsState extends State<aboutUs> {
                     ),
                     SizedBox(height: 10),
                     Text(
-                      'The primary role of a personal finance app is to simplify financial management. A good app should make it easy to see where your money is going.',
+                      'To democratize financial literacy worldwide by providing real-time news, customizable tools, and interactive quizzes, empowering individuals of all backgrounds to make informed financial decisions and achieve prosperity。',
                       textAlign: TextAlign.right,
                       style: TextStyle(
                         fontSize: 15,
