@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, camel_case_types, library_private_types_in_public_api
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +66,7 @@ class _settingPageState extends State<settingPage> {
             SizedBox(height: 25),
             buttonList(Icons.language, 'Language', context),
             SizedBox(height: 25),
-            buttonList(Icons.info_outline, 'About Us', context),
+            buttonList(Icons.help, 'Help & Support', context),
             SizedBox(height: 25),
             buttonList(Icons.description, 'Terms & Conditions', context),
             SizedBox(height: 25),
