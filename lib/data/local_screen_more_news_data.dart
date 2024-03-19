@@ -22,7 +22,16 @@ class LocalMoreNewsDatabase {
             'Costco (COST) shares fell after it reported slower sales growth than analysts had been expecting in its 2024 fiscal second quarter.',
         imagePath: 'assets/marketnews.jpg',         
         followers: 3000,
-        following: 5500,),
+        following: 5500,
+        explanation: '',
+        id: 'hello',
+        points: 0,
+        quiztitle:
+            "Hello?",
+        options: {
+          'True': true,
+          'False': false,
+        }),
     // GlobalMoreNews(
     //     title: 'Rivan Stock Soars 13% as EV Maker Introduces Three New Models',
     //     date: DateTime(2024, 03, 07),

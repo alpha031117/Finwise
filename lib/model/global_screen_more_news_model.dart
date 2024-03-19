@@ -15,6 +15,11 @@ class GlobalMoreNews {
   String type;
   bool isBookMarked;
   static var length;
+    String explanation;
+  String quiztitle;
+  int points;
+  String id;
+  Map<String, bool> options;
 
   GlobalMoreNews({
     required this.title,
@@ -31,5 +36,10 @@ class GlobalMoreNews {
     required this.imagePath,
     required this.followers,
     required this.following,
+    required this.id,
+    required this.quiztitle,
+    required this.points,
+    required this.options,
+    required this.explanation,
   });
 }

@@ -14,6 +14,11 @@ class LocalMoreNews {
   String type;
   bool isBookMarked;
   static var length;
+  String explanation;
+  String quiztitle;
+  int points;
+  String id;
+  Map<String, bool> options;
 
   LocalMoreNews({
     required this.title,
@@ -30,5 +35,10 @@ class LocalMoreNews {
     required this.imagePath,
     required this.followers,
     required this.following,
+    required this.id,
+    required this.quiztitle,
+    required this.points,
+    required this.options,
+    required this.explanation,
   });
 }

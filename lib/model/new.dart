@@ -1,4 +1,3 @@
-
 class New {
   int followers;
   int following;
@@ -9,13 +8,18 @@ class New {
   String text4;
   String text5;
   String com;
-  String imagePath; // Add imagePath property
-
+  String imagePath;
+  String explanation; 
   DateTime date;
   String author;
   String type;
   bool isBookMarked;
   static var length;
+
+  String quiztitle;
+  int points;
+  String id;
+  Map<String, bool> options;
 
   New({
     required this.title,
@@ -32,5 +36,10 @@ class New {
     required this.imagePath,
     required this.followers,
     required this.following,
+    required this.explanation,
+    required this.id,
+    required this.quiztitle,
+    required this.points,
+    required this.options,
   });
 }

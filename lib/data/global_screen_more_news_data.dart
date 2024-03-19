@@ -23,6 +23,15 @@ class GlobalMoreNewsDatabase {
         imagePath: 'assets/marketnews.jpg',         
         followers: 3000,
         following: 5500,
+        explanation: '',
+        id: 'hello',
+        points: 0,
+        quiztitle:
+            "Hello?",
+        options: {
+          'True': true,
+          'False': false,
+        }
         )
     // GlobalMoreNews(
     //     title: 'Rivan Stock Soars 13% as EV Maker Introduces Three New Models',

@@ -22,6 +22,15 @@ class MoreScreenNewDatabase {
         imagePath: 'assets/marketnews.jpg',         
         followers: 3000,
         following: 5500,
+        explanation: '',
+        id: 'hello',
+        points: 0,
+        quiztitle:
+            "Hello?",
+        options: {
+          'True': true,
+          'False': false,
+        }
         ),
     more_screen_new(
         title: 'Rivan Stock Soars 13% as EV Maker Introduces Three New Models',
@@ -43,6 +52,15 @@ class MoreScreenNewDatabase {
         imagePath: 'assets/rivan.jpg',
                   followers: 1000,
         following: 5500,
+        explanation: '',
+        id: 'hello',
+        points: 0,
+        quiztitle:
+            "Hello?",
+        options: {
+          'True': true,
+          'False': false,
+        }
         ),
     more_screen_new(
         title: "Ahead of Oracle's Earnings Report Monday",
@@ -66,6 +84,15 @@ class MoreScreenNewDatabase {
         followers: 1000,
         
         following: 5500,
+        explanation: '',
+        id: 'hello',
+        points: 0,
+        quiztitle:
+            "Hello?",
+        options: {
+          'True': true,
+          'False': false,
+        }
         ),
     more_screen_new(
         title:
@@ -88,6 +115,15 @@ class MoreScreenNewDatabase {
         imagePath: 'assets/cds.jpg',
                   followers: 1000,
         following: 5500,
+        explanation: '',
+        id: 'hello',
+        points: 0,
+        quiztitle:
+            "Hello?",
+        options: {
+          'True': true,
+          'False': false,
+        }
         ),
     more_screen_new(
         title: '30-Year Mortgage Rates Fall to 3-week Low',
@@ -109,6 +145,15 @@ class MoreScreenNewDatabase {
         imagePath: 'assets/mortage.jpg',
         followers: 1000,
         following: 5500,
+        explanation: '',
+        id: 'hello',
+        points: 0,
+        quiztitle:
+            "Hello?",
+        options: {
+          'True': true,
+          'False': false,
+        }
         ),
     more_screen_new(
         title:
@@ -131,6 +176,15 @@ class MoreScreenNewDatabase {
         imagePath: 'assets/economy.jpg',          
         followers: 1000,
         following: 5500,
+        explanation: '',
+        id: 'hello',
+        points: 0,
+        quiztitle:
+            "Hello?",
+        options: {
+          'True': true,
+          'False': false,
+        }
         ),
     more_screen_new(
         title: '4 Key Economic Takeaways From the State of the Union Address',
@@ -152,6 +206,15 @@ class MoreScreenNewDatabase {
         imagePath: 'assets/takeways.jpg',
         followers: 1000,
         following: 5500,
+        explanation: '',
+        id: 'hello',
+        points: 0,
+        quiztitle:
+            "Hello?",
+        options: {
+          'True': true,
+          'False': false,
+        }
         ),
     more_screen_new(
         title:
@@ -175,6 +238,15 @@ class MoreScreenNewDatabase {
         imagePath: 'assets/bitcoin.jpg',
         followers: 1000,
         following: 5500,
+        explanation: '',
+        id: 'hello',
+        points: 0,
+        quiztitle:
+            "Hello?",
+        options: {
+          'True': true,
+          'False': false,
+        }
         ),
     more_screen_new(
         title:
@@ -197,6 +269,15 @@ class MoreScreenNewDatabase {
         imagePath: 'assets/etf.jpg',
         followers: 1000,
         following: 5500,
+        explanation: '',
+        id: 'hello',
+        points: 0,
+        quiztitle:
+            "Hello?",
+        options: {
+          'True': true,
+          'False': false,
+        }
         ),
     more_screen_new(
         title:
@@ -219,6 +300,15 @@ class MoreScreenNewDatabase {
         imagePath: 'assets/retirement.jpg',
         followers: 1000,
         following: 5500,
+        explanation: '',
+        id: 'hello',
+        points: 0,
+        quiztitle:
+            "Hello?",
+        options: {
+          'True': true,
+          'False': false,
+        }
         ),
   ];
 }

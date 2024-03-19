@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vhack_finwise_app/model/local_screen_more_news_model.dart';
+import 'package:vhack_finwise_app/screens/home/Card/option_news_card.dart';
 
 String getMonthName(int month) {
   switch (month) {
@@ -62,6 +63,16 @@ class local_more_news_screen extends StatefulWidget {
 
 class  _local_more_news_screen_State extends State<local_more_news_screen> {
   late final PageController _pageController;
+  int _currentPage = 0;
+
+  bool isPressed = false;
+
+    void changeColor() {
+    setState(() {
+      isPressed = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -179,7 +190,34 @@ class  _local_more_news_screen_State extends State<local_more_news_screen> {
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                  showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text(
+                                      '',
+                                      style: TextStyle(),
+                                    ),
+                                    content: Text(
+                                      '${widget.localmorenews.explanation}',
+                                      style: TextStyle(),
+                                      ),
+                                    actions: [
+                                      SizedBox(height: 20),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context)
+                                              .pop(); // Close the dialog
+                                        },
+                                        child: Text("Close"),
+                                      )
+                                    ],
+                                  );
+                                }
+                                );
+
+                              },
                               child: Text(
                                 'TO LAZY TO READ ?',
                                 style: TextStyle(
@@ -289,11 +327,59 @@ class  _local_more_news_screen_State extends State<local_more_news_screen> {
                   ],
                 ),
                 ),
-                Divider(), 
-            ],
+                Divider(),
+                Container(
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
+                width: MediaQuery.of(context).size.width *
+                    0.8, // Adjust width as needed
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12.0),
+                  color: Colors.blue[500],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15.0, vertical: 7.0),
+                      child: Text(
+                        widget.localmorenews.quiztitle, // Access title property
+                        style: TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                      horizontal: 15.0, vertical: 0.0),
+                      child: const Divider(color: Colors.white),
+                    ),
+                    SizedBox(height: 5.0),
+                    Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      for (int i = 0; i < widget.localmorenews.options.length; i++)
+                        OptionWidget(
+                          option: widget.localmorenews.options.keys.toList()[i],
+                          color: isPressed
+                              ? widget.localmorenews.options.values.toList()[i] == true
+                                  ? Colors.green
+                                  : Colors.red
+                              : Colors.white,
+                          onTap: changeColor,
+                        ),
+                    ],
+                    
+                  ),
+                  SizedBox(height: 5.0),
+                  ],
+                ),
+              )
+              ],
+            ),
           ),
-        ),
-    )
-    );
+        ));
   }
 }

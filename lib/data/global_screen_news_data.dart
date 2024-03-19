@@ -22,7 +22,15 @@ class GlobalNewsDatabase {
             'Costco (COST) shares fell after it reported slower sales growth than analysts had been expecting in its 2024 fiscal second quarter.',
         imagePath: 'assets/marketnews.jpg',
           followers: 1000,
-        following: 5500,),
+        following: 5500,explanation: '',
+        id: 'hello',
+        points: 0,
+        quiztitle:
+            "Hello?",
+        options: {
+          'True': true,
+          'False': false,
+        }),
     GlobalNews(
         title: 'Rivan Stock Soars 13% as EV Maker Introduces Three New Models',
         date: DateTime(2024, 03, 07),
@@ -42,7 +50,15 @@ class GlobalNewsDatabase {
             "The company noted that the R2 can be reserved in the U.S. right now for a \$100 deposit, with delivery expected in the first half of 2026. The R3 and R3X deliveries will come after that to ensure a smooth launch and rapid ramp of R2. All of Rivian’s vehicles are set to be available internationally following their North American launch. ",
         imagePath: 'assets/rivan.jpg',
           followers: 1000,
-        following: 5500,),
+        following: 5500,explanation: '',
+        id: 'hello',
+        points: 0,
+        quiztitle:
+            "Hello?",
+        options: {
+          'True': true,
+          'False': false,
+        }),
     GlobalNews(
         title: "Ahead of Oracle's Earnings Report Monday",
         date: DateTime(2024, 03, 08),
@@ -62,7 +78,15 @@ class GlobalNewsDatabase {
             'racle previously announced that the company is expanding 66 of its existing cloud data centers and building 100 cloud data centers, which drew attention to operating margins due to increased capital expenditures.Oracle shares have gained about 8.5% since the start of 2024 and more than 32% over the past year.',
         imagePath: 'assets/oracle.jpg',
           followers: 1000,
-        following: 5500,),
+        following: 5500,explanation: '',
+        id: 'hello',
+        points: 0,
+        quiztitle:
+            "Hello?",
+        options: {
+          'True': true,
+          'False': false,
+        }),
     GlobalNews(
         title:
             'Top CD Rates Today: Lock in 5.00% or Better Until 2025, 2026, or Even 2027',
@@ -83,7 +107,15 @@ class GlobalNewsDatabase {
             "Also keep in mind that snagging the highest APY isn't the only way to win with today's CDs. Since CD rates could fall much further in 2024 and 2025, locking in a rate soon that's guaranteed for a year or more down the road could be a smart move.",
         imagePath: 'assets/cds.jpg',
           followers: 1000,
-        following: 5500,),
+        following: 5500,explanation: '',
+        id: 'hello',
+        points: 0,
+        quiztitle:
+            "Hello?",
+        options: {
+          'True': true,
+          'False': false,
+        }),
     GlobalNews(
         title: '30-Year Mortgage Rates Fall to 3-week Low',
         date: DateTime(2024, 03, 08),
@@ -103,7 +135,15 @@ class GlobalNewsDatabase {
             "Rates on 15-year new purchase loans fell 7 basis points Wednesday, to a 6.61% average. That's also a low point since Feb. 12—but is still about a half percentage point pricier than we saw just before the new year, when 15-year rates sank to a seven-month low of 6.10%. Last October, however, 15-year rates soared to a 7.59% peak—their highest level since 2000.",
         imagePath: 'assets/mortage.jpg',
           followers: 1000,
-        following: 5500,),
+        following: 5500,explanation: '',
+        id: 'hello',
+        points: 0,
+        quiztitle:
+            "Hello?",
+        options: {
+          'True': true,
+          'False': false,
+        }),
     GlobalNews(
         title:
             'US Economy New Today: Unemployment Rate Showing Signs of Slowdown',
@@ -124,7 +164,15 @@ class GlobalNewsDatabase {
             'Consumer sentiment plunged in 2022 as inflation surged out of control, but has rebounded in recent months as consumer price increases have slowed.',
         imagePath: 'assets/economy.jpg',
           followers: 1000,
-        following: 5500,),
+        following: 5500,explanation: '',
+        id: 'hello',
+        points: 0,
+        quiztitle:
+            "Hello?",
+        options: {
+          'True': true,
+          'False': false,
+        }),
     GlobalNews(
         title: '4 Key Economic Takeaways From the State of the Union Address',
         date: DateTime(2024, 03, 08),
@@ -144,7 +192,15 @@ class GlobalNewsDatabase {
             'Biden also proposed other caps on drug prices, including extending the \$35 cap on the cost of insulin to all Americans, not just those on Medicare. He also proposed a \$2,000 annual cap on prescription drug costs, extending to all Americans a program that will soon be available to seniors on Medicare. ',
         imagePath: 'assets/takeways.jpg',
           followers: 1000,
-        following: 5500,),
+        following: 5500,explanation: '',
+        id: 'hello',
+        points: 0,
+        quiztitle:
+            "Hello?",
+        options: {
+          'True': true,
+          'False': false,
+        }),
     GlobalNews(
         title:
             "Bitcoin Kisses \$70K, Its Second All-Time High This Week, Then Promptly Falters",
@@ -166,7 +222,15 @@ class GlobalNewsDatabase {
         
         imagePath: 'assets/bitcoin.jpg',
           followers: 1000,
-        following: 5500,),
+        following: 5500,explanation: '',
+        id: 'hello',
+        points: 0,
+        quiztitle:
+            "Hello?",
+        options: {
+          'True': true,
+          'False': false,
+        }),
     GlobalNews(
         title:
             'SPY ETF Reaches Record High Amid Nvidia-Fueled AI Rally—Key Chart Pattern to Watch',
@@ -187,7 +251,15 @@ class GlobalNewsDatabase {
             'Looking ahead, a convincing breakout above the wedge pattern’s top trendline could set the stage for further gains, while a breakdown through the lower trendline could warn of a possible correction.',
         imagePath: 'assets/etf.jpg',
           followers: 1000,
-        following: 5500,),
+        following: 5500,explanation: '',
+        id: 'hello',
+        points: 0,
+        quiztitle:
+            "Hello?",
+        options: {
+          'True': true,
+          'False': false,
+        }),
     GlobalNews(
         title:
             'Most Americans Worry About Retirement, Say Congress Should Act on Social Security Funding',
@@ -208,6 +280,14 @@ class GlobalNewsDatabase {
             'Costco (COST) shares fell after it reported slower sales growth than analysts had been expecting in its 2024 fiscal second quarter.',
         imagePath: 'assets/retirement.jpg',
           followers: 1000,
-        following: 5500,),
+        following: 5500,explanation: '',
+        id: 'hello',
+        points: 0,
+        quiztitle:
+            "Hello?",
+        options: {
+          'True': true,
+          'False': false,
+        }),
   ];
 }

@@ -23,6 +23,17 @@ class ArticleDatabase {
         imagePath: 'assets/marketnews.jpg',         
         followers: 3000,
         following: 5500,
+        explanation: '',
+        id: 'hello',
+        points: 0,
+        quiztitle:
+            "Hello?",
+        options: {
+          'True': true,
+          'False': false,
+        }
+
+
         ),
     
   ];

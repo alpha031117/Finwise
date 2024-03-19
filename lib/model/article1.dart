@@ -15,6 +15,11 @@ class Article1 {
   String type;
   bool isBookMarked;
   static var length;
+  String quiztitle;
+  int points;
+  String id;
+  Map<String, bool> options;
+  String explanation; 
 
   Article1({
     required this.title,
@@ -31,5 +36,10 @@ class Article1 {
     required this.imagePath,
     required this.followers,
     required this.following,
+    required this.explanation,
+    required this.id,
+    required this.quiztitle,
+    required this.points,
+    required this.options,
   });
 }

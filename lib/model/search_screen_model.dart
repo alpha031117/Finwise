@@ -16,6 +16,11 @@ class search_screen_new{
   static var length;
   int followers;
   int following;
+  String explanation;
+  String quiztitle;
+  int points;
+  String id;
+  Map<String, bool> options;
 
   search_screen_new({
     required this.title,
@@ -32,5 +37,10 @@ class search_screen_new{
     required this.imagePath,
     required this.followers,
     required this.following,
+    required this.id,
+    required this.quiztitle,
+    required this.points,
+    required this.options,
+    required this.explanation,
   });
 }
