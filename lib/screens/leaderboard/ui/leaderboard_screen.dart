@@ -45,21 +45,38 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
         if (state is LeaderboardShowNoFriendState) {
           //havent decide
         } else if (state is LeaderboardCalculatePoints) {
-          final List<MyUser> users =
-              (state as LeaderboardCalculatePoints).users;
-          topThree = users;
+          final List<MyUser> topThreeUsers = (state).topThree;
+          topThree = topThreeUsers;
         }
       },
       builder: (context, state) {
         switch (state.runtimeType) {
           case LeaderboardLoadingState:
           case LeaderboardCalculatePoints:
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           case LeaderboardLoadedState:
             final List<MyUser> users = (state as LeaderboardLoadedState).users;
             return Scaffold(
+              appBar: AppBar(
+                centerTitle: true,
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                title: const Text(
+                  'Leaderboard',
+                  style: TextStyle(color: Colors.white),
+                ),
+                actions: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.person_add_alt_1,
+                      color: Colors.white70,
+                    ),
+                  ),
+                ],
+              ),
               backgroundColor: GlobalVariables.secondaryColor,
               body: SlidingUpPanel(
                 minHeight: MediaQuery.of(context).size.height * 0.4,

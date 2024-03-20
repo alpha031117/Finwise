@@ -20,8 +20,11 @@ class LeaderboardBloc extends Bloc<LeaderboardEvent, LeaderboardState> {
     await Future.delayed(
       const Duration(seconds: 2),
     );
-    //get user from data base
-    final List<MyUser> users = UserDatabase.users;
+    //get user from data base (the first user)
+    final List<MyUser> users = List.from(UserDatabase.users[0].friends!);
+    //sort the user based on their points
+    users.sort((a, b) => b.points.compareTo(a.points));
+    // print(UserDatabase.users[0].username);
     if (users.isEmpty) {
       emit(LeaderboardShowNoFriendState());
     } else if (users.isNotEmpty) {
@@ -39,10 +42,11 @@ class LeaderboardBloc extends Bloc<LeaderboardEvent, LeaderboardState> {
   FutureOr<void> leaderboardCalculatePointsEvent(
       LeaderboardCalculatePointsEvent event,
       Emitter<LeaderboardState> emit) async {
-    final List<MyUser> users = UserDatabase.users;
+    final List<MyUser> users = List.from(UserDatabase.users[0].friends!);
     users.sort((a, b) => b.points.compareTo(a.points));
     final List<MyUser> topThreeUsers = users.sublist(0, 3);
 
-    emit(LeaderboardCalculatePoints(users: topThreeUsers));
+    emit(LeaderboardCalculatePoints(
+        topThree: topThreeUsers));
   }
 }
