@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/rendering.dart';
@@ -9,7 +7,7 @@ import 'package:vhack_finwise_app/model/quiz.dart';
 import 'package:vhack_finwise_app/screens/home/Card/option_quiz.dart';
 
 class quiz_card extends StatefulWidget {
-  final List<quiz> quizz; // Pass articles list from parent widget
+  final List<Quiz> quizz; // Pass articles list from parent widget
   quiz_card({required this.quizz}); // Constructor to receive articles
 
   @override

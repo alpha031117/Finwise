@@ -1,4 +1,4 @@
-class quiz {
+class Quiz {
   String title;
   int points;
   String id;
@@ -6,7 +6,7 @@ class quiz {
 
   static var length;
 
-  quiz({
+  Quiz({
     required this.id,
     required this.title,
     required this.points,

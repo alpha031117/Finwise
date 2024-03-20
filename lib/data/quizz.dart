@@ -1,8 +1,8 @@
 import 'package:vhack_finwise_app/model/quiz.dart';
 
 class QuizDatabase {
-  static List<quiz> quizz = [
-    quiz(
+  static List<Quiz> quizz = [
+    Quiz(
         id: 'hello',
         points: 0,
         title: "What is a way to best describe a mutual fund?",
@@ -13,6 +13,28 @@ class QuizDatabase {
           'A single stock with high potential for growth':false,
           }
         ),
+    
+    Quiz(
+        id: 'hello',
+        points: 0,
+        title: "Mutual funds are the guaranteed way to make money.",
+        options: {
+          'True':false,
+          'False':true,
+          }
+        ),
+        
+    Quiz(
+        id: 'hello',
+        points: 0,
+        title: "Investing in stocks guarantees a profit.",
+        options: {
+          'True':false,
+          'False':true,
+
+          }
+        ),
 
   ];
+  
 }
