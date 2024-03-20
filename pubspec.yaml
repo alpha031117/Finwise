@@ -40,13 +40,9 @@ dependencies:
   flutter_bloc: ^8.1.4
   google_nav_bar: ^5.0.6
   persistent_bottom_nav_bar_v2: any
-<<<<<<< Updated upstream
-  google_fonts: ^6.2.0
-=======
   google_fonts: 6.1.0
-  sliding_up_panel: any
->>>>>>> Stashed changes
   fl_chart: ^0.66.2
+  sliding_up_panel: any
 
 
 dev_dependencies:
