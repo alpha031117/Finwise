@@ -5,7 +5,7 @@ import '../../../../utils/global_variables.dart';
 class YearsToGrow extends StatelessWidget {
   const YearsToGrow(
       {super.key, required this.yearsToGrow, required this.onChanged});
-  final String yearsToGrow;
+  final int yearsToGrow;
   final Function(int) onChanged;
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class YearsToGrow extends StatelessWidget {
           height: 5,
         ),
         Slider(
-          value: int.parse(yearsToGrow).toDouble(),
+          value: yearsToGrow.toDouble(),
           min: 0,
           max: 50,
           thumbColor: GlobalVariables.secondaryColor,

@@ -14,7 +14,8 @@ class CalculatorTextField extends StatefulWidget {
     required this.title,
     required this.radioButton,
     required this.isAnnualReturn,
-    required this.controller, this.radioButtonValue,
+    required this.controller,
+    this.radioButtonValue,
   });
 
   @override
@@ -24,6 +25,15 @@ class CalculatorTextField extends StatefulWidget {
 class _CalculatorTextFieldState extends State<CalculatorTextField> {
   int? selectedOption;
 
+  final Map<String, String> titleToTooltipMap = {
+    'INITIAL DEPOSIT':
+        'This field represents the initial amount you invest at the start of the calculation. The default value is RM1000',
+    'CONTRIBUTIONS':
+        'Enter the amount you contribute regularly (e.g., monthly) to your investment. The default value is 0.',
+    'AVERAGE ANNUAL RETURN':
+        'This is the expected average annual percentage return on your investment. The default value is 3%.',
+    // Add more title-tooltip pairs as needed
+  };
   @override
   void initState() {
     super.initState();
@@ -35,14 +45,30 @@ class _CalculatorTextFieldState extends State<CalculatorTextField> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          widget.title,
-          style: TextStyle(
-            fontFamily: GlobalVariables.titleFont().fontFamily,
-            fontSize: 17,
-            color: Colors.grey[600],
-            fontWeight: FontWeight.w400,
-          ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              widget.title,
+              style: TextStyle(
+                fontFamily: GlobalVariables.titleFont().fontFamily,
+                fontSize: 17,
+                color: Colors.grey[600],
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Tooltip(
+              message: titleToTooltipMap[widget.title],
+              child: Icon(
+                Icons.help,
+                color: Colors.grey[200],
+                size: 23,
+              ),
+            )
+          ],
         ),
         SizedBox(
           height: 15,
@@ -65,7 +91,9 @@ class _CalculatorTextFieldState extends State<CalculatorTextField> {
             decoration: InputDecoration(
               filled: true,
               fillColor: Colors.white,
-              prefix: widget.isAnnualReturn ? Text('  %  ') : Text(' RM  '),
+              prefix: widget.isAnnualReturn
+                  ? const Text('  %  ')
+                  : const Text(' RM  '),
               hintStyle: TextStyle(
                 color: Colors.grey[300],
               ),
@@ -84,63 +112,65 @@ class _CalculatorTextFieldState extends State<CalculatorTextField> {
             ),
           ),
         ),
-        widget.radioButton == true
-            ? Row(
-                children: [
-                  Row(
-                    children: [
-                      Radio<int>(
-                        value: 1,
-                        activeColor: GlobalVariables.secondaryColor,
-                        groupValue: selectedOption,
-                        onChanged: (value) {
-                          setState(() {
-                            widget.radioButtonValue!('Annually');
-                            selectedOption = value!;
-                            print("Button value: $value");
-                          });
-                        },
-                      ),
-                      const Text('Annually'),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Radio<int>(
-                        value: 2,
-                        activeColor: GlobalVariables.secondaryColor,
-                        groupValue: selectedOption,
-                        onChanged: (value) {
-                          setState(() {
-                            widget.radioButtonValue!('Monthly');
-                            selectedOption = value!;
-                            print("Button value: $value");
-                          });
-                        },
-                      ),
-                      const Text('Monthly'),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Radio<int>(
-                        activeColor: GlobalVariables.secondaryColor,
-                        value: 3,
-                        groupValue: selectedOption,
-                        onChanged: (value) {
-                          setState(() {
-                            widget.radioButtonValue!('Weekly');
-                            selectedOption = value!;
-                            print("Button value: $value");
-                          });
-                        },
-                      ),
-                      const Text('Weekly'),
-                    ],
-                  ),
-                ],
-              )
-            : SizedBox(),
+        widget.radioButton == true ? showRadioButtons() : const SizedBox(),
+      ],
+    );
+  }
+
+  Row showRadioButtons() {
+    return Row(
+      children: [
+        Row(
+          children: [
+            Radio<int>(
+              value: 1,
+              activeColor: GlobalVariables.secondaryColor,
+              groupValue: selectedOption,
+              onChanged: (value) {
+                setState(() {
+                  widget.radioButtonValue!('Annually');
+                  selectedOption = value!;
+                  print("Button value: $value");
+                });
+              },
+            ),
+            const Text('Annually'),
+          ],
+        ),
+        Row(
+          children: [
+            Radio<int>(
+              value: 2,
+              activeColor: GlobalVariables.secondaryColor,
+              groupValue: selectedOption,
+              onChanged: (value) {
+                setState(() {
+                  widget.radioButtonValue!('Monthly');
+                  selectedOption = value!;
+                  print("Button value: $value");
+                });
+              },
+            ),
+            const Text('Monthly'),
+          ],
+        ),
+        Row(
+          children: [
+            Radio<int>(
+              activeColor: GlobalVariables.secondaryColor,
+              value: 3,
+              groupValue: selectedOption,
+              onChanged: (value) {
+                setState(() {
+                  widget.radioButtonValue!('Quarterly');
+                  selectedOption = value!;
+                  print("Button value: $value");
+                });
+              },
+            ),
+            const Text('Quarterly'),
+          ],
+        ),
       ],
     );
   }
