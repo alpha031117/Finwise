@@ -3,6 +3,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:vhack_finwise_app/screens/settings/ui/privacy_policy.dart';
+import 'package:vhack_finwise_app/screens/settings/ui/terms_and_conditions.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
 
 
@@ -64,68 +66,80 @@ class _settingPageState extends State<settingPage> {
               space: 152,
             ),
             SizedBox(height: 25),
-            buttonList(Icons.language, 'Language', context),
+            buttonList(Icons.language, 'Language', context, 'Language'),
             SizedBox(height: 25),
-            buttonList(Icons.help, 'Help & Support', context),
+            buttonList(Icons.help, 'Help & Support', context, 'Help & Support'),
             SizedBox(height: 25),
-            buttonList(Icons.description, 'Terms & Conditions', context),
+            buttonList(Icons.description, 'Terms & Conditions', context, 'Terms & Conditions'),
             SizedBox(height: 25),
-            buttonList(Icons.policy_outlined, 'Privacy Policy', context),
+            buttonList(Icons.policy_outlined, 'Privacy Policy', context, 'Privacy Policy'),
           ],
         ),
       ),
     );
   }
 
-  Container buttonList(IconData buttonIcon, String buttonText, BuildContext context) {
+  Container buttonList(IconData buttonIcon, String buttonText, BuildContext context, String route) {
     return Container(
-            width: 330,
-            height: 60, 
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(10.0),
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0xFF000000).withOpacity(0.10),
-                  spreadRadius: 5,
-                  blurRadius: 5, 
-                  offset: Offset(0, 3),
-                ),
-              ],
+      width: 330,
+      height: 60, 
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(
+          Radius.circular(10.0),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Color(0xFF000000).withOpacity(0.10),
+            spreadRadius: 5,
+            blurRadius: 5, 
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
+      child: TextButton(
+        onPressed: () {
+          switch (route) {
+            case 'Help & Support':
+              // Navigator.push(context, MaterialPageRoute(builder: (context) => HelpSupport()));
+              break;
+            case 'Terms & Conditions':
+              Navigator.push(context, MaterialPageRoute(builder: (context) => TermsAndConditions()));
+              break;
+            case 'Privacy Policy':
+              Navigator.push(context, MaterialPageRoute(builder: (context) => PrivacyPolicy()));
+              break;
+          }
+        },
+        style: TextButton.styleFrom(
+          backgroundColor: Colors.white,
+          fixedSize: Size(330,45),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(width: 10),
+            Icon( 
+              buttonIcon,
+              color: Colors.black,
+              size: 24,
             ),
-            child: TextButton(
-              onPressed: () {},
-              style: TextButton.styleFrom(
-                backgroundColor: Colors.white,
-                fixedSize: Size(330,45),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(width: 10),
-                  Icon( 
-                    buttonIcon,
-                    color: Colors.black,
-                    size: 24,
-                  ),
-                  SizedBox(width: 10),
-                  Text(
-                    buttonText,
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontSize: 18,
-                      letterSpacing: 0.0,
-                      color: Colors.black,
-                    ),
-                  ),
-                ],
+            SizedBox(width: 10),
+            Text(
+              buttonText,
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 18,
+                letterSpacing: 0.0,
+                color: Colors.black,
               ),
             ),
-          );
+          ],
+        ),
+      ),
+    );
   }
 }
 
