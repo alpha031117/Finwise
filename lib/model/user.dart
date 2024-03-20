@@ -4,6 +4,7 @@ class MyUser {
   String email;
   String password;
   String occupation;
+  String profileUrl;
   int points;
 
   MyUser({
@@ -11,6 +12,7 @@ class MyUser {
     required this.email,
     required this.password,
     required this.occupation,
+    required this.profileUrl,
     required this.points,
   });
 }
