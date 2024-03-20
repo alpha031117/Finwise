@@ -30,11 +30,15 @@ import 'package:vhack_finwise_app/model/quiz2.dart';
 import 'package:vhack_finwise_app/data/quizz2.dart';
 import 'package:vhack_finwise_app/screens/home/Card/quiz_card2.dart';
 import 'package:vhack_finwise_app/screens/home/ui/new_more_screen.dart';
+import 'package:vhack_finwise_app/screens/home/ui/saved_search_news_screen.dart';
 import 'package:vhack_finwise_app/screens/home/ui/search_screen.dart';
 
 import 'package:vhack_finwise_app/screens/home/ui/new_more_screen.dart';
 import 'package:vhack_finwise_app/model/more_screen_model.dart';
 import 'package:vhack_finwise_app/data/more_screen_data.dart';
+
+import 'package:vhack_finwise_app/model/search_screen_model.dart';
+import 'package:vhack_finwise_app/model/saved_news_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key); // Fix the super constructor
@@ -53,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final List<quiz1> quizz1 = Quiz1Database.quizz1;
     final List<quiz2> quizz2 = Quiz2Database.quizz2;
     final List<more_screen_new> more_screen_newss = MoreScreenNewDatabase.more_screen_newss;
+
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +78,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     Text(
                       'Hi, $name',
                     ),
-                    Spacer(),
+                    SizedBox(width: 30),
+                    IconButton(
+                    icon: Icon(Icons.save),
+                    color: Colors.blue,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Saved_News_Screen(savedNews: SavedNewsScreen.getSavedNews(), savedNewsCard: SavedNewsScreen.getSavedNewsCard()),
+                        ),
+                      );
+                    },
+                  ),
+                  SizedBox(width: 10),
                     IconButton(
                       icon: Icon(Icons.search),
                       color: Colors.blue,
@@ -83,8 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       MaterialPageRoute(
                         builder: (context) => SearchScreen(),
                       ),
-                    ),
-                          
+                    ),   
                       },
                     )
                   ],

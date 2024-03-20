@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:vhack_finwise_app/model/search_screen_model.dart';
 import 'package:vhack_finwise_app/screens/home/Card/option_news_card.dart';
+import 'package:vhack_finwise_app/screens/home/ui/saved_search_news_screen.dart';
+import 'package:vhack_finwise_app/model/saved_news_model.dart';
+
 
 String getMonthName(int month) {
   switch (month) {
@@ -33,6 +36,7 @@ String getMonthName(int month) {
   }
 }
 
+
 String getfollowers(int followers) {
   if (followers >= 1000) {
     return 'k';
@@ -42,6 +46,7 @@ String getfollowers(int followers) {
     return '';
   }
 }
+
 
 double getfollowersNum(int followers) {
   if (followers >= 1000) {
@@ -53,6 +58,8 @@ double getfollowersNum(int followers) {
   }
 }
 
+
+
 class news_search_screen extends StatefulWidget {
   final search_screen_new search_screen_newss;
   const news_search_screen({Key? key, required this.search_screen_newss}) : super(key: key);
@@ -61,10 +68,12 @@ class news_search_screen extends StatefulWidget {
   State<news_search_screen> createState() => news_search_screenState();
 }
 
+
 class news_search_screenState extends State<news_search_screen> {
   late final PageController _pageController;
   bool isPressed = false;
   bool isBookmarked = false;
+
 
 
   void changeColor() {
@@ -73,12 +82,19 @@ class news_search_screenState extends State<news_search_screen> {
     });
   }
 
-      void toggleBookmark() {
+  void toggleBookmark() {
     setState(() {
       isBookmarked = !isBookmarked;
+      if (isBookmarked) {
+        // If bookmarked, add the news to savedNews
+        SavedNewsScreen.addSavedNews(widget.search_screen_newss);
+      } else {
+        // If unbookmarked, remove the news from savedNews
+        SavedNewsScreen.removeSavedNews(widget.search_screen_newss);
+      }
     });
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,6 +111,7 @@ class news_search_screenState extends State<news_search_screen> {
           ),
           onPressed: () {
             toggleBookmark();
+
           },
         ),
         SizedBox(width: 3), // Space between the icon buttons

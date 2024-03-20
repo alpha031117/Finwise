@@ -30,17 +30,17 @@ class choice_card extends StatelessWidget {
         GestureDetector(
           onTap: () {
             Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>  global_screen( 
-                          globalnews: globalnews,
-                          globalmorenews: globalmorenews,
-                          ),
-                      ),
-                    );
+              context,
+              MaterialPageRoute(
+                builder: (context) => global_screen(
+                  globalnews: globalnews,
+                  globalmorenews: globalmorenews,
+                ),
+              ),
+            );
           },
           child: Container(
-            width: 135, // Half of screen width
+            width: 160, // Half of screen width
             child: Card(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -52,7 +52,7 @@ class choice_card extends StatelessWidget {
                       backgroundImage: AssetImage('assets/earth.jpg'),
                       radius: 20,
                     ),
-                    SizedBox(height: 10.0), // Adjust spacing as needed
+                    SizedBox(width: 15.0), // Adjust spacing as needed
                     Text(
                       'Global',
                       style: TextStyle(
@@ -66,21 +66,21 @@ class choice_card extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(width: 50),
+        SizedBox(width: 30),
         GestureDetector(
           onTap: () {
             Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>  local_screen( 
-                          localnews: localnews,
-                          localmorenews: localmorenews,
-                          ),
-                      ),
-                    );
+              context,
+              MaterialPageRoute(
+                builder: (context) => local_screen(
+                  localnews: localnews,
+                  localmorenews: localmorenews,
+                ),
+              ),
+            );
           },
           child: Container(
-            width: 145, // Half of screen width
+            width: 160, // Half of screen width
             child: Card(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -92,6 +92,7 @@ class choice_card extends StatelessWidget {
                       backgroundImage: AssetImage('assets/local.jpg'),
                       radius: 20,
                     ),
+                    SizedBox(width: 15),
                     Text(
                       'Local',
                       style: TextStyle(

@@ -3,6 +3,7 @@ import 'package:vhack_finwise_app/model/new.dart';
 
 import 'package:vhack_finwise_app/screens/home/Card/option_news_card.dart';
 import 'package:vhack_finwise_app/model/quiz_news.dart';
+import 'package:vhack_finwise_app/model/saved_news_model.dart';
 
 String getMonthName(int month) {
   switch (month) {
@@ -75,9 +76,16 @@ class _news_screenState extends State<news_screen> {
     });
   }
 
-    void toggleBookmark() {
+  void toggleBookmark() {
     setState(() {
       isBookmarked = !isBookmarked;
+      if (isBookmarked) {
+        // If bookmarked, add the news to savedNews
+        SavedNewsScreen.addSavedNewsCard(widget.news);
+      } else {
+        // If unbookmarked, remove the news from savedNews
+        SavedNewsScreen.removeSavedNewsCard(widget.news);
+      }
     });
   }
   
