@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:vhack_finwise_app/screens/settings/ui/help_center.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/privacy_policy.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/terms_and_conditions.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
@@ -100,7 +101,7 @@ class _settingPageState extends State<settingPage> {
         onPressed: () {
           switch (route) {
             case 'Help & Support':
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => HelpSupport()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => HelpCenter()));
               break;
             case 'Terms & Conditions':
               Navigator.push(context, MaterialPageRoute(builder: (context) => TermsAndConditions()));
