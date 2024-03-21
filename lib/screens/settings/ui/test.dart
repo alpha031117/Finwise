@@ -12,13 +12,13 @@ class myCalculator extends StatefulWidget {
 
 class Calculation {
 
-  static double calculateFutureInvestmentValue (double initialInvestment, double interestRate, double years, String compoundFrequency, String additionalContribution, double depositAmount, String period) {
+  static double calculateFutureInvestmentValue (double initialInvestment, double interestRate, double years, String compoundFrequency, String additionalContribution, double depositAmount, String depositFrequency, String period) {
     double compoundInterval = 0;
     double x = initialInvestment;
     double y = 0;
     List<double> futureInvestmentValueList = [];
 
-    print(compoundFrequency);
+    print(depositFrequency);
 
     switch (compoundFrequency) {
       case 'Daily':
@@ -51,7 +51,6 @@ class Calculation {
             }
             futureInvestmentValueList.add(x);
         }
-        print(futureInvestmentValueList);
         break;
     }
 
@@ -69,7 +68,6 @@ class Calculation {
             }
         }
         futureInvestmentValueList.add(x);
-        print(futureInvestmentValueList);
       }
     }
 
@@ -94,8 +92,10 @@ class _myCalculatorState extends State<myCalculator> {
   double interestRate = 0;
   double years = 0;
   String compoundFrequency = "";
+  String depositFrequency = "";
   double futureInvestmentValue = 0;
   List compoundFrequencyList = ['Daily', 'Weekly', 'Monthly', 'Quaterly', 'Annually'];
+  List depositFrequencyList = ['Daily', 'Weekly', 'Monthly', 'Quaterly', 'Annually'];
   List periodList = ['Beginning', 'End'];
   List contributionList = ['Yes', 'No'];
   String additionalContribution = "";
@@ -399,6 +399,56 @@ class _myCalculatorState extends State<myCalculator> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: DropdownButtonFormField<String>(
+                            value: depositFrequencyList[4],
+                            onChanged: (newValue) {
+                              setState(() {
+                                depositFrequency = newValue!;
+                              });
+                            },
+                            items: <String>['Daily', 'Weekly', 'Monthly', 'Quaterly', 'Annually']
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            decoration: InputDecoration(
+                              labelText: 'Deposit Frequency (Optional)',
+                              prefixIcon: Icon(Icons.attach_money),
+                              labelStyle: TextStyle(
+                                color: Colors.black,
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Visibility(
+                      visible: additionalContribution == 'Yes',
+                      child: Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5), // shadow color
+                              spreadRadius: 5, // spread radius
+                              blurRadius: 7, // blur radius
+                              offset: Offset(0, 3), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                        child: Material(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: DropdownButtonFormField<String>(
                             value: periodList.last,
                             onChanged: (newValue) {
                               setState(() {
@@ -430,6 +480,7 @@ class _myCalculatorState extends State<myCalculator> {
                         ),
                       ),
                     ),
+                    SizedBox(height: 20),
                     TextButton(
                       onPressed: (){
                         setState(() {
@@ -441,6 +492,12 @@ class _myCalculatorState extends State<myCalculator> {
                             compoundFrequency = compoundFrequency;
                           } else {
                             compoundFrequency = 'Annually';
+                          }
+
+                          if (depositFrequency.isNotEmpty) {
+                            depositFrequency = depositFrequency;
+                          } else {
+                            depositFrequency = 'Annually';
                           }
 
                           if (depositAmountController.text.isNotEmpty) {
@@ -455,7 +512,7 @@ class _myCalculatorState extends State<myCalculator> {
                             period = 'End';
                           }
 
-                          futureInvestmentValue = Calculation.calculateFutureInvestmentValue(initialInvestment, interestRate, years, compoundFrequency, additionalContribution, depositAmount, period);
+                          futureInvestmentValue = Calculation.calculateFutureInvestmentValue(initialInvestment, interestRate, years, compoundFrequency, additionalContribution, depositAmount, depositFrequency, period);
                         });
                       } ,
                       style: TextButton.styleFrom(

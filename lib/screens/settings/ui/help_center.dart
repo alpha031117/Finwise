@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:vhack_finwise_app/screens/settings/ui/setting.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
 
 class HelpCenter extends StatefulWidget {
@@ -12,17 +14,6 @@ class HelpCenter extends StatefulWidget {
 
 class _HelpCenterState extends State<HelpCenter> {
 
-  final List<String> faqCategory = [
-    "[Edit Profile]",
-    "[Points]",
-    "[Redeem Rewards]",
-    "[Play Quiz]",
-    "[Leaderboard]",
-    "[Leaderboard]",
-    "[Saved News]",
-    "[Change Password]",
-  ];
-
   final List<String> faqList = [
     "How to edit my profile information?",
     "What is the use of points?",
@@ -32,6 +23,20 @@ class _HelpCenterState extends State<HelpCenter> {
     "What can I win for if I'm the no.1 in the leaderboard?",
     "Where can I view the saved news?",
     "How to change my password?",
+    "How to delete my account?",
+    "What is the use of calculators?",
+    "What is the function of podcast?",
+  ];
+
+  final List<String> topicLists = [
+    "Getting Started",
+    "Account",
+    "Points",
+    "Rewards",
+    "Quiz",
+    "Leaderboard",
+    "Saved News",
+    "Password",
   ];
 
 
@@ -78,29 +83,6 @@ class _HelpCenterState extends State<HelpCenter> {
               ),
               SizedBox(height: 50),
               Text(
-                'Most Frequently Asked Questions',
-                style: TextStyle(
-                  fontFamily: GlobalVariables.titleFont().fontFamily,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  letterSpacing: .5,
-                ),
-              ),
-              Container(
-                height: 150, // Adjust height as needed
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: faqList.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: FAQCard(category: faqCategory[index] ,question: faqList[index]),
-                    );
-                  },
-                ),
-              ),
-              SizedBox(height: 50),
-              Text(
                 'Topics',
                 style: TextStyle(
                   fontFamily: GlobalVariables.titleFont().fontFamily,
@@ -110,32 +92,83 @@ class _HelpCenterState extends State<HelpCenter> {
                 ),
               ),
               Container(
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      width: 1,
-                      style: BorderStyle.solid,
-                    ),
-                  ),
+                height: 120, // Adjust height as needed
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: faqList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: FAQCard(category: topicLists[index]),
+                    );
+                  },
                 ),
-                padding: EdgeInsets.all(10),
-                child: Text('Getting Started'),
-              )
+              ),
+              SizedBox(height: 50),
+              Text(
+                'Most Frequently Asked Questions',
+                style: TextStyle(
+                  fontFamily: GlobalVariables.titleFont().fontFamily,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  letterSpacing: .5,
+                ),
+              ),
+              topicList(context)
             ],
           ),
           )
         )
       );
   }
+
+  Column topicList(BuildContext context) {
+    List<Widget> topicWidgets = [];
+
+    for (String topic in faqList) {
+      topicWidgets.add(
+        GestureDetector(
+          onTap: () {
+            // Handle onTap action
+          },
+          child: Container(
+            padding: EdgeInsets.all(10),
+            width: 400,
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  width: 1,
+                  style: BorderStyle.solid,
+                  color: Colors.grey[400]!,
+                ),
+              ),
+            ),
+            child: Text(
+              topic,
+              style: TextStyle(
+                // fontFamily: GlobalVariables.titleFont().fontFamily,
+                // fontWeight: FontWeight.bold,
+                fontSize: 15,
+                letterSpacing: .5,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: topicWidgets,
+    );
+  }
+
 }
 
 class FAQCard extends StatelessWidget {
-  final String question;
   final String category;
 
   FAQCard({
-    required this.question,
     required this.category
   });
 
@@ -143,11 +176,11 @@ class FAQCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Container(
-        width: 200, // Adjust width as needed
+        width: 170, // Adjust width as needed
         padding: EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Colors.blue[50],
+          color: Color.fromARGB(255, 88, 173, 243),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -156,14 +189,10 @@ class FAQCard extends StatelessWidget {
             Text(
               category,
               style: TextStyle(
-                fontSize: 16.0, 
-                fontWeight: FontWeight.bold
+                fontSize: 20, 
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
-            ),
-            SizedBox(height: 8.0),
-            Text(
-              question,
-              style: TextStyle(fontSize: 14.0),
             ),
           ],
         ),
