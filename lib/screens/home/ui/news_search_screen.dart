@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vhack_finwise_app/model/search_screen_model.dart';
 import 'package:vhack_finwise_app/screens/home/Card/option_news_card.dart';
-import 'package:vhack_finwise_app/screens/home/ui/saved_search_news_screen.dart';
+import 'package:vhack_finwise_app/screens/home/ui/saved_news_screen.dart';
 import 'package:vhack_finwise_app/model/saved_news_model.dart';
 import 'package:vhack_finwise_app/model/new.dart';
 

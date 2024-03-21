@@ -90,13 +90,13 @@ class _news_cardState extends State<news_card> {
                             onPressed: () {
                               setState(() {
                                 newss.isBookMarked = !newss.isBookMarked;
-                                // if (newss.isBookMarked) {
-                                //       // If bookmarked, add the news to savedNews
-                                //       SavedNewsScreen.addSavedNewsCard(widget.newss[index]);
-                                //     } else {
-                                //       // If unbookmarked, remove the news from savedNews
-                                //       SavedNewsScreen.removeSavedNewsCard(widget.newss[index]);
-                                //     }
+                                if (newss.isBookMarked) {
+                                      // If bookmarked, add the news to savedNews
+                                      SavedNewsScreen.addSavedNewsCard(widget.newss[index]);
+                                    } else {
+                                      // If unbookmarked, remove the news from savedNews
+                                      SavedNewsScreen.removeSavedNewsCard(widget.newss[index]);
+                                    }
                               });
                               // You may want to save the updated bookmark status here
                             },

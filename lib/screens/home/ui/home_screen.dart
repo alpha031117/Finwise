@@ -22,8 +22,9 @@ import 'package:vhack_finwise_app/screens/home/Card/quiz_card.dart';
 import 'package:vhack_finwise_app/screens/home/Card/quiz_card_true_false.dart';
 
 import 'package:vhack_finwise_app/screens/home/ui/new_more_screen.dart';
-import 'package:vhack_finwise_app/screens/home/ui/saved_search_news_screen.dart';
+import 'package:vhack_finwise_app/screens/home/ui/saved_news_screen.dart';
 import 'package:vhack_finwise_app/screens/home/ui/search_screen.dart';
+import 'package:vhack_finwise_app/screens/home/ui/saved_choose_screen.dart';
 
 import 'package:vhack_finwise_app/model/more_screen_model.dart';
 import 'package:vhack_finwise_app/data/more_screen_data.dart';
@@ -69,12 +70,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: Icon(Icons.save),
                     color: Colors.blue,
                     onPressed: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => Saved_News_Screen(savedNews: SavedNewsScreen.getSavedNews(), savedNewsCard: SavedNewsScreen.getSavedNewsCard()),
-                      //   ),
-                      // );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SavedChooseScreen(),
+                        ),
+                      );
                     },
                   ),
                   SizedBox(width: 10),
