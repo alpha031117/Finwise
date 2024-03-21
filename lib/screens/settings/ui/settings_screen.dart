@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:vhack_finwise_app/model/user.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/about_us.dart';
+import 'package:vhack_finwise_app/screens/settings/ui/add_friends.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/redeem_rewards.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/edit_profile.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/setting.dart';
@@ -182,7 +183,7 @@ class SettingsScreen extends StatelessWidget {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => aboutUs()));
                     break;
                   case 'Log Out':
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => myCalculator()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => AddFriend()));
                     break;
                 }
               },

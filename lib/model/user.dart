@@ -6,6 +6,7 @@ class MyUser {
   String occupation;
   String profileUrl;
   int points;
+  List<MyUser>? friends;
 
   MyUser({
     required this.username,
@@ -14,5 +15,6 @@ class MyUser {
     required this.occupation,
     required this.profileUrl,
     required this.points,
+    this.friends,
   });
 }
