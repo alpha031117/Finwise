@@ -5,7 +5,7 @@ import 'package:vhack_finwise_app/screens/home/ui/news_screen_card.dart';
 import 'package:vhack_finwise_app/model/saved_news_model.dart';
 
 class news_card extends StatefulWidget {
-  final List<New> newss; // Pass articles list from parent widget
+  final List<News> newss; // Pass articles list from parent widget
   news_card({required this.newss}); // Constructor to receive articles
 
   @override
@@ -14,7 +14,7 @@ class news_card extends StatefulWidget {
 
 class _news_cardState extends State<news_card> {
   late final PageController _pageController;
-  List<New> newsdata = NewDatabase.newss;
+  List<News> newsdata = NewDatabase.newss;
 
   @override
   void initState() {
@@ -43,7 +43,7 @@ class _news_cardState extends State<news_card> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => news_screen(news: widget.newss[index]),
+                      builder: (context) => NewsScreen(news: widget.newss[index]),
                     ),
                   );
                 },
@@ -90,13 +90,13 @@ class _news_cardState extends State<news_card> {
                             onPressed: () {
                               setState(() {
                                 newss.isBookMarked = !newss.isBookMarked;
-                                if (newss.isBookMarked) {
-                                      // If bookmarked, add the news to savedNews
-                                      SavedNewsScreen.addSavedNewsCard(widget.newss[index]);
-                                    } else {
-                                      // If unbookmarked, remove the news from savedNews
-                                      SavedNewsScreen.removeSavedNewsCard(widget.newss[index]);
-                                    }
+                                // if (newss.isBookMarked) {
+                                //       // If bookmarked, add the news to savedNews
+                                //       SavedNewsScreen.addSavedNewsCard(widget.newss[index]);
+                                //     } else {
+                                //       // If unbookmarked, remove the news from savedNews
+                                //       SavedNewsScreen.removeSavedNewsCard(widget.newss[index]);
+                                //     }
                               });
                               // You may want to save the updated bookmark status here
                             },

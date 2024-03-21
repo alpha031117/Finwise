@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vhack_finwise_app/model/article.dart';
-import 'package:vhack_finwise_app/data/articles.dart'; // Import ArticleDatabase
+
 import 'screens/bottom_nav_bar/my_bottom_nav_bar.dart';
 
 void main() {

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vhack_finwise_app/model/new.dart';
 
 import 'package:vhack_finwise_app/screens/home/Card/option_news_card.dart';
-import 'package:vhack_finwise_app/model/quiz_news.dart';
-import 'package:vhack_finwise_app/model/saved_news_model.dart';
+
 
 String getMonthName(int month) {
   switch (month) {
@@ -56,15 +55,15 @@ double getfollowersNum(int followers) {
   }
 }
 
-class news_screen extends StatefulWidget {
-  final New news;
-  const news_screen({Key? key, required this.news}) : super(key: key);
+class NewsScreen extends StatefulWidget {
+  final News news;
+  const NewsScreen({Key? key, required this.news}) : super(key: key);
 
   @override
-  State<news_screen> createState() => _news_screenState();
+  State<NewsScreen> createState() => _news_screenState();
 }
 
-class _news_screenState extends State<news_screen> {
+class _news_screenState extends State<NewsScreen> {
   int _currentPage = 0;
   bool isPressed = false;
   bool isBookmarked = false;
@@ -79,13 +78,13 @@ class _news_screenState extends State<news_screen> {
   void toggleBookmark() {
     setState(() {
       isBookmarked = !isBookmarked;
-      if (isBookmarked) {
-        // If bookmarked, add the news to savedNews
-        SavedNewsScreen.addSavedNewsCard(widget.news);
-      } else {
-        // If unbookmarked, remove the news from savedNews
-        SavedNewsScreen.removeSavedNewsCard(widget.news);
-      }
+      // if (isBookmarked) {
+      //   // If bookmarked, add the news to savedNews
+      //   SavedNewsScreen.addSavedNewsCard(widget.news);
+      // } else {
+      //   // If unbookmarked, remove the news from savedNews
+      //   SavedNewsScreen.removeSavedNewsCard(widget.news);
+      // }
     });
   }
   

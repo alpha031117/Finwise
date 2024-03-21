@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import 'package:vhack_finwise_app/model/quiz.dart';
-import 'package:vhack_finwise_app/screens/home/Card/option_quiz.dart';
+import 'package:vhack_finwise_app/screens/home/Card/option_quiz_true_false.dart';
 
 
-class QuizCard extends StatefulWidget {
+class QuizTrueFalseCard extends StatefulWidget {
   final Quiz quizz;
 
-  const QuizCard({Key? key, required this.quizz}) : super(key: key);
+  const QuizTrueFalseCard({Key? key, required this.quizz}) : super(key: key);
 
   @override
-  State<QuizCard> createState() => _QuizCardState();
+  State<QuizTrueFalseCard> createState() => _QuizTrueFalseCardState();
 
 }
 
-class _QuizCardState extends State<QuizCard> {
+class _QuizTrueFalseCardState extends State<QuizTrueFalseCard> {
   bool isPressed = false;
   late final PageController _pageController;
 
@@ -42,13 +42,12 @@ void changeColor() {
     return Column(
       children: [
         Container(
-          margin:
-              const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
-              padding: const EdgeInsets.symmetric(vertical: 15.0), // Added padding to increase vertical space
+          margin:const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
+          padding: const EdgeInsets.symmetric(vertical: 15.0), // Added padding to increase vertical space
               width: MediaQuery.of(context).size.width * 0.8, // Adjust width as needed
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.0),
-                color: Colors.blue[500],
+                color: const Color.fromARGB(255, 10, 49, 82),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,21 +69,34 @@ void changeColor() {
                     child: const Divider(color: Colors.white),
                   ),
                   SizedBox(height: 5.0),
-                  for (int i = 0; i < widget.quizz.options.length; i++)
-                    Align(
-                      alignment: Alignment.center,
-                      child: OptionWidget(
-                        option: widget.quizz.options.keys.toList()[i],
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children :[ 
+                        OptionWidget(
+                        option: widget.quizz.options.keys.toList()[0],
                         color: isPressed
                             ? widget.quizz.options.values
-                                        .toList()[i] ==
+                                        .toList()[0] ==
                                     true
                                 ? Colors.green
                                 : Colors.red
                             : Colors.white,
                             onTap: changeColor,
                       ),
-                    )
+                      SizedBox(width: 10.0),
+                      OptionWidget(
+                        option: widget.quizz.options.keys.toList()[1],
+                        color: isPressed
+                            ? widget.quizz.options.values
+                                        .toList()[1] ==
+                                    true
+                                ? Colors.green
+                                : Colors.red
+                            : Colors.white,
+                            onTap: changeColor,
+                      ),
+                      ]
+                  )
                 ],
               ),
     

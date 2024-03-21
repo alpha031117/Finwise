@@ -6,21 +6,20 @@ import 'package:vhack_finwise_app/screens/home/Card/info_card.dart';
 
 import 'package:vhack_finwise_app/screens/home/Card/choice_card.dart';
 
-import 'package:vhack_finwise_app/model/article.dart';
-import 'package:vhack_finwise_app/data/articles.dart'; // Import ArticleDatabase
-import 'package:vhack_finwise_app/screens/home/Card/article_card.dart';
+import 'package:vhack_finwise_app/screens/home/Card/article_up_card.dart';
+import 'package:vhack_finwise_app/screens/home/Card/article_down_card.dart';
 
 import 'package:vhack_finwise_app/model/new.dart';
 import 'package:vhack_finwise_app/data/news.dart';
 import 'package:vhack_finwise_app/screens/home/Card/news_card.dart';
 
-import 'package:vhack_finwise_app/model/article1.dart';
-import 'package:vhack_finwise_app/data/articles1.dart';
-import 'package:vhack_finwise_app/screens/home/Card/article1_card.dart';
+
+
 
 import 'package:vhack_finwise_app/model/quiz.dart';
 import 'package:vhack_finwise_app/data/quizz.dart';
 import 'package:vhack_finwise_app/screens/home/Card/quiz_card.dart';
+import 'package:vhack_finwise_app/screens/home/Card/quiz_card_true_false.dart';
 
 import 'package:vhack_finwise_app/screens/home/ui/new_more_screen.dart';
 import 'package:vhack_finwise_app/screens/home/ui/saved_search_news_screen.dart';
@@ -40,10 +39,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
     String name = 'Alan';
-    final List<New> newss = NewDatabase.newss; // Access articles from data source
+    final List<News> newss = NewDatabase.newss; // Access articles from data source
     final List<info> infoss = InfoDatabase.infos;
-    final List<Article> articless = ArticleDatabase.articless;
-    final List<Article1> articles1 = Article1Database.articles1;
     final List<Quiz> quizz = QuizDatabase.quizz;
     final List<more_screen_new> more_screen_newss = MoreScreenNewDatabase.more_screen_newss;
 
@@ -72,12 +69,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: Icon(Icons.save),
                     color: Colors.blue,
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Saved_News_Screen(savedNews: SavedNewsScreen.getSavedNews(), savedNewsCard: SavedNewsScreen.getSavedNewsCard()),
-                        ),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => Saved_News_Screen(savedNews: SavedNewsScreen.getSavedNews(), savedNewsCard: SavedNewsScreen.getSavedNewsCard()),
+                      //   ),
+                      // );
                     },
                   ),
                   SizedBox(width: 10),
@@ -146,11 +143,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 SizedBox(
                   height: 140, // Adjust the height as needed
-                  child: article_card(articless: articless),
+                  child: article_up_card(newss: newss),
                 ),
                 SizedBox(
                   height: 140, // Adjust the height as needed
-                  child: article1_card(articles1: articles1),
+                  child: article_down_card(newss: newss),
                 ),
                 Text(
                     'Learns &',
@@ -162,16 +159,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 10),
-                SizedBox(
-                  height: 350, // Adjust the height as needed
-                  child: quiz_card(quizz: quizz),
-                ),
+                QuizCard(quizz: QuizDatabase.quizz[0]),
+                // SizedBox(
+                //   height: 350, // Adjust the height as needed
+                //   child: quiz_card(quizz: quizz),
+                // ),
                 SizedBox(height: 20),
                 Text(
                   "You don't just stop there ! :)",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                
+                SizedBox(height: 20),
+                QuizTrueFalseCard(quizz: QuizDatabase.quizz[1]),
+                SizedBox(height: 20),
+                QuizTrueFalseCard(quizz: QuizDatabase.quizz[2]),
+
               ]),
         ),
       ),

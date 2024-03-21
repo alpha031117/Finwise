@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:vhack_finwise_app/model/article.dart';
-import 'package:vhack_finwise_app/data/articles.dart';
-import 'package:vhack_finwise_app/screens/home/ui/article_news_screen.dart';
+import 'package:vhack_finwise_app/model/new.dart';
+import 'package:vhack_finwise_app/data/news.dart';
+import 'package:vhack_finwise_app/screens/home/ui/news_screen_card.dart';
 
-class article_card extends StatefulWidget {
-  final List<Article> articless; // Pass articles list from parent widget
-  article_card({required this.articless}); // Constructor to receive articles
+
+class article_down_card extends StatefulWidget {
+  final List<News> newss; // Pass articles list from parent widget
+  article_down_card({required this.newss}); // Constructor to receive articles
 
   @override
-  State<article_card> createState() => _article_cardState();
+  State<article_down_card> createState() => _article_down_cardState();
 }
 
-class _article_cardState extends State<article_card> {
+class _article_down_cardState extends State<article_down_card> {
   late final PageController _pageController;
-  List<Article> articless = ArticleDatabase.articless;
+  List<News> newss = NewDatabase.newss;
+
 
   @override
   void initState() {
@@ -37,14 +39,13 @@ class _article_cardState extends State<article_card> {
           child: PageView.builder(
             controller: _pageController,
             itemBuilder: (_, index) {
-              final articless = widget.articless[index];
-              
+              final articless = widget.newss[1];
               return GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => article_news_screen(article: widget.articless[index]),
+                      builder: (context) => NewsScreen(news: widget.newss[index]),
                     ),
                   );
                 },
@@ -64,7 +65,7 @@ class _article_cardState extends State<article_card> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12.0),
                             image: DecorationImage(
-                              image: AssetImage('assets/stocks.jpg'), // Use AssetImage for local assets
+                              image: AssetImage('assets/savings.jpg'), // Use AssetImage for local assets
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -91,10 +92,10 @@ class _article_cardState extends State<article_card> {
                         ),
                       ],
                     ),
-                    ),
+                  ),
               );
             },
-            itemCount: widget.articless.length,
+            itemCount: widget.newss.length,
             physics: PageScrollPhysics(), // Enable smooth scrolling
           ),
         ),
@@ -102,3 +103,4 @@ class _article_cardState extends State<article_card> {
     );
   }
 }
+

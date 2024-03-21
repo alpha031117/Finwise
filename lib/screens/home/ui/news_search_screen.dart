@@ -3,7 +3,7 @@ import 'package:vhack_finwise_app/model/search_screen_model.dart';
 import 'package:vhack_finwise_app/screens/home/Card/option_news_card.dart';
 import 'package:vhack_finwise_app/screens/home/ui/saved_search_news_screen.dart';
 import 'package:vhack_finwise_app/model/saved_news_model.dart';
-
+import 'package:vhack_finwise_app/model/new.dart';
 
 String getMonthName(int month) {
   switch (month) {
@@ -61,7 +61,7 @@ double getfollowersNum(int followers) {
 
 
 class news_search_screen extends StatefulWidget {
-  final search_screen_new search_screen_newss;
+  final News search_screen_newss;
   const news_search_screen({Key? key, required this.search_screen_newss}) : super(key: key);
 
   @override
@@ -85,13 +85,13 @@ class news_search_screenState extends State<news_search_screen> {
   void toggleBookmark() {
     setState(() {
       isBookmarked = !isBookmarked;
-      if (isBookmarked) {
-        // If bookmarked, add the news to savedNews
-        SavedNewsScreen.addSavedNews(widget.search_screen_newss);
-      } else {
-        // If unbookmarked, remove the news from savedNews
-        SavedNewsScreen.removeSavedNews(widget.search_screen_newss);
-      }
+      // if (isBookmarked) {
+      //   // If bookmarked, add the news to savedNews
+      //   SavedNewsScreen.addSavedNews(widget.search_screen_newss);
+      // } else {
+      //   // If unbookmarked, remove the news from savedNews
+      //   SavedNewsScreen.removeSavedNews(widget.search_screen_newss);
+      // }
     });
   }
 

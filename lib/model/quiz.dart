@@ -12,4 +12,8 @@ class Quiz {
     required this.points,
     required this.options,
   });
+
+  bool checkAnswer(String optionKey) {
+    return options[optionKey] ?? false;
+  }
 }

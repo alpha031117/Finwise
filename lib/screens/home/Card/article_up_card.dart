@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:vhack_finwise_app/model/article1.dart';
-import 'package:vhack_finwise_app/data/articles1.dart';
-import 'package:vhack_finwise_app/screens/home/ui/article1_news_screen.dart';
+import 'package:vhack_finwise_app/model/new.dart';
+import 'package:vhack_finwise_app/data/news.dart';
+import 'package:vhack_finwise_app/screens/home/ui/news_screen_card.dart';
 
-class article1_card extends StatefulWidget {
-  final List<Article1> articles1; // Pass articles list from parent widget
-  article1_card({required this.articles1}); // Constructor to receive articles
+
+class article_up_card extends StatefulWidget {
+  final List<News> newss; // Pass articles list from parent widget
+  article_up_card({required this.newss}); // Constructor to receive articles
 
   @override
-  State<article1_card> createState() => _article1_cardState();
+  State<article_up_card> createState() => _article_up_cardState();
 }
 
-class _article1_cardState extends State<article1_card> {
+class _article_up_cardState extends State<article_up_card> {
   late final PageController _pageController;
-  List<Article1> articles1 = Article1Database.articles1;
+    List<News> newss = NewDatabase.newss;
 
   @override
   void initState() {
@@ -38,13 +38,14 @@ class _article1_cardState extends State<article1_card> {
           child: PageView.builder(
             controller: _pageController,
             itemBuilder: (_, index) {
-              final articless = widget.articles1[index];
+              final articless = widget.newss[0];
+              
               return GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => article1_news_screen(articles1: widget.articles1[index]),
+                      builder: (context) => NewsScreen(news: widget.newss[0]),
                     ),
                   );
                 },
@@ -64,7 +65,7 @@ class _article1_cardState extends State<article1_card> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12.0),
                             image: DecorationImage(
-                              image: AssetImage('assets/savings.jpg'), // Use AssetImage for local assets
+                              image: AssetImage('assets/stocks.jpg'), // Use AssetImage for local assets
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -91,10 +92,10 @@ class _article1_cardState extends State<article1_card> {
                         ),
                       ],
                     ),
-                  ),
+                    ),
               );
             },
-            itemCount: widget.articles1.length,
+            itemCount: widget.newss.length,
             physics: PageScrollPhysics(), // Enable smooth scrolling
           ),
         ),
@@ -102,4 +103,3 @@ class _article1_cardState extends State<article1_card> {
     );
   }
 }
-

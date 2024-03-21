@@ -1,4 +1,4 @@
-class New {
+class News {
   int followers;
   int following;
   String title;
@@ -21,7 +21,7 @@ class New {
   String id;
   Map<String, bool> options;
 
-  New({
+  News({
     required this.title,
     required this.com,
     required this.date,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:vhack_finwise_app/model/search_screen_model.dart';
-import 'package:vhack_finwise_app/data/search_screen_data.dart';
 import 'package:vhack_finwise_app/screens/home/ui/news_search_screen.dart';
+import 'package:vhack_finwise_app/model/new.dart';
+import 'package:vhack_finwise_app/data/news.dart';
 
 
 class SearchScreen extends StatefulWidget {
@@ -14,7 +14,8 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   late final PageController _pageController;
-  List<search_screen_new> search_screen_newss = SerachScreenNewDatabase.search_screen_newss;
+  List<News> SearchScreenNewss = NewDatabase.newss;
+
 
   
 
@@ -32,7 +33,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   void updateList(String value) {
     setState(() {
-      search_screen_newss = SerachScreenNewDatabase.search_screen_newss.where((element) =>element.title.toLowerCase().contains(value.toLowerCase())||
+      SearchScreenNewss = NewDatabase.newss.where((element) =>element.title.toLowerCase().contains(value.toLowerCase())||
       element.date.year.toString().contains(value.toLowerCase())||
       element.date.month.toString().contains(value.toLowerCase())||
       element.date.day.toString().contains(value.toLowerCase())||
@@ -86,14 +87,14 @@ class _SearchScreenState extends State<SearchScreen> {
               SizedBox(height: 10.0),
               Expanded(
               child: ListView.builder(
-                itemCount: search_screen_newss.length,
+                itemCount: SearchScreenNewss.length,
                 itemBuilder: (context, index) => InkWell(
                   
                   onTap: () {
                     Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => news_search_screen(search_screen_newss: search_screen_newss[index]),
+                      builder: (context) => news_search_screen(search_screen_newss: SearchScreenNewss[index]),
                     ),
                   );
                   },
@@ -106,7 +107,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            search_screen_newss[index].title,
+                            SearchScreenNewss[index].title,
                             style: TextStyle(
                               color: const Color.fromARGB(255, 5, 49, 85),
                               fontWeight: FontWeight.bold,
@@ -114,7 +115,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           ),
                           SizedBox(height: 8.0),
                           Text(
-                            '${search_screen_newss[index].date.year}-${search_screen_newss[index].date.month}-${search_screen_newss[index].date.day}',
+                            '${SearchScreenNewss[index].date.year}-${SearchScreenNewss[index].date.month}-${SearchScreenNewss[index].date.day}',
                             style: TextStyle(
                               fontSize: 11.0,
                               color: const Color.fromARGB(255, 5, 49, 85),
@@ -122,7 +123,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           ),
                           SizedBox(height: 4.0),
                           Text(
-                            '${search_screen_newss[index].author}',
+                            '${SearchScreenNewss[index].author}',
                             style: TextStyle(
                               fontSize: 11.0,
                               color: const Color.fromARGB(255, 5, 49, 85),
