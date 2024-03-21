@@ -1,0 +1,116 @@
+{% extends "base/_base.html" %}
+
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Podcast
+{% endblock %}
+{% block custom_body_class %}
+    custom-background
+{% endblock custom_body_class %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item active">Podcast/li>
+{% endblock breadcrumb %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>{{ podcast.title }}</h2>
+                <p class="text-body-secondary">Current Episodes: {{ episode_podcasts.count }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="d-flex align-items-center">
+                </div>
+                <a href="{% url 'podcast:episode-create' podcast_slug=podcast.podcast_slug %}" class="btn btn-primary">
+                    <i class="fa-solid fa-plus"></i> Create New Episode
+                </a>
+            </div>
+            <table class="table table-bordered my-2">
+                <thead>
+                    <tr class="cell-input">
+                        <th width="2%">EpNo.</th>
+                        <th width="25%">Episode Name</th>
+                        <th>Duration</th>
+                        <th>Description</th>
+                        <th width="13%" style="text-align: center;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for episode in episode_podcasts %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ episode.title }}</td>
+                            <td>{{ episode.duration_in_minutes|floatformat:2 }} minutes</td>
+                            <td>{{ episode.description }}</td>
+                            <td style="text-align: center;">
+                                <a type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#detailsModal{{ podcast.id }}" style="text-decoration: none;">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a href="#" class="btn btn-secondary mb-2"><i class="fa fa-pencil"></i></a>
+                                <a href="#" class="btn btn-danger mb-2"><i class="fa fa-trash-o"></i></a>
+                            </td>
+                        </tr>
+
+                         <!-- Modal -->
+                        <div class="modal fade" id="detailsModal{{ podcast.id }}" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{ episode.title }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="{{ podcast.cover_image.url }}" class="card-img-top mx-auto d-block img-fluid rounded" alt="podcast-image" style="max-width: 60%; max-height: 220px; height: auto;">
+                                    <br/>
+                                    <h4>{{ episode.title }}</h4>
+                                    <p> 
+                                        {{ podcast.description }} 
+                                        <br/>
+                                        <br/>
+                                        <b>Host By: </b>{{ podcast.host }}
+                                        <br>
+                                        <b>Release At:</b> {{ episode.release_date|date:"j F Y" }}
+                                    </p>
+                                    <audio controls class="w-100">
+                                        <source src="{{ episode.audio_file.url }}" type="audio/mpeg">
+                                        Your browser does not support the audio element.
+                                    </audio>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container mt-4">
+        <!-- Pagination -->
+        <div class="row">
+            <div class="col-md-12 d-flex justify-content-end">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">...</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div> 
+{% endblock %}

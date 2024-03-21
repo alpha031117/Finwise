@@ -38,7 +38,7 @@
                         <br/>
                         <img src="{{ podcast.cover_image.url }}" class="card-img-top mx-auto d-block img-fluid rounded" alt="podcast-image" style="max-width: 60%; max-height: 200px; height: auto;">
                         <div class="card-body">
-                            <h5 class="card-title">{{ podcast.title }}</h5>
+                            <h5 class="card-title"><a href="{% url 'podcast:episode-list' podcast_slug=podcast.podcast_slug %}" style="color: black; text-decoration: none;">{{ podcast.title }}</a></h5>
                             <p class="card-text">
                                 {{ podcast.description|truncatewords:20 }}
                                 <br/>
@@ -59,17 +59,17 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <img src="{{ podcast.cover_image.url }}" class="card-img-top mx-auto d-block img-fluid rounded" alt="podcast-image" style="max-width: 60%; max-height: 200px; height: auto;">
+                                        <img src="{{ podcast.cover_image.url }}" class="card-img-top mx-auto d-block img-fluid rounded" alt="podcast-image" style="max-width: 60%; max-height: 220px; height: auto;">
                                         <br/>
                                         <p> 
                                             {{ podcast.description }} 
                                             <br/>
                                             <br/>
-                                            <b>Hosted By:</b> {{ podcast.host }}
+                                            <b>Host By: </b>{{ podcast.host }}
+                                            <br>
+                                            <b>Total Episodes:</b> {{ podcast.episodes.count }}
                                             <br/>
-                                            <b>Date:</b> {{ podcast.session_date }}
-                                            <br/>
-                                            <b>Time:</b> {{ podcast.session_time }}
+                                            <b>Published At:</b> {{ podcast.published_at|date:"j F Y" }}
                                         </p>
                                     </div>
                                     <div class="modal-footer">
@@ -80,7 +80,7 @@
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center">
-                                <p>
+                                <p class="card-text text-muted">
                                     <small>Last updated {{ podcast.published_at|timesince }} ago</small>
                                 </p>
                                 <div>
