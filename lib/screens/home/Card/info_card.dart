@@ -3,18 +3,17 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:vhack_finwise_app/model/info.dart';
 import 'package:vhack_finwise_app/data/infos.dart';
 
-class info_card extends StatefulWidget {
+class InfoCard extends StatefulWidget {
   final List<info> infoss; // Pass articles list from parent widget
-  info_card({required this.infoss}); // Constructor to receive articles
+  InfoCard({required this.infoss}); // Constructor to receive articles
 
   @override
-  State<info_card> createState() => _info_cardState();
+  State<InfoCard> createState() => _InfoCardState();
 }
 
-class _info_cardState extends State<info_card> {
-   int _currentPage = 0;
+class _InfoCardState extends State<InfoCard> {
+  int _currentPage = 0;
   late final PageController _pageController;
-
 
   @override
   void initState() {
@@ -32,7 +31,8 @@ class _info_cardState extends State<info_card> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Expanded( // Wrap SizedBox with Expanded
+        Expanded(
+          // Wrap SizedBox with Expanded
           child: SizedBox(
             height: 240,
             child: PageView.builder(
@@ -42,39 +42,45 @@ class _info_cardState extends State<info_card> {
                   _currentPage = page;
                 });
               },
-            itemBuilder: (_, index) {
-              final info = widget.infoss[index];
-              return Container(
-                margin: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 0.0),
-                width: MediaQuery.of(context).size.width * 0.8, // Adjust width as needed
-                decoration: BoxDecoration(
-                  borderRadius:BorderRadius.circular(12.0),
-                  color: Colors.blue[500],
-                ),
-                child:  Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                     Padding(
-                       padding: const EdgeInsets.all(8.0),
-                       child: Text(
+              itemBuilder: (_, index) {
+                final info = widget.infoss[index];
+                return Container(
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: 25.0, vertical: 0.0),
+                  width: MediaQuery.of(context).size.width *
+                      0.8, // Adjust width as needed
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12.0),
+                    color: Colors.blue[500],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
                           info.title, // Access title property
-                          style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.grey[400]),
-                          ),
-                     ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 8.0), // Adjust the horizontal padding as needed
-                          child: Text(
+                          style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey[400]),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 15.0,
+                            vertical:
+                                10), // Adjust the horizontal padding as needed
+                        child: Text(
                           '${info.text}', // Access author property
                           style: TextStyle(fontSize: 12.0, color: Colors.white),
                         ),
-                    ),
-                        
-                  ],
-                ),
-                
-              );
-            },
-           itemCount: widget.infoss.length,
+                      ),
+                    ],
+                  ),
+                );
+              },
+              itemCount: widget.infoss.length,
               physics: PageScrollPhysics(),
             ),
           ),

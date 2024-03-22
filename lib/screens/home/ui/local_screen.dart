@@ -7,16 +7,16 @@ import 'package:vhack_finwise_app/data/local_screen_news_data.dart';
 
 
 import 'package:vhack_finwise_app/screens/home/ui/local_screen_news.dart';
-class local_screen extends StatefulWidget {
+class LocalScreen extends StatefulWidget {
   final List<LocalNews> localnews; // Pass articles list from parent widget
-  const local_screen({required this.localnews});
+  const LocalScreen({required this.localnews});
 
 
   @override
-  State<local_screen> createState() => _local_screenState();
+  State<LocalScreen> createState() => _local_screenState();
 }
 
-class _local_screenState extends State<local_screen> {
+class _local_screenState extends State<LocalScreen> {
   
   late final PageController _pageController;
 
@@ -72,7 +72,7 @@ class _local_screenState extends State<local_screen> {
                           Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>  local_news_screen( 
+                        builder: (context) =>  LocalNewsScreen( 
                           localnews: widget.localnews[index]),
                       ),
                     );
@@ -154,7 +154,7 @@ class _local_screenState extends State<local_screen> {
                           Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>  local_news_screen( 
+                        builder: (context) =>  LocalNewsScreen( 
                           localnews: widget.localnews[index]),
                       ),
                     );

@@ -4,17 +4,18 @@ import 'package:vhack_finwise_app/data/news.dart';
 import 'package:vhack_finwise_app/screens/home/ui/news_screen_card.dart';
 
 
-class article_up_card extends StatefulWidget {
-  final List<News> newss; // Pass articles list from parent widget
-  article_up_card({required this.newss}); // Constructor to receive articles
+class ArticleCard extends StatefulWidget {
+  final News newss; // Pass articles list from parent widget
+  ArticleCard({required this.newss}); // Constructor to receive articles
 
   @override
-  State<article_up_card> createState() => _article_up_cardState();
+  State<ArticleCard> createState() => _ArticleCardState();
 }
 
-class _article_up_cardState extends State<article_up_card> {
+class _ArticleCardState extends State<ArticleCard> {
   late final PageController _pageController;
-    List<News> newss = NewDatabase.newss;
+
+
 
   @override
   void initState() {
@@ -38,14 +39,13 @@ class _article_up_cardState extends State<article_up_card> {
           child: PageView.builder(
             controller: _pageController,
             itemBuilder: (_, index) {
-              final articless = widget.newss[0];
-              
+
               return GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => NewsScreen(news: widget.newss[0]),
+                      builder: (context) => NewsScreen(news: widget.newss),
                     ),
                   );
                 },
@@ -65,7 +65,7 @@ class _article_up_cardState extends State<article_up_card> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12.0),
                             image: DecorationImage(
-                              image: AssetImage('assets/stocks.jpg'), // Use AssetImage for local assets
+                              image: AssetImage('assets/savings.jpg'), // Use AssetImage for local assets
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -77,14 +77,14 @@ class _article_up_cardState extends State<article_up_card> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                articless.title,
+                                widget.newss.title,
                                 style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                                 maxLines: 2, // Adjust as needed
                                 overflow: TextOverflow.ellipsis,
                               ),
                               SizedBox(height: 8.0),
                               Text(
-                                articless.type,
+                                widget.newss.type,
                                 style: TextStyle(fontSize: 14.0, color: Colors.grey),
                               ),
                             ],
@@ -92,14 +92,15 @@ class _article_up_cardState extends State<article_up_card> {
                         ),
                       ],
                     ),
-                    ),
+                  ),
               );
             },
-            itemCount: widget.newss.length,
-            physics: PageScrollPhysics(), // Enable smooth scrolling
+            
+          
           ),
         ),
       ],
     );
   }
 }
+

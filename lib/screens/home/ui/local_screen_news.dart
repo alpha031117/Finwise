@@ -54,15 +54,15 @@ double getfollowersNum(int followers) {
   }
 }
 
-class local_news_screen extends StatefulWidget {
+class LocalNewsScreen extends StatefulWidget {
   final LocalNews localnews;
-  const local_news_screen({Key? key, required this.localnews}) : super(key: key);
+  const LocalNewsScreen({Key? key, required this.localnews}) : super(key: key);
 
   @override
-  State<local_news_screen> createState() => _local_news_screen_State();
+  State<LocalNewsScreen> createState() => _local_news_screen_State();
 }
 
-class  _local_news_screen_State extends State<local_news_screen> {
+class  _local_news_screen_State extends State<LocalNewsScreen> {
   late final PageController _pageController;
     int _currentPage = 0;
     bool isPressed = false;

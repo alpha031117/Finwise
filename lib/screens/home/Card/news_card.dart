@@ -4,15 +4,15 @@ import 'package:vhack_finwise_app/data/news.dart';
 import 'package:vhack_finwise_app/screens/home/ui/news_screen_card.dart';
 import 'package:vhack_finwise_app/model/saved_news_model.dart';
 
-class news_card extends StatefulWidget {
+class NewsCard extends StatefulWidget {
   final List<News> newss; // Pass articles list from parent widget
-  news_card({required this.newss}); // Constructor to receive articles
+  NewsCard({required this.newss}); // Constructor to receive articles
 
   @override
-  State<news_card> createState() => _news_cardState();
+  State<NewsCard> createState() => _news_cardState();
 }
 
-class _news_cardState extends State<news_card> {
+class _news_cardState extends State<NewsCard> {
   late final PageController _pageController;
   List<News> newsdata = NewDatabase.newss;
 

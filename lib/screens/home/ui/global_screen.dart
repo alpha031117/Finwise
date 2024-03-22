@@ -6,16 +6,16 @@ import 'package:vhack_finwise_app/data/global_screen_news_data.dart';
 
 import 'package:vhack_finwise_app/screens/home/ui/global_screen_news.dart';
 
-class global_screen extends StatefulWidget {
+class GlobalScreen extends StatefulWidget {
   final List<GlobalNews> globalnews; // Pass articles list from parent widget
 
-  const global_screen({required this.globalnews});
+  const GlobalScreen({required this.globalnews});
 
   @override
-  State<global_screen> createState() => _global_screenState();
+  State<GlobalScreen> createState() => _global_screenState();
 }
 
-class _global_screenState extends State<global_screen> {
+class _global_screenState extends State<GlobalScreen> {
   late final PageController _pageController;
   List<GlobalNews> globalnews = GlobalNewsDatabase.globalnews;
 

@@ -1,5 +1,5 @@
 class GlobalNews {
-    int followers;
+  int followers;
   int following;
   String title;
   String text;

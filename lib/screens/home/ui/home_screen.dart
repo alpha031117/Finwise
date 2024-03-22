@@ -6,15 +6,11 @@ import 'package:vhack_finwise_app/screens/home/Card/info_card.dart';
 
 import 'package:vhack_finwise_app/screens/home/Card/choice_card.dart';
 
-import 'package:vhack_finwise_app/screens/home/Card/article_up_card.dart';
-import 'package:vhack_finwise_app/screens/home/Card/article_down_card.dart';
+import 'package:vhack_finwise_app/screens/home/Card/article_card.dart';
 
 import 'package:vhack_finwise_app/model/new.dart';
 import 'package:vhack_finwise_app/data/news.dart';
 import 'package:vhack_finwise_app/screens/home/Card/news_card.dart';
-
-
-
 
 import 'package:vhack_finwise_app/model/quiz.dart';
 import 'package:vhack_finwise_app/data/quizz.dart';
@@ -26,7 +22,6 @@ import 'package:vhack_finwise_app/screens/home/ui/saved_news_screen.dart';
 import 'package:vhack_finwise_app/screens/home/ui/search_screen.dart';
 import 'package:vhack_finwise_app/screens/home/ui/saved_choose_screen.dart';
 
-
 import 'package:vhack_finwise_app/model/saved_news_model.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -37,11 +32,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-    String name = 'Alan';
-    final List<News> newss = NewDatabase.newss; // Access articles from data source
-    final List<info> infoss = InfoDatabase.infos;
-    final List<Quiz> quizz = QuizDatabase.quizz;
-
+  String name = 'Alan';
+  final List<News> newss =
+      NewDatabase.newss; // Access articles from data source
+  final List<info> infoss = InfoDatabase.infos;
+  final List<Quiz> quizz = QuizDatabase.quizz;
 
   @override
   Widget build(BuildContext context) {
@@ -54,43 +49,42 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(15.0),
-           child: Column(
+          child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
                       'Hi, $name',
                     ),
-                    SizedBox(width: 30),
-                    IconButton(
-                    icon: Icon(Icons.save),
-                    color: Colors.blue,
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SavedChooseScreen(),
-                        ),
-                      );
-                    },
-                  ),
-                  SizedBox(width: 10),
+                    // IconButton(
+                    //   icon: Icon(Icons.save),
+                    //   color: Colors.blue,
+                    //   onPressed: () {
+                    //     Navigator.push(
+                    //       context,
+                    //       MaterialPageRoute(
+                    //         builder: (context) => SavedChooseScreen(),
+                    //       ),
+                    //     );
+                    //   },
+                    // ),
                     IconButton(
                       icon: Icon(Icons.search),
                       color: Colors.blue,
                       onPressed: () => {
                         Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SearchScreen(),
-                      ),
-                    ),   
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SearchScreen(),
+                          ),
+                        ),
                       },
                     )
                   ],
                 ),
-                SizedBox(height: 3),
+                const SizedBox(height: 3),
                 Text(
                   'WHAT YOU',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -115,43 +109,43 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: TextStyle(fontSize: 18.0, color: Colors.blue),
                     ),
                     onPressed: () => {
-                        Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => new_more_screen(more_screen_newss: newss),
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              NewsMoreScreen(more_screen_newss: newss),
+                        ),
                       ),
-                    ),
-                          
-                      },
+                    },
                   ),
                 ]),
                 SizedBox(
                   height: 150, // Adjust the height as needed
-                  child: news_card(newss: newss),
+                  child: NewsCard(newss: newss),
                 ),
 
                 SizedBox(
                   height: 240, // Adjust the height as needed
-                  child: info_card(infoss: infoss),
+                  child: InfoCard(infoss: infoss),
                 ),
                 SizedBox(height: 15),
                 Text(
-                    'Articles',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                SizedBox(
-                  height: 140, // Adjust the height as needed
-                  child: article_up_card(newss: newss),
+                  'Articles',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 140, // Adjust the height as needed
-                  child: article_down_card(newss: newss),
+                  child: ArticleCard(newss: newss[1]),
+                ),
+                SizedBox(
+                  height: 140, // Adjust the height as needed
+                  child: ArticleCard(newss: newss[2]),
                 ),
                 Text(
-                    'Learns &',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 3),
+                  'Learns &',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 3),
                 Text(
                   '   Earn Credits ',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -171,7 +165,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 QuizTrueFalseCard(quizz: QuizDatabase.quizz[1]),
                 SizedBox(height: 20),
                 QuizTrueFalseCard(quizz: QuizDatabase.quizz[2]),
-
               ]),
         ),
       ),

@@ -27,7 +27,7 @@ class choice_card extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => global_screen(
+                builder: (context) => GlobalScreen(
                   globalnews: globalnews,
                 ),
               ),
@@ -66,7 +66,7 @@ class choice_card extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => local_screen(
+                builder: (context) => LocalScreen(
                   localnews: localnews,
                 ),
               ),
