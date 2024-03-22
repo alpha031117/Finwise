@@ -2,13 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:vhack_finwise_app/model/user.dart';
+import 'package:vhack_finwise_app/screens/home/ui/splash_screen.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/about_us.dart';
-import 'package:vhack_finwise_app/screens/settings/ui/add_friends.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/redeem_rewards.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/edit_profile.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/setting.dart';
-import 'package:vhack_finwise_app/screens/home/ui/home_screen.dart';
-import 'package:vhack_finwise_app/screens/settings/ui/test.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
 import 'package:vhack_finwise_app/data/users.dart';
 
@@ -43,11 +41,11 @@ class SettingsScreen extends StatelessWidget {
             displayPoints(),
             redeemRewardsButton(context),
             SizedBox(height: 70),
+            buttonList(Icons.bookmark, 'Saved News', context),
+            SizedBox(height: 23),
             buttonList(Icons.border_color, 'Edit Profile', context),
             SizedBox(height: 23),
             buttonList(Icons.settings, 'Settings', context),
-            SizedBox(height: 23),
-            buttonList(Icons.info, 'About Us', context),
             SizedBox(height: 23),
             buttonList(Icons.logout, 'Log Out', context),
           ],
@@ -179,11 +177,11 @@ class SettingsScreen extends StatelessWidget {
                   case 'Settings':
                     Navigator.push(context, MaterialPageRoute(builder: (context) => settingPage()));
                     break;
-                  case 'About Us':
+                  case 'Saved News':
                     Navigator.push(context, MaterialPageRoute(builder: (context) => aboutUs()));
                     break;
                   case 'Log Out':
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => AddFriend()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => SplashScreen()));
                     break;
                 }
               },

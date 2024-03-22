@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:vhack_finwise_app/screens/settings/ui/about_us.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/help_center.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/privacy_policy.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/terms_and_conditions.dart';
@@ -74,6 +75,8 @@ class _settingPageState extends State<settingPage> {
             buttonList(Icons.description, 'Terms & Conditions', context, 'Terms & Conditions'),
             SizedBox(height: 25),
             buttonList(Icons.policy_outlined, 'Privacy Policy', context, 'Privacy Policy'),
+            SizedBox(height: 25),
+            buttonList(Icons.info, 'About Us', context, 'About Us'),
           ],
         ),
       ),
@@ -108,6 +111,9 @@ class _settingPageState extends State<settingPage> {
               break;
             case 'Privacy Policy':
               Navigator.push(context, MaterialPageRoute(builder: (context) => PrivacyPolicy()));
+              break;
+            case 'About Us':
+              Navigator.push(context, MaterialPageRoute(builder: (context) => aboutUs()));
               break;
           }
         },
