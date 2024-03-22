@@ -14,28 +14,93 @@
 {% endblock breadcrumb %}
 
 {% block content %}
+<style>
+    .form-container {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+    }
+
+    .form-container.open {
+        max-height: 1000px; /* Set a maximum height for your form container */
+    }
+
+    .btn.active {
+        background-color: #007bff;
+        color: #fff;
+        border-color: #007bff;
+    }
+</style>
+
 <div class="container-fluid h-100" style="margin-top: 100px;">
     <div class="row justify-content-center align-items-center h-100">
         <div class="col-md-6">
             {% if object %}
                 <h2 class="text-center mb-4">Update Question</h2>
             {% else %}
-                <h2 class="text-center mb-4">Add Question</h2>
+                <h2 class="text-center mb-4">Add New Question</h2>
             {% endif %}
-            <div class="border p-4 rounded">
-                <form method="post">
-                    {% csrf_token %}
-                    {{ form | crispy }}
-
-                    <!-- Formset for choices -->
-                    {{ formset.management_form }}
-                    {% for choice_form in formset.forms %}
-                        {{ choice_form | crispy }}
-                    {% endfor %}
-                    <input type="submit" class="btn btn-primary d-block mx-auto" value="{% if object %}Edit Question{% else %}Add Question{% endif %}"/>
-                </form>
+            <p class="d-inline-flex gap-1">
+                <button id="mcqButton" class="btn btn-primary" type="button" onclick="toggleForm('MCQ')">MCQ Question</button>
+                <button id="tfButton" class="btn btn-primary" type="button" onclick="toggleForm('TF')">True-False Question</button>
+            </p>
+        
+            <div id="collapseMCQ" class="form-container open">
+                <div class="card card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form | crispy }}
+        
+                        <!-- Formset for choices -->
+                        {{ formset.management_form }}
+                        {% for choice_form in formset.forms %}
+                            {{ choice_form | crispy }}
+                        {% endfor %}
+                        <input type="submit" class="btn btn-primary d-block mx-auto" value="{% if object %}Edit Question{% else %}Add Question{% endif %}"/>
+                    </form>
+                </div>
+            </div>
+        
+            <div id="collapseTF" class="form-container">
+                <div class="card card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form | crispy }}
+                    
+                        {% if true_false_formset %}
+                            {{ true_false_formset.management_form }}
+                            {% for choice_form in true_false_formset.forms %}
+                                {{ choice_form | crispy }}
+                            {% endfor %}
+                        {% endif %}
+                    
+                        <input type="submit" class="btn btn-primary d-block mx-auto" value="{% if object %}Edit Question{% else %}Add Question{% endif %}"/>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function toggleForm(formType) {
+        var mcqForm = document.getElementById('collapseMCQ');
+        var tfForm = document.getElementById('collapseTF');
+        var mcqButton = document.getElementById('mcqButton');
+        var tfButton = document.getElementById('tfButton');
+
+        if (formType === 'MCQ') {
+            mcqForm.classList.add('open');
+            tfForm.classList.remove('open');
+            mcqButton.classList.add('active');
+            tfButton.classList.remove('active');
+        } else if (formType === 'TF') {
+            mcqForm.classList.remove('open');
+            tfForm.classList.add('open');
+            mcqButton.classList.remove('active');
+            tfButton.classList.add('active');
+        }
+    }
+</script>
+
 {% endblock %}

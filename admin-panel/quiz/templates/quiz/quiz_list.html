@@ -61,6 +61,7 @@
                         <div class="row align-items-center">
                             <div class="col">
                                 <span class="badge bg-secondary">{{ quiz.info_type }}</span>
+                                <span class="badge bg-primary">{{ quiz.question_type }}</span>
                                 <span class="badge {% if quiz.status == 'Not Published' %}bg-danger{% else %}bg-success{% endif %}">
                                     {{ quiz.status }}
                                 </span>

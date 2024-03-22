@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from .models import Quiz, Choice  # Import the Domain class
 from base.models import Domain
 from django.db.models import Count
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django.forms import inlineformset_factory
@@ -36,19 +36,30 @@ class QuizCreateView(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         ChoiceFormSet = inlineformset_factory(Quiz, Choice, fields=['choice_text', 'is_correct'], extra=4, can_delete=False)
+        TrueFalseFormSet = inlineformset_factory(Quiz, Choice, fields=['choice_text', 'is_correct'], extra=2, can_delete=False)
+
         if self.request.POST:
             context['formset'] = ChoiceFormSet(self.request.POST)
+            if not context['formset'].is_valid():
+                context['true_false_formset'] = TrueFalseFormSet(self.request.POST)
         else:
             context['formset'] = ChoiceFormSet()
+            context['true_false_formset'] = TrueFalseFormSet()
+
         return context
 
     def form_valid(self, form):
         context = self.get_context_data()
         formset = context['formset']
+
+        if 'true_false_formset' in context and context['true_false_formset'].is_valid():
+            true_false_formset = context['true_false_formset']
+            true_false_formset.instance = form.save()  # Save the Quiz instance first
+            true_false_formset.save()  # Save the True/False formset
+
         if formset.is_valid():
-            self.object = form.save()
-            formset.instance = self.object
+            formset.instance = form.save()
             formset.save()
-            return HttpResponseRedirect(self.get_success_url())
+            return redirect(self.get_success_url())
         else:
             return self.render_to_response(self.get_context_data(form=form))
