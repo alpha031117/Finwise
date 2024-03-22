@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vhack_finwise_app/model/global_screen_news_model.dart';
 import 'package:vhack_finwise_app/screens/home/Card/option_news_card.dart';
+import 'package:vhack_finwise_app/model/saved_news_model.dart';
 
 String getMonthName(int month) {
   switch (month) {
@@ -53,17 +54,16 @@ double getfollowersNum(int followers) {
   }
 }
 
-class global_news_screen extends StatefulWidget {
+class GlobalNewsScreen extends StatefulWidget {
   final GlobalNews globalnews;
-  const global_news_screen({Key? key, required this.globalnews}) : super(key: key);
+  const GlobalNewsScreen({Key? key, required this.globalnews}) : super(key: key);
 
   @override
-  State<global_news_screen> createState() => _global_news_screen_State();
+  State<GlobalNewsScreen> createState() => _global_news_screen_State();
 }
 
-class  _global_news_screen_State extends State<global_news_screen> {
+class  _global_news_screen_State extends State<GlobalNewsScreen> {
   late final PageController _pageController;
-  int _currentPage = 0;
   bool isPressed = false;
   bool isBookmarked = false;
 
@@ -73,9 +73,16 @@ class  _global_news_screen_State extends State<global_news_screen> {
     });
   }
 
-      void toggleBookmark() {
+  void toggleBookmark() {
     setState(() {
-      isBookmarked = !isBookmarked;
+      widget.globalnews.isBookMarked = !widget.globalnews.isBookMarked;
+      if (widget.globalnews.isBookMarked) {
+        // If bookmarked, add the news to savedNews
+        SavedNewsScreen.addSavedGlobalNews(widget.globalnews);
+      } else {
+        // If unbookmarked, remove the news from savedNews
+        SavedNewsScreen.removeSavedGlobalNews(widget.globalnews);
+      }
     });
   }
 
@@ -90,8 +97,8 @@ class  _global_news_screen_State extends State<global_news_screen> {
             actions: <Widget>[
         IconButton(
           icon: Icon(
-            isBookmarked ? Icons.bookmark : Icons.bookmark_border,
-            color: isBookmarked ? Colors.blue : null,
+            widget.globalnews.isBookMarked ? Icons.bookmark : Icons.bookmark_border,
+            color: widget.globalnews.isBookMarked ? Colors.blue : null,
           ),
           onPressed: () {
             toggleBookmark();

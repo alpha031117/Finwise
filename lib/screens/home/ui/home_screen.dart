@@ -26,8 +26,6 @@ import 'package:vhack_finwise_app/screens/home/ui/saved_news_screen.dart';
 import 'package:vhack_finwise_app/screens/home/ui/search_screen.dart';
 import 'package:vhack_finwise_app/screens/home/ui/saved_choose_screen.dart';
 
-import 'package:vhack_finwise_app/model/more_screen_model.dart';
-import 'package:vhack_finwise_app/data/more_screen_data.dart';
 
 import 'package:vhack_finwise_app/model/saved_news_model.dart';
 
@@ -43,7 +41,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final List<News> newss = NewDatabase.newss; // Access articles from data source
     final List<info> infoss = InfoDatabase.infos;
     final List<Quiz> quizz = QuizDatabase.quizz;
-    final List<more_screen_new> more_screen_newss = MoreScreenNewDatabase.more_screen_newss;
 
 
   @override
@@ -121,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => new_more_screen(more_screen_newss: more_screen_newss),
+                        builder: (context) => new_more_screen(more_screen_newss: newss),
                       ),
                     ),
                           

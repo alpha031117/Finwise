@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:vhack_finwise_app/model/more_screen_model.dart';
-import 'package:vhack_finwise_app/data/more_screen_data.dart';
-import 'package:vhack_finwise_app/screens/home/ui/news_more_screen.dart';
+import 'package:vhack_finwise_app/model/new.dart';
+import 'package:vhack_finwise_app/data/news.dart';
+import 'package:vhack_finwise_app/screens/home/ui/news_screen_card.dart';
 
 
 class new_more_screen extends StatefulWidget {
-  final List<more_screen_new> more_screen_newss; // Pass articles list from parent widget
+  final List<News> more_screen_newss; // Pass articles list from parent widget
   new_more_screen({required this.more_screen_newss}); // Constructor to receive articles
 
   @override
@@ -13,7 +13,7 @@ class new_more_screen extends StatefulWidget {
 }
 
 class _new_more_screenState extends State<new_more_screen> {
-  List<more_screen_new> more_screen_newss = MoreScreenNewDatabase.more_screen_newss;
+  List<News> newsdata = NewDatabase.newss;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,13 +36,13 @@ class _new_more_screenState extends State<new_more_screen> {
               SizedBox(height: 10.0),
               Expanded(
               child: ListView.builder(
-                itemCount: more_screen_newss.length,
+                itemCount: newsdata.length > 5 ? 5 : widget.more_screen_newss.length,
                 itemBuilder: (context, index) => InkWell(
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>  news_more_screen(more_screen_newss: widget.more_screen_newss[index]),
+                        builder: (context) =>  NewsScreen(news: widget.more_screen_newss[index]),
                       ),
                     );
                   },
@@ -55,7 +55,7 @@ class _new_more_screenState extends State<new_more_screen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            more_screen_newss[index].title,
+                            newsdata[index].title,
                             style: TextStyle(
                               color: const Color.fromARGB(255, 5, 49, 85),
                               fontWeight: FontWeight.bold,
@@ -63,7 +63,7 @@ class _new_more_screenState extends State<new_more_screen> {
                           ),
                           SizedBox(height: 8.0),
                           Text(
-                            '${more_screen_newss[index].date.year}-${more_screen_newss[index].date.month}-${more_screen_newss[index].date.day}',
+                            '${newsdata [index].date.year}-${newsdata [index].date.month}-${newsdata [index].date.day}',
                             style: TextStyle(
                               fontSize: 11.0,
                               color: const Color.fromARGB(255, 5, 49, 85),
@@ -71,7 +71,7 @@ class _new_more_screenState extends State<new_more_screen> {
                           ),
                           SizedBox(height: 4.0),
                           Text(
-                            '${more_screen_newss[index].author}',
+                            '${newsdata [index].author}',
                             style: TextStyle(
                               fontSize: 11.0,
                               color: const Color.fromARGB(255, 5, 49, 85),

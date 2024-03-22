@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:vhack_finwise_app/model/new.dart';
-
+import 'package:vhack_finwise_app/data/news.dart';
 import 'package:vhack_finwise_app/screens/home/Card/option_news_card.dart';
+import 'package:vhack_finwise_app/screens/home/ui/saved_news_screen.dart';
+import 'package:vhack_finwise_app/model/saved_news_model.dart';
 
 
 String getMonthName(int month) {
@@ -67,6 +69,7 @@ class _news_screenState extends State<NewsScreen> {
   int _currentPage = 0;
   bool isPressed = false;
   bool isBookmarked = false;
+  
   late final PageController _pageController;
 
     void changeColor() {
@@ -77,14 +80,14 @@ class _news_screenState extends State<NewsScreen> {
 
   void toggleBookmark() {
     setState(() {
-      isBookmarked = !isBookmarked;
-      // if (isBookmarked) {
-      //   // If bookmarked, add the news to savedNews
-      //   SavedNewsScreen.addSavedNewsCard(widget.news);
-      // } else {
-      //   // If unbookmarked, remove the news from savedNews
-      //   SavedNewsScreen.removeSavedNewsCard(widget.news);
-      // }
+      widget.news.isBookMarked = !widget.news.isBookMarked;
+      if (widget.news.isBookMarked) {
+        // If bookmarked, add the news to savedNews
+        SavedNewsScreen.addSavedNewsCard(widget.news);
+      } else {
+        // If unbookmarked, remove the news from savedNews
+        SavedNewsScreen.removeSavedNewsCard(widget.news);
+      }
     });
   }
   
@@ -100,8 +103,10 @@ class _news_screenState extends State<NewsScreen> {
             actions: <Widget>[
         IconButton(
           icon: Icon(
-            isBookmarked ? Icons.bookmark : Icons.bookmark_border,
-            color: isBookmarked ? Colors.blue : null,
+            widget.news.isBookMarked 
+            ? Icons.bookmark 
+            : Icons.bookmark_border,
+            color: widget.news.isBookMarked  ? Colors.blue : null,
           ),
           onPressed: () {
             toggleBookmark();

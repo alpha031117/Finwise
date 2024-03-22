@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vhack_finwise_app/screens/home/ui/saved_news_screen.dart';
-import 'package:vhack_finwise_app/model/new.dart';
+import 'package:vhack_finwise_app/screens/home/ui/saved_global_news_screen.dart';
 import 'package:vhack_finwise_app/model/saved_news_model.dart';
 
 class SavedChooseScreen extends StatefulWidget {
@@ -21,12 +21,12 @@ class _SavedChooseScreenState extends State<SavedChooseScreen> {
         children: <Widget>[
           GestureDetector(
             onTap: () {
-                // Navigator.push(
-                //       context,
-                //       MaterialPageRoute(
-                //         builder: (context) =>  Saved_News_Screen(savedNewsCard: savedNewsCard),
-                //       ),
-                //     );
+                Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>  SavedGlobalNewsScreen(savedGlobalNews: SavedNewsScreen.savedGlobalNews),
+                      ),
+                    );
               
             },
             child: Container(
@@ -73,7 +73,7 @@ class _SavedChooseScreenState extends State<SavedChooseScreen> {
                 Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>  Saved_News_Screen(savedNewsCard: SavedNewsScreen.savedNewsCard),
+                        builder: (context) =>  SavedNewssScreen(savedNewsCard: SavedNewsScreen.savedNewsCard),
                       ),
                     );
             },
@@ -84,30 +84,6 @@ class _SavedChooseScreenState extends State<SavedChooseScreen> {
                 children: <Widget>[
                   Text(
                     'Saved News Screen',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) =>  news_more_screen(more_screen_newss: widget.more_screen_newss[index]),
-                  //     ),
-                  //   );
-            },
-            child: Container(
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'More Saved Screen',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),

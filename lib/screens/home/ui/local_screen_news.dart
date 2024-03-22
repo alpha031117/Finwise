@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vhack_finwise_app/model/local_screen_news_model.dart';
 import 'package:vhack_finwise_app/screens/home/Card/option_news_card.dart';
+import 'package:vhack_finwise_app/model/saved_news_model.dart';
 
 String getMonthName(int month) {
   switch (month) {
@@ -73,9 +74,16 @@ class  _local_news_screen_State extends State<local_news_screen> {
     });
   }
 
-      void toggleBookmark() {
+  void toggleBookmark() {
     setState(() {
-      isBookmarked = !isBookmarked;
+      widget.localnews.isBookMarked = !widget.localnews.isBookMarked;
+      if (widget.localnews.isBookMarked) {
+        // If bookmarked, add the news to savedNews
+        SavedNewsScreen.addSavedLocalNews(widget.localnews);
+      } else {
+        // If unbookmarked, remove the news from savedNews
+        SavedNewsScreen.removeSavedLocalNews(widget.localnews);
+      }
     });
   }
   
@@ -90,8 +98,8 @@ class  _local_news_screen_State extends State<local_news_screen> {
             actions: <Widget>[
         IconButton(
           icon: Icon(
-            isBookmarked ? Icons.bookmark : Icons.bookmark_border,
-            color: isBookmarked ? Colors.blue : null,
+            widget.localnews.isBookMarked ? Icons.bookmark : Icons.bookmark_border,
+            color: widget.localnews.isBookMarked ? Colors.blue : null,
           ),
           onPressed: () {
             toggleBookmark();

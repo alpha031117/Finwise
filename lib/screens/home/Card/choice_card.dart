@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vhack_finwise_app/model/local_screen_more_news_model.dart';
 import 'package:vhack_finwise_app/model/local_screen_news_model.dart';
 import 'package:vhack_finwise_app/screens/home/ui/global_screen.dart';
 import 'package:vhack_finwise_app/screens/home/ui/local_screen.dart';
@@ -7,21 +6,17 @@ import 'package:vhack_finwise_app/screens/home/ui/local_screen.dart';
 import 'package:vhack_finwise_app/model/global_screen_news_model.dart';
 import 'package:vhack_finwise_app/data/global_screen_news_data.dart';
 
-import 'package:vhack_finwise_app/model/global_screen_more_news_model.dart';
-import 'package:vhack_finwise_app/data/global_screen_more_news_data.dart';
+
+
 
 import 'package:vhack_finwise_app/model/local_screen_news_model.dart';
 import 'package:vhack_finwise_app/data/local_screen_news_data.dart';
 
-import 'package:vhack_finwise_app/model/local_screen_more_news_model.dart';
-import 'package:vhack_finwise_app/data/local_screen_more_news_data.dart';
-
 class choice_card extends StatelessWidget {
   List<GlobalNews> globalnews = GlobalNewsDatabase.globalnews;
-  List<GlobalMoreNews> globalmorenews = GlobalMoreNewsDatabase.globalmorenews;
+
 
   List<LocalNews> localnews = LocalNewsDatabase.localnews;
-  List<LocalMoreNews> localmorenews = LocalMoreNewsDatabase.localmorenews;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -34,7 +29,6 @@ class choice_card extends StatelessWidget {
               MaterialPageRoute(
                 builder: (context) => global_screen(
                   globalnews: globalnews,
-                  globalmorenews: globalmorenews,
                 ),
               ),
             );
@@ -74,7 +68,6 @@ class choice_card extends StatelessWidget {
               MaterialPageRoute(
                 builder: (context) => local_screen(
                   localnews: localnews,
-                  localmorenews: localmorenews,
                 ),
               ),
             );

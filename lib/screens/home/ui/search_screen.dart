@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:vhack_finwise_app/screens/home/ui/news_search_screen.dart';
+// import 'package:vhack_finwise_app/screens/home/ui/news_search_screen.dart';
+import 'package:vhack_finwise_app/screens/home/ui/news_screen_card.dart';
 import 'package:vhack_finwise_app/model/new.dart';
 import 'package:vhack_finwise_app/data/news.dart';
+import 'package:vhack_finwise_app/model/saved_news_model.dart';
 
 
 class SearchScreen extends StatefulWidget {
@@ -94,7 +96,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => news_search_screen(search_screen_newss: SearchScreenNewss[index]),
+                      builder: (context) => NewsScreen(news: SearchScreenNewss[index]),
                     ),
                   );
                   },

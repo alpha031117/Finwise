@@ -4,15 +4,12 @@ import 'package:flutter/widgets.dart';
 import 'package:vhack_finwise_app/model/global_screen_news_model.dart';
 import 'package:vhack_finwise_app/data/global_screen_news_data.dart';
 
-import 'package:vhack_finwise_app/model/global_screen_more_news_model.dart';
-import 'package:vhack_finwise_app/data/global_screen_more_news_data.dart';
-import 'package:vhack_finwise_app/screens/home/ui/global_screen_more_news.dart';
 import 'package:vhack_finwise_app/screens/home/ui/global_screen_news.dart';
 
 class global_screen extends StatefulWidget {
   final List<GlobalNews> globalnews; // Pass articles list from parent widget
-  final List<GlobalMoreNews> globalmorenews; // Pass articles list from parent widget
-  const global_screen({required this.globalnews,required this.globalmorenews});
+
+  const global_screen({required this.globalnews});
 
   @override
   State<global_screen> createState() => _global_screenState();
@@ -21,7 +18,7 @@ class global_screen extends StatefulWidget {
 class _global_screenState extends State<global_screen> {
   late final PageController _pageController;
   List<GlobalNews> globalnews = GlobalNewsDatabase.globalnews;
-  List<GlobalMoreNews> globalmorenews = GlobalMoreNewsDatabase.globalmorenews;
+
 
   @override
   void initState() {
@@ -72,7 +69,7 @@ class _global_screenState extends State<global_screen> {
                           Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>  global_news_screen( 
+                        builder: (context) =>  GlobalNewsScreen( 
                           globalnews: widget.globalnews[index]),
                       ),
                     );
@@ -136,7 +133,7 @@ class _global_screenState extends State<global_screen> {
                       ),
                     );
                   },
-                  itemCount: widget.globalnews.length,
+                  itemCount:  widget.globalnews.length > 5 ? 5 : widget.globalnews.length,
                   physics: PageScrollPhysics(),
                 ),
               ),
@@ -153,16 +150,16 @@ class _global_screenState extends State<global_screen> {
               SizedBox(
                 height: 300,
                 child: ListView.builder(
-                  itemCount: widget.globalmorenews.length,
+                  itemCount: widget.globalnews.length > 5 ? 5 : widget.globalnews.length,
                   itemBuilder: (context, index) {
-                    GlobalMoreNews globalmorenews = widget.globalmorenews[index];
+                    GlobalNews globalnews = widget.globalnews[widget.globalnews.length - 5 + index];
                     return GestureDetector(
                       onTap: () {
                           Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>  global_more_news_screen( 
-                          globalmorenews: widget.globalmorenews[index]),
+                        builder: (context) => GlobalNewsScreen( 
+                          globalnews: widget.globalnews[index]),
                       ),
                     );
                       },
@@ -182,7 +179,7 @@ class _global_screenState extends State<global_screen> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12.0),
                                 image: DecorationImage(
-                                  image: AssetImage(globalmorenews
+                                  image: AssetImage(globalnews
                                       .imagePath), // Use AssetImage for local assets
                                   fit: BoxFit.cover,
                                 ),
@@ -194,7 +191,7 @@ class _global_screenState extends State<global_screen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    globalmorenews.title,
+                                    globalnews.title,
                                     style: TextStyle(
                                         fontSize: 14.0,
                                         fontWeight: FontWeight.bold),
@@ -203,13 +200,13 @@ class _global_screenState extends State<global_screen> {
                                   ),
                                   SizedBox(height: 8.0),
                                   Text(
-                                    'Date: ${globalmorenews.date.toString()}',
+                                    'Date: ${globalnews.date.toString()}',
                                     style: TextStyle(
                                         fontSize: 12.0, color: Colors.grey),
                                   ),
                                   SizedBox(height: 4.0),
                                   Text(
-                                    'Author: ${globalmorenews.author}',
+                                    'Author: ${globalnews.author}',
                                     style: TextStyle(
                                         fontSize: 12.0, color: Colors.grey),
                                   ),

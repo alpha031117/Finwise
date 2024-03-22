@@ -85,13 +85,13 @@ class news_search_screenState extends State<news_search_screen> {
   void toggleBookmark() {
     setState(() {
       isBookmarked = !isBookmarked;
-      // if (isBookmarked) {
-      //   // If bookmarked, add the news to savedNews
-      //   SavedNewsScreen.addSavedNews(widget.search_screen_newss);
-      // } else {
-      //   // If unbookmarked, remove the news from savedNews
-      //   SavedNewsScreen.removeSavedNews(widget.search_screen_newss);
-      // }
+      if (isBookmarked) {
+        // If bookmarked, add the news to savedNews
+        SavedNewsScreen.addSavedNewsCard(widget.search_screen_newss);
+      } else {
+        // If unbookmarked, remove the news from savedNews
+        SavedNewsScreen.removeSavedNewsCard(widget.search_screen_newss);
+      }
     });
   }
 

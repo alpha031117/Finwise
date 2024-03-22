@@ -4,15 +4,12 @@ import 'package:flutter/widgets.dart';
 import 'package:vhack_finwise_app/model/local_screen_news_model.dart';
 import 'package:vhack_finwise_app/data/local_screen_news_data.dart';
 
-import 'package:vhack_finwise_app/model/local_screen_more_news_model.dart';
-import 'package:vhack_finwise_app/data/local_screen_more_news_data.dart';
 
-import 'package:vhack_finwise_app/screens/home/ui/local_screen_more_news.dart';
+
 import 'package:vhack_finwise_app/screens/home/ui/local_screen_news.dart';
 class local_screen extends StatefulWidget {
   final List<LocalNews> localnews; // Pass articles list from parent widget
-  final List<LocalMoreNews> localmorenews; // Pass articles list from parent widget
-  const local_screen({required this.localnews,required this.localmorenews});
+  const local_screen({required this.localnews});
 
 
   @override
@@ -22,7 +19,7 @@ class local_screen extends StatefulWidget {
 class _local_screenState extends State<local_screen> {
   
   late final PageController _pageController;
-    List<LocalMoreNews> localmorenews = LocalMoreNewsDatabase.localmorenews;
+
     List<LocalNews> localnews = LocalNewsDatabase.localnews;
 
   @override
@@ -131,7 +128,7 @@ class _local_screenState extends State<local_screen> {
                       ),
                     );
                   },
-                  itemCount: widget.localnews.length,
+                  itemCount: widget.localnews.length > 5 ? 5 : widget.localnews.length,
                   physics: PageScrollPhysics(),
                 ),
               ),
@@ -149,16 +146,16 @@ class _local_screenState extends State<local_screen> {
               SizedBox(
                 height: 300,
                 child: ListView.builder(
-                  itemCount: widget.localmorenews.length,
+                  itemCount: widget.localnews.length > 5 ? 5 : widget.localnews.length,
                   itemBuilder: (context, index) {
-                    LocalMoreNews localmorenews= widget.localmorenews[index];
+                    LocalNews localnews= widget.localnews[widget.localnews.length - 5 + index];
                     return GestureDetector(
                      onTap: () {
                           Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>  local_more_news_screen( 
-                          localmorenews: widget.localmorenews[index]),
+                        builder: (context) =>  local_news_screen( 
+                          localnews: widget.localnews[index]),
                       ),
                     );
                       },
@@ -178,7 +175,7 @@ class _local_screenState extends State<local_screen> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12.0),
                                     image: DecorationImage(
-                                      image: AssetImage(localmorenews.imagePath), // Use AssetImage for local assets
+                                      image: AssetImage(localnews.imagePath), // Use AssetImage for local assets
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -189,7 +186,7 @@ class _local_screenState extends State<local_screen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    localmorenews.title,
+                                    localnews.title,
                                     style: TextStyle(
                                         fontSize: 14.0, fontWeight: FontWeight.bold),
                                     maxLines: 2,
@@ -197,13 +194,13 @@ class _local_screenState extends State<local_screen> {
                                   ),
                                   SizedBox(height: 8.0),
                                   Text(
-                                    'Date: ${localmorenews.date.toString()}',
+                                    'Date: ${localnews.date.toString()}',
                                     style:
                                         TextStyle(fontSize: 12.0, color: Colors.grey),
                                   ),
                                   SizedBox(height: 4.0),
                                   Text(
-                                    'Author: ${localmorenews.author}',
+                                    'Author: ${localnews.author}',
                                     style:
                                         TextStyle(fontSize: 12.0, color: Colors.grey),
                                   ),
