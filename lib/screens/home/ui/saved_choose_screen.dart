@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vhack_finwise_app/screens/home/ui/saved_news_screen.dart';
 import 'package:vhack_finwise_app/screens/home/ui/saved_global_news_screen.dart';
-import 'package:vhack_finwise_app/model/saved_news_model.dart';
+import 'package:vhack_finwise_app/data/saved_news.dart';
 
 class SavedChooseScreen extends StatefulWidget {
   const SavedChooseScreen({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class _SavedChooseScreenState extends State<SavedChooseScreen> {
                 Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>  SavedGlobalNewsScreen(savedGlobalNews: SavedNewsScreen.savedGlobalNews),
+                        builder: (context) =>  SavedGlobalNewsScreen(savedGlobalNews: SavedNewsDatabase.savedGlobalNews),
                       ),
                     );
               
@@ -73,7 +73,7 @@ class _SavedChooseScreenState extends State<SavedChooseScreen> {
                 Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>  SavedNewssScreen(savedNewsCard: SavedNewsScreen.savedNewsCard),
+                        builder: (context) =>  SavedNewssScreen(savedNewsCard: SavedNewsDatabase.savedNewsCard),
                       ),
                     );
             },

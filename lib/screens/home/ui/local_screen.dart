@@ -7,6 +7,8 @@ import 'package:vhack_finwise_app/data/local_screen_news_data.dart';
 
 
 import 'package:vhack_finwise_app/screens/home/ui/local_screen_news.dart';
+
+import 'widgets/news_list_tile.dart';
 class LocalScreen extends StatefulWidget {
   final List<LocalNews> localnews; // Pass articles list from parent widget
   const LocalScreen({required this.localnews});
@@ -159,57 +161,7 @@ class _local_screenState extends State<LocalScreen> {
                       ),
                     );
                       },
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(
-                        horizontal: 5.0, vertical: 8.0),
-                        padding: const EdgeInsets.all(5.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12.0),
-                          color: Colors.white,
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                                  width: 80.0, // Adjust image width as needed
-                                  height: 80.0, // Adjust image height as needed
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12.0),
-                                    image: DecorationImage(
-                                      image: AssetImage(localnews.imagePath), // Use AssetImage for local assets
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                            SizedBox(width: 12.0),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    localnews.title,
-                                    style: TextStyle(
-                                        fontSize: 14.0, fontWeight: FontWeight.bold),
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  SizedBox(height: 8.0),
-                                  Text(
-                                    'Date: ${localnews.date.toString()}',
-                                    style:
-                                        TextStyle(fontSize: 12.0, color: Colors.grey),
-                                  ),
-                                  SizedBox(height: 4.0),
-                                  Text(
-                                    'Author: ${localnews.author}',
-                                    style:
-                                        TextStyle(fontSize: 12.0, color: Colors.grey),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      child: NewsListTile(globalOrLocalNews: localnews,),
                     );
                   },
                 ),

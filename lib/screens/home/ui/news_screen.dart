@@ -3,7 +3,7 @@ import 'package:vhack_finwise_app/model/new.dart';
 import 'package:vhack_finwise_app/data/news.dart';
 import 'package:vhack_finwise_app/screens/home/ui/widgets/Card/option_news_card.dart';
 import 'package:vhack_finwise_app/screens/home/ui/saved_news_screen.dart';
-import 'package:vhack_finwise_app/model/saved_news_model.dart';
+import 'package:vhack_finwise_app/data/saved_news.dart';
 
 import '../../../utils/global_variables.dart';
 import 'widgets/coins.dart';
@@ -56,10 +56,10 @@ class _news_screenState extends State<NewsScreen> {
       widget.news.isBookMarked = !widget.news.isBookMarked;
       if (widget.news.isBookMarked) {
         // If bookmarked, add the news to savedNews
-        SavedNewsScreen.addSavedNewsCard(widget.news);
+        SavedNewsDatabase.addSavedNewsCard(widget.news);
       } else {
         // If unbookmarked, remove the news from savedNews
-        SavedNewsScreen.removeSavedNewsCard(widget.news);
+        SavedNewsDatabase.removeSavedNewsCard(widget.news);
       }
     });
   }

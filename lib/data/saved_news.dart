@@ -3,8 +3,8 @@ import 'package:vhack_finwise_app/model/global_screen_news_model.dart';
 import 'package:vhack_finwise_app/model/local_screen_news_model.dart';
 
 
-
-class SavedNewsScreen {
+//mimic database
+class SavedNewsDatabase {
   static List<News> savedNewsCard = [];
   static List<GlobalNews> savedGlobalNews = [];
   static List<LocalNews> savedLocalNews = [];

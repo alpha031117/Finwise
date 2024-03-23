@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vhack_finwise_app/model/new.dart';
 import 'package:vhack_finwise_app/data/news.dart';
 import 'package:vhack_finwise_app/screens/home/ui/news_screen.dart';
-import 'package:vhack_finwise_app/model/saved_news_model.dart';
+import 'package:vhack_finwise_app/data/saved_news.dart';
 
 class NewsCard extends StatefulWidget {
   final List<News> newss; // Pass articles list from parent widget
@@ -108,11 +108,11 @@ class _news_cardState extends State<NewsCard> {
                                     newss.isBookMarked = !newss.isBookMarked;
                                     if (newss.isBookMarked) {
                                       // If bookmarked, add the news to savedNews
-                                      SavedNewsScreen.addSavedNewsCard(
+                                      SavedNewsDatabase.addSavedNewsCard(
                                           widget.newss[index]);
                                     } else {
                                       // If unbookmarked, remove the news from savedNews
-                                      SavedNewsScreen.removeSavedNewsCard(
+                                      SavedNewsDatabase.removeSavedNewsCard(
                                           widget.newss[index]);
                                     }
                                   });

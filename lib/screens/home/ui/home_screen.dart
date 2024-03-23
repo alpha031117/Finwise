@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:vhack_finwise_app/data/infos.dart';
+import 'package:vhack_finwise_app/data/users.dart';
 import 'package:vhack_finwise_app/model/info.dart';
 import 'package:vhack_finwise_app/screens/home/ui/widgets/Card/info_card.dart';
 
@@ -23,7 +24,7 @@ import 'package:vhack_finwise_app/screens/home/ui/saved_news_screen.dart';
 import 'package:vhack_finwise_app/screens/home/ui/search_screen.dart';
 import 'package:vhack_finwise_app/screens/home/ui/saved_choose_screen.dart';
 
-import 'package:vhack_finwise_app/model/saved_news_model.dart';
+import 'package:vhack_finwise_app/data/saved_news.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -34,7 +35,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String name = 'Alan';
+  String name = UserDatabase.users[0].username;
   final List<News> newss =
       NewDatabase.newss; // Access articles from data source
   final List<info> infoss = InfoDatabase.infos;

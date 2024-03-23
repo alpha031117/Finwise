@@ -7,6 +7,8 @@ import 'package:vhack_finwise_app/data/global_screen_news_data.dart';
 
 import 'package:vhack_finwise_app/screens/home/ui/global_screen_news.dart';
 
+import 'widgets/news_list_tile.dart';
+
 class GlobalScreen extends StatefulWidget {
   final List<GlobalNews> globalnews; // Pass articles list from parent widget
 
@@ -168,64 +170,7 @@ class _global_screenState extends State<GlobalScreen> {
                           ),
                         );
                       },
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12.0),
-                            color: Colors.white,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8.0, vertical: 8),
-                            child: Row(
-                              children: [
-                                Container(
-                                  width: 80.0, // Adjust image width as needed
-                                  height: 80.0, // Adjust image height as needed
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12.0),
-                                    image: DecorationImage(
-                                      image: AssetImage(globalnews
-                                          .imagePath), // Use AssetImage for local assets
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 12.0),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        globalnews.title,
-                                        style: TextStyle(
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.bold),
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                      SizedBox(height: 8.0),
-                                      Text(
-                                        'Date: ${DateFormat('yyyy-MM-dd').format(globalnews.date)}',
-                                        style: TextStyle(
-                                            fontSize: 12.0, color: Colors.grey),
-                                      ),
-                                      SizedBox(height: 4.0),
-                                      Text(
-                                        'Author: ${globalnews.author}',
-                                        style: TextStyle(
-                                            fontSize: 12.0, color: Colors.grey),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+                      child: NewsListTile(globalOrLocalNews: globalnews,),
                     );
                   },
                 ),
@@ -237,3 +182,5 @@ class _global_screenState extends State<GlobalScreen> {
     );
   }
 }
+
+

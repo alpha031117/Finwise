@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:vhack_finwise_app/screens/home/ui/news_screen.dart';
 import 'package:vhack_finwise_app/model/new.dart';
 import 'package:vhack_finwise_app/data/news.dart';
-import 'package:vhack_finwise_app/model/saved_news_model.dart';
+import 'package:vhack_finwise_app/data/saved_news.dart';
 
 
 class SearchScreen extends StatefulWidget {

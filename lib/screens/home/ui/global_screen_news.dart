@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vhack_finwise_app/model/global_screen_news_model.dart';
 import 'package:vhack_finwise_app/screens/home/ui/widgets/Card/option_news_card.dart';
-import 'package:vhack_finwise_app/model/saved_news_model.dart';
+import 'package:vhack_finwise_app/data/saved_news.dart';
 
 String getMonthName(int month) {
   switch (month) {
@@ -78,10 +78,10 @@ class  _global_news_screen_State extends State<GlobalNewsScreen> {
       widget.globalnews.isBookMarked = !widget.globalnews.isBookMarked;
       if (widget.globalnews.isBookMarked) {
         // If bookmarked, add the news to savedNews
-        SavedNewsScreen.addSavedGlobalNews(widget.globalnews);
+        SavedNewsDatabase.addSavedGlobalNews(widget.globalnews);
       } else {
         // If unbookmarked, remove the news from savedNews
-        SavedNewsScreen.removeSavedGlobalNews(widget.globalnews);
+        SavedNewsDatabase.removeSavedGlobalNews(widget.globalnews);
       }
     });
   }
