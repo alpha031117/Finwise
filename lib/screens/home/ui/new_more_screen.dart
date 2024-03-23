@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vhack_finwise_app/model/new.dart';
 import 'package:vhack_finwise_app/data/news.dart';
-import 'package:vhack_finwise_app/screens/home/ui/news_screen_card.dart';
+import 'package:vhack_finwise_app/screens/home/ui/news_screen.dart';
 
 
 class NewsMoreScreen extends StatefulWidget {

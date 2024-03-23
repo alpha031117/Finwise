@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vhack_finwise_app/model/local_screen_news_model.dart';
-import 'package:vhack_finwise_app/screens/home/Card/option_news_card.dart';
+import 'package:vhack_finwise_app/screens/home/ui/widgets/Card/option_news_card.dart';
 import 'package:vhack_finwise_app/model/saved_news_model.dart';
 
 String getMonthName(int month) {

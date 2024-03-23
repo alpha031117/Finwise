@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 import 'package:vhack_finwise_app/model/global_screen_news_model.dart';
 import 'package:vhack_finwise_app/data/global_screen_news_data.dart';
 
@@ -19,7 +20,6 @@ class _global_screenState extends State<GlobalScreen> {
   late final PageController _pageController;
   List<GlobalNews> globalnews = GlobalNewsDatabase.globalnews;
 
-
   @override
   void initState() {
     _pageController = PageController();
@@ -36,7 +36,7 @@ class _global_screenState extends State<GlobalScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60.0),
+        preferredSize: const Size.fromHeight(60.0),
         child: AppBar(
           backgroundColor: Colors.white,
           elevation: 0.0,
@@ -66,13 +66,13 @@ class _global_screenState extends State<GlobalScreen> {
                     GlobalNews globalnews = widget.globalnews[index];
                     return GestureDetector(
                       onTap: () {
-                          Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>  GlobalNewsScreen( 
-                          globalnews: widget.globalnews[index]),
-                      ),
-                    );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => GlobalNewsScreen(
+                                globalnews: widget.globalnews[index]),
+                          ),
+                        );
                       },
                       child: Container(
                         margin: const EdgeInsets.symmetric(
@@ -121,7 +121,7 @@ class _global_screenState extends State<GlobalScreen> {
                                   ),
                                   SizedBox(height: 4.0),
                                   Text(
-                                    'Date: ${globalnews.date.toString()}',
+                                    'Date: ${DateFormat('yyyy-MM-dd').format(globalnews.date)}',
                                     style: TextStyle(
                                         fontSize: 12.0, color: Colors.grey),
                                   ),
@@ -133,8 +133,10 @@ class _global_screenState extends State<GlobalScreen> {
                       ),
                     );
                   },
-                  itemCount:  widget.globalnews.length > 5 ? 5 : widget.globalnews.length,
-                  physics: PageScrollPhysics(),
+                  itemCount: widget.globalnews.length > 5
+                      ? 5
+                      : widget.globalnews.length,
+                  physics: const PageScrollPhysics(),
                 ),
               ),
               SizedBox(height: 10.0),
@@ -150,70 +152,78 @@ class _global_screenState extends State<GlobalScreen> {
               SizedBox(
                 height: 300,
                 child: ListView.builder(
-                  itemCount: widget.globalnews.length > 5 ? 5 : widget.globalnews.length,
+                  itemCount: widget.globalnews.length > 5
+                      ? 5
+                      : widget.globalnews.length,
                   itemBuilder: (context, index) {
-                    GlobalNews globalnews = widget.globalnews[widget.globalnews.length - 5 + index];
+                    GlobalNews globalnews =
+                        widget.globalnews[widget.globalnews.length - 5 + index];
                     return GestureDetector(
                       onTap: () {
-                          Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => GlobalNewsScreen( 
-                          globalnews: widget.globalnews[index]),
-                      ),
-                    );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => GlobalNewsScreen(
+                                globalnews: widget.globalnews[index]),
+                          ),
+                        );
                       },
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 5.0, vertical: 8.0),
-                        padding: const EdgeInsets.all(5.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12.0),
-                          color: Colors.white,
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 80.0, // Adjust image width as needed
-                              height: 80.0, // Adjust image height as needed
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12.0),
-                                image: DecorationImage(
-                                  image: AssetImage(globalnews
-                                      .imagePath), // Use AssetImage for local assets
-                                  fit: BoxFit.cover,
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12.0),
+                            color: Colors.white,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0, vertical: 8),
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: 80.0, // Adjust image width as needed
+                                  height: 80.0, // Adjust image height as needed
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12.0),
+                                    image: DecorationImage(
+                                      image: AssetImage(globalnews
+                                          .imagePath), // Use AssetImage for local assets
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                                 ),
-                              ),
+                                SizedBox(width: 12.0),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        globalnews.title,
+                                        style: TextStyle(
+                                            fontSize: 14.0,
+                                            fontWeight: FontWeight.bold),
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                      SizedBox(height: 8.0),
+                                      Text(
+                                        'Date: ${DateFormat('yyyy-MM-dd').format(globalnews.date)}',
+                                        style: TextStyle(
+                                            fontSize: 12.0, color: Colors.grey),
+                                      ),
+                                      SizedBox(height: 4.0),
+                                      Text(
+                                        'Author: ${globalnews.author}',
+                                        style: TextStyle(
+                                            fontSize: 12.0, color: Colors.grey),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
-                            SizedBox(width: 12.0),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    globalnews.title,
-                                    style: TextStyle(
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.bold),
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  SizedBox(height: 8.0),
-                                  Text(
-                                    'Date: ${globalnews.date.toString()}',
-                                    style: TextStyle(
-                                        fontSize: 12.0, color: Colors.grey),
-                                  ),
-                                  SizedBox(height: 4.0),
-                                  Text(
-                                    'Author: ${globalnews.author}',
-                                    style: TextStyle(
-                                        fontSize: 12.0, color: Colors.grey),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                       ),
                     );
