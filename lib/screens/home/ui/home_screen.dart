@@ -41,6 +41,19 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<info> infoss = InfoDatabase.infos;
   final List<Quiz> quizz = QuizDatabase.quizz;
 
+  late final CarouselController _carouselController1;
+  late final CarouselController _carouselController2;
+  int _currentPage1 = 0;
+  int _currentPage2 = 0;
+
+  @override
+  void initState() {
+    _carouselController1 = CarouselController();
+    _carouselController2 = CarouselController();
+    super.initState();
+  }
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -203,34 +216,58 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(height: 10),
                 CarouselSlider(
-                  items: [
-                    Center(
-                      child: QuizCard(
-                        quizz: QuizDatabase.quizz[0],
-                      ),
+                items: [
+                  Center(
+                    child: QuizCard(
+                      quizz: QuizDatabase.quizz[0],
                     ),
-                    Center(
-                      child: QuizCard(
-                        quizz: QuizDatabase.quizz[1],
-                      ),
+                  ),
+                  Center(
+                    child: QuizCard(
+                      quizz: QuizDatabase.quizz[1],
                     ),
-                    Center(
-                      child: QuizCard(
-                        quizz: QuizDatabase.quizz[2],
-                      ),
+                  ),
+                  Center(
+                    child: QuizCard(
+                      quizz: QuizDatabase.quizz[2],
                     ),
-                  ],
-                  options: CarouselOptions(
-                    enableInfiniteScroll: false,
-                    height: 520, // Adjust height as needed
-                    viewportFraction:
-                        1.0, // Make each item occupy the entire screen width
-                    autoPlay: false, // Auto scroll carousel
-                    aspectRatio: 16 / 9, // Aspect ratio of carousel items
-                    enlargeCenterPage: true, // Enlarge the center item
+                  ),
+                ],
+                options: CarouselOptions(
+                  enableInfiniteScroll: false,
+                  height: 520,
+                  viewportFraction: 1.0,
+                  autoPlay: false,
+                  aspectRatio: 16 / 9,
+                  enlargeCenterPage: true,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      _currentPage1 = index;
+                    });
+                  },
+                ),
+                carouselController: _carouselController1
+              ),
+
+              // Indicators for CarouselSlider 1
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  3, // Number of quiz cards in CarouselSlider 1
+                  (index) => Container(
+                    width: 10,
+                    height: 10,
+                    margin: EdgeInsets.symmetric(horizontal: 2.0),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: _currentPage1 == index ? Colors.black : Colors.grey,
+                    ),
                   ),
                 ),
+              ),
                 SizedBox(height: 20),
+                // Indicators for CarouselSlider 1
+
                 Text(
                   "You don't just stop there :)",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -284,16 +321,35 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                   options: CarouselOptions(
-                    enableInfiniteScroll: false,
-                    height: 250, // Adjust height as needed
-                    viewportFraction:
-                        1.0, // Make each item occupy the entire screen width
-                    autoPlay: false, // Auto scroll carousel
-                    aspectRatio: 16 / 9, // Aspect ratio of carousel items
-                    enlargeCenterPage: true, // Enlarge the center item
+                  enableInfiniteScroll: false,
+                  height: 520,
+                  viewportFraction: 1.0,
+                  autoPlay: false,
+                  aspectRatio: 16 / 9,
+                  enlargeCenterPage: true,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      _currentPage2 = index;
+                    });
+                  },
+                ),
+                carouselController: _carouselController2
+                ),
+                Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  3, // Number of quiz cards in CarouselSlider 1
+                  (index) => Container(
+                    width: 10,
+                    height: 10,
+                    margin: EdgeInsets.symmetric(horizontal: 2.0),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: _currentPage2 == index ? Colors.black : Colors.grey,
+                    ),
                   ),
                 ),
-                SizedBox(height: 20),
+              ),
               ]),
         ),
       ),
