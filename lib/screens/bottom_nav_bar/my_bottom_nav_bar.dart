@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vhack_finwise_app/screens/calculator/ui/calculator_screen.dart';
 import 'package:vhack_finwise_app/screens/home/ui/home_screen.dart';
@@ -21,6 +20,14 @@ class MyBottomNavBar extends StatefulWidget {
 }
 
 class _MyBottomNavBarState extends State<MyBottomNavBar> {
+
+  List<Widget> pages = [
+    const HomeScreen(),
+    const LeaderBoardScreen(),
+    const CalculatorScreen(),
+    SettingsScreen(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     PersistentTabController controller;
@@ -34,7 +41,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
         const LeaderBoardScreen(),
         const PodcastScreen(),
         const CalculatorScreen(),
-        const SettingsScreen()
+        SettingsScreen()
       ];
     }
 
