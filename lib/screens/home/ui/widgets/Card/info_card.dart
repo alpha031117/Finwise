@@ -155,6 +155,7 @@ class _InfoCardState extends State<InfoCard> {
             ),
           ),
         ),
+        
       ],
     );
   }

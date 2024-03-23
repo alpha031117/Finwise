@@ -140,6 +140,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 200, // Adjust the height as needed
                   child: NewsCard(newss: newss),
                 ),
+                SizedBox(
+                  height: 10,
+                ),
 
                 SizedBox(
                   height: 250, // Adjust the height as needed
