@@ -20,17 +20,6 @@ class MyBottomNavBar extends StatefulWidget {
 }
 
 class _MyBottomNavBarState extends State<MyBottomNavBar> {
-<<<<<<< HEAD
-
-  List<Widget> pages = [
-    const HomeScreen(),
-    const LeaderBoardScreen(),
-    const CalculatorScreen(),
-    SettingsScreen(),
-  ];
-
-=======
->>>>>>> b939c60 (minimum viable podcast feature)
   @override
   Widget build(BuildContext context) {
     PersistentTabController controller;
