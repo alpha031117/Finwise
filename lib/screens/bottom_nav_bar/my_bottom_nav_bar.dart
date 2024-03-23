@@ -6,6 +6,8 @@ import 'package:vhack_finwise_app/screens/settings/ui/settings_screen.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
 
+import '../podcast/ui/podcast_screen.dart';
+
 //the commented section is for the dark mode
 class MyBottomNavBar extends StatefulWidget {
   const MyBottomNavBar({
@@ -18,6 +20,7 @@ class MyBottomNavBar extends StatefulWidget {
 }
 
 class _MyBottomNavBarState extends State<MyBottomNavBar> {
+
   List<Widget> pages = [
     const HomeScreen(),
     const LeaderBoardScreen(),
@@ -36,6 +39,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
       return [
         const HomeScreen(),
         const LeaderBoardScreen(),
+        const PodcastScreen(),
         const CalculatorScreen(),
         SettingsScreen()
       ];
@@ -56,14 +60,30 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
           inactiveColorPrimary: Colors.black,
         ),
         PersistentBottomNavBarItem(
+          inactiveIcon: const Icon(Icons.podcasts_outlined),
+          icon: const Icon(Icons.podcasts),
+          activeColorPrimary: GlobalVariables.primaryColor,
+          inactiveColorPrimary: Colors.black,
+        ),
+        PersistentBottomNavBarItem(
           inactiveIcon: const Icon(Icons.calculate_outlined),
           icon: const Icon(Icons.calculate),
           activeColorPrimary: GlobalVariables.primaryColor,
           inactiveColorPrimary: Colors.black,
         ),
         PersistentBottomNavBarItem(
-          inactiveIcon: const Icon(Icons.settings_outlined),
-          icon: const Icon(Icons.settings),
+          inactiveIcon: CircleAvatar(
+            radius: 12,
+            backgroundImage: NetworkImage(
+              'https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcRBtEkTjk1s5zzRgw4HDiDbapklPu_3ay6zUxEO1NKr8wL7afAjbkgdLy0FpHGRNS4UOU5vtL5mcCeIcGI',
+            ),
+          ),
+          icon: CircleAvatar(
+            radius: 16,
+            backgroundImage: NetworkImage(
+              'https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcRBtEkTjk1s5zzRgw4HDiDbapklPu_3ay6zUxEO1NKr8wL7afAjbkgdLy0FpHGRNS4UOU5vtL5mcCeIcGI',
+            ),
+          ),
           activeColorPrimary: GlobalVariables.primaryColor,
           inactiveColorPrimary: Colors.black,
         ),
