@@ -4,22 +4,22 @@ class LocalNewsDatabase {
   static List<LocalNews> localnews = [
     LocalNews(
         title:
-            'Markets News, March 8, 2024: Stocks Sink After Jobs Report; Chip Sell-off Hits Nvidia',
-        date: DateTime(2024, 03, 08),
-        author: 'COLIN LAIDEY',
-        type: 'Market',
+            'Luxury goods tax a good way to raise govt revenue, says economist',
+        date: DateTime(2024, 03, 23),
+        author: 'AMEER FAKHRI',
+        type: 'Business',
         isBookMarked: false,
-        com: 'Slabdsgn',
+        com: 'FMT',
         text:
-            'Stocks went on a rollercoaster ride Friday, ultimately closing lower after a closely watched jobs report contained some evidence the labor market cooled in February.',
+            'An economist has described a tax on luxury goods, expected to be implemented on May 1, as an effective way to expand the government’s tax base without burdening the majority of the population, especially the B40 lower-income group.',
         text2:
-            'The Nasdaq Composite tumbled 1.2% Friday to finish the week down the same amount. The S&P 500 slid 0.7% and lost 0.3% over the week. The Dow Jones Industrial Average slipped 0.2% to end the week 0.9% lower.',
+            'Lai Wei Sieng of Universiti Kebangsaan Malaysia said those who would purchase luxury goods were high-income earners, namely some of those in the middle-income M40 group and a majority of the high-income T20.',
         text3:
-            "The U.S. added 275,000 jobs in February, more than the 198,000 economists were expecting, according to data from the Labor Department.There were, however, signs the labor market was cooling. The unemployment rate ticked up 0.2 percentage points to 3.9%, while average hourly wage growth slowed from the month. And January's print of 353,000 new jobs was revised down to 229,000.",
+            "Earlier this week, the finance ministry said it was finalising several policies related to the high-value goods tax, including the type of items which would be levied. The ministry is also looking at the price threshold that would determine what is a high value item.",
         text4:
-            'Treasury yields bounced around following the report. The yield on the 10-year and 2-year notes dropped as low as 4.04% and 4.42%, respectively, before climbing back up to their pre-report levels.',
+            'The luxury tax is expected to apply on items such as jewellery and watches that exceeded a certain price threshold. It is expected to earn the government RM700 million annually.',
         text5:
-            'Costco (COST) shares fell after it reported slower sales growth than analysts had been expecting in its 2024 fiscal second quarter.',
+            'Lai also said the proposed rate of between 5% and 10% was reasonable, when compared to other countries like China and Indonesia.China’s luxury tax is reported to be between 30% and 40% on imported high-end goods, with the Chinese government considering lowering it by 10%. In Indonesia, the tax ranges from 10% to 95%.',
         imagePath: 'assets/marketnews.jpg',         
         followers: 3000,
         following: 5500,
@@ -33,22 +33,22 @@ class LocalNewsDatabase {
           'False': false,
         }),
     LocalNews(
-        title: 'Rivan Stock Soars 13% as EV Maker Introduces Three New Models',
-        date: DateTime(2024, 03, 07),
-        author: 'BILL MCCOLL',
-        type: 'Companies',
+        title: '75% of adults prefer original streaming content over remakes',
+        date: DateTime(2024, 03, 23),
+        author: 'ETX Daily Up',
+        type: 'lifestyle',
         isBookMarked: false,
-        com: 'Slabdsgn',
+        com: 'FMT',
         text:
-            'Rivian Automotive (RIVN) shares jumped 13% Thursday as the electric vehicle (EV) maker introduced three new models to go along with its RT1 truck and RS1 SUV, as well as its EDV delivery van initially designed for Amazon (AMZN).',
+            'As a result of watching the same stories getting played out over and over again on both the small and big screen, young people are getting bored.',
         text2:
-            "The company’s new R2 is a mid-sized SUV, priced to start at about \$45,000'. The R3 is a mid-sized crossover, and the RX3 is what Rivan called “a performance variant” of the R3. It added that the R3 would cost less than the R2.",
+            "Some 74% of Generation Z (aged 18-26) and millennials (aged 27-42) said they prefer to watch original streaming content, not franchises or remakes of old movies or television shows, according to US streaming platform Tubi’s new report, “The Stream 2024”.",
         text3:
-            "Rivian said that both the R2 and R3 will feature two battery sizes. The larger will give the vehicles a range of more than 300 miles on a single charge and allow them to go from 0 to 60 miles per hour in 3 seconds. It didn’t give details on the smaller version.",
+            "“Viewers are increasingly seeking fresh and innovative ideas that push the boundaries of what’s possible instead of rehashed versions of existing stories,” the study notes.",
         text4:
-            "Founder and CEO RJ Scaringe said the new models are “distinctly Rivian in terms of performance, capability, and usability, yet with pricing that makes them accessible to a lot of people.” ",
+            "These younger audience members want to see more content from “independent and small-time creators” and not necessarily big Hollywood machines (71%). “Most (64%) enjoy watching content from smaller creators because they feel they’re supporting the creators directly,” the report adds.",
         text5:
-            "The company noted that the R2 can be reserved in the U.S. right now for a \$100 deposit, with delivery expected in the first half of 2026. The R3 and R3X deliveries will come after that to ensure a smooth launch and rapid ramp of R2. All of Rivian’s vehicles are set to be available internationally following their North American launch. ",
+            "Furthermore, nearly three quarters of them want to see characters like them (73%), that reflect their identity, while featuring “different identities and backgrounds” (74%).",
         imagePath: 'assets/rivan.jpg',         
         followers: 3000,
         following: 5500,
@@ -62,22 +62,22 @@ class LocalNewsDatabase {
           'False': false,
         }),
     LocalNews(
-        title: "Ahead of Oracle's Earnings Report Monday",
-        date: DateTime(2024, 03, 08),
-        author: 'NAOMI BUCHANAN',
-        type: 'Earnings',
+        title: "Ringgit closes lower on mild profit-taking",
+        date: DateTime(2024, 06, 21),
+        author: 'Bernama',
+        type: 'Business',
         isBookMarked: false,
-        com: 'Slabdsgn',
+        com: 'FMT',
         text:
-            "Oracle (ORCL) is set to announce its third-quarter earnings for the 2024 fiscal year after the closing bell on Monday, March 11, which will show how the company's cloud revenue is faring and could offer insight into its data center expansion to meet demand amid the artificial intelligence (AI) boom.",
+            "The ringgit depreciated against the US dollar at the close today on mild profit-taking following recent gains, said an analyst.",
         text2:
-            "Analysts project Oracle's revenue to come in at \$13.28 billion for the third quarter of fiscal 2024, up from the previous quarter and year-ago period, according to estimates compiled by Visible Alpha.",
+            "Bank Muamalat Malaysia Bhd chief economist Afzanizam Abdul Rashid said the weaker ringgit was attributed to the People’s Bank of China’s lower daily fixing of the yuan, among other factors.",
         text3:
-            "Net income is expected to be \$3.87 billion, an increase from \$3.38 billion in the fiscal third quarter of 2023, while diluted earnings per share (EPS) are projected at \$1.37, compared to \$1.22 in the same period a year earlier.",
+            "“In a grand scheme of things, the US dollar stands out,” he told Bernama.At 6pm, the ringgit fell to 4.7340/4.7390 against the greenback from yesterday’s close of 4.7140/4.7170.At the close, the ringgit was traded mostly higher against a basket of major currencies.",
         text4:
-            "When Oracle reported results for the previous quarter in December, shares fell after the company missed cloud growth expectations. Cloud revenue came in at \$4.8 billion for the second quarter of fiscal 2024, representing an increase of 25% from the same period a year earlier, but a slowdown from 30% year-over-year growth in the fiscal first quarter.",
+            "It appreciated against the euro to 5.1203/5.1257 from 5.1444/5.1477 yesterday and also against the British pound to 5.9582/5.9645 from 6.0202/6.0241.However, it depreciated vis-a-vis the Japanese yen to 3.1223/3.1258 from 3.1200/3.1222.",
         text5:
-            'racle previously announced that the company is expanding 66 of its existing cloud data centers and building 100 cloud data centers, which drew attention to operating margins due to increased capital expenditures.Oracle shares have gained about 8.5% since the start of 2024 and more than 32% over the past year.',
+            'Meanwhile, the ringgit traded higher against other Asean currencies, except for the Philippine peso which was flat at 8.41/8.42.',
         imagePath: 'assets/oracle.jpg',         
         followers: 3000,
         following: 5500,
@@ -92,22 +92,22 @@ class LocalNewsDatabase {
         }),
     LocalNews(
         title:
-            'Top CD Rates Today: Lock in 5.00% or Better Until 2025, 2026, or Even 2027',
-        date: DateTime(2024, 03, 08),
-        author: 'SABRINA KARL',
-        type: 'CD Rates',
+            "Rafizi to clarify issues surrounding Padu registration during next week's Cabinet meeting",
+        date: DateTime(2024, 03, 23),
+        author: 'Bernama',
+        type: 'Business',
         isBookMarked: false,
-        com: 'Slabdsgn',
+        com: 'Straits Times',
         text:
-            'Stocks went on a rollercoaster ride Friday, ultimately closing lower after a closely watched jobs report contained some evidence the labor market cooled in February.Certificate of deposit (CD) rates have softened since climbing to a record high of 6.50% in October, with the number of CDs in our daily ranking that pay a least 5.50% APY now down to 10. At the start of February, the count was 30.',
+            'Economy Minister Rafizi Ramli has been asked to clarify issues surrounding the Central Database Hub (Padu) registration during the Cabinet meeting next.',
         text2:
-            'Still, the top yield in each term held its ground today—including the reigning rate champion, Andrews Federal Credit Union. Its 5.75% APY offer for 6 months has been available for almost six weeks.',
+            'The matter was confirmed by Prime Minister Datuk Seri Anwar Ibrahim today.Earlier today in Shah Alam, Rafizi said the government has no plans to extend the March 31 deadline for the Padu registration.',
         text3:
-            "If you'd like to stretch your rate guarantee further into the future, you can earn up to 5.50% for a year, 5.35% for 18 months, or 5.27% APY as long as 2 years. You can even score a rate of 5.00% APY on 30 to 36 months. Beyond that, the 4-year and 5-year CD terms offer top rates in the mid-4% range.",
+            "Extending the deadline, said Rafizi, would delay the government's implementation of planned subsidy restructuring and targeted subsidies.",
         text4:
-            "While rates have been gradually sliding since November, don't lose sight of how high CD returns still are relative to the past 20 years.",
+            "Meanwhile, during the state-level Madani breaking of fast event here, Anwar said he wanted Muslims in the country not to treat Ramadan as any other month but as a special month for them to increase their acts of worship.",
         text5:
-            "Also keep in mind that snagging the highest APY isn't the only way to win with today's CDs. Since CD rates could fall much further in 2024 and 2025, locking in a rate soon that's guaranteed for a year or more down the road could be a smart move.",
+            "He said the Quran was revealed in Ramadan as guidance for humanity, adding that Muslims should understand, appreciate, and practice the teachings of the Holy Book in their daily lives.",
         imagePath: 'assets/cds.jpg',         
         followers: 3000,
         following: 5500,
@@ -121,22 +121,22 @@ class LocalNewsDatabase {
           'False': false,
         }),
     LocalNews(
-        title: '30-Year Mortgage Rates Fall to 3-week Low',
-        date: DateTime(2024, 03, 08),
-        author: 'SABRINA KARL',
+        title: 'BNM’s international reserves drop to US\$113.4bil as at March 15',
+        date: DateTime(2024, 03, 22),
+        author: 'Bernama',
         type: 'Mortage Rates',
         isBookMarked: false,
-        com: 'Slabdsgn',
+        com: 'FMT',
         text:
-            'With a third day of declines, the 30-year mortgage average dropped Wednesday to 7.21%, its cheapest level since early February. Rates also fell across almost every new purchase and refi loan type.',
+            'Bank Negara Malaysia’s (BNM) international reserves dropped to US\$113.4 billion (RM537.44 billion) as at March 15 compared with US\$114.3 billion (RM541.70 billion) as at Feb 29.',
         text2:
-            "Rates vary widely across lenders, so it's always smart to shop around for your best mortgage option and compare rates regularly, no matter the type of home loan you're seeking.",
+            "The central bank said the reserves position was sufficient to finance 5.4 months of imports of goods and services and was one time the total short-term external debt.",
         text3:
-            "After shooting up two weeks ago to 7.48%—the most expensive level in almost three months—30-year new purchase rates have come down considerably. Wednesday saw the flagship average sink 10 basis points, after 7 basis points the previous two days. That pushes the average down to 7.21%—its lowest mark since Feb. 12.",
+            "The main components of the reserves were foreign currency reserves which stood at US\$100.8 billion (RM477.55 billion), followed by International Monetary Fund reserves at US\$1.4 billion (RM 6.63 billion), special drawing rights (SDRs) at US\$5.8 billion (RM 27.47 billion), gold at US\$2.6 billion (RM12.31 billion) and other reserve assets at US\$2.8 billion (RM13.26 billion).",
         text4:
-            'Given that 30-year rates dipped into 6% territory at the start of February, the current average is still a bit elevated. But the recent trajectory has been downward. Also, rates are notably cheaper than October, when the 30-year average notched a historic 23-year peak of 8.45%.',
+            'Total assets stood at RM620.64 billion comprising gold, foreign exchange, and other reserves, including SDRs (RM520.34 billion), Malaysian government papers (RM13 billion), deposits with financial institutions (RM2.44 billion), loans and advances (RM24.55 billion), land and buildings (RM4.13 billion), and other assets (RM56.19 billion).',
         text5:
-            "Rates on 15-year new purchase loans fell 7 basis points Wednesday, to a 6.61% average. That's also a low point since Feb. 12—but is still about a half percentage point pricier than we saw just before the new year, when 15-year rates sank to a seven-month low of 6.10%. Last October, however, 15-year rates soared to a 7.59% peak—their highest level since 2000.",
+            "BNM said capital and liabilities comprised paid-up capital (RM100 million), reserves (RM189.39 billion), currency in circulation (RM168.01 billion), deposits by financial institutions (RM150.93 billion), federal government deposits (RM9.05 billion) and other deposits (RM39.89 billion), Bank Negara papers (RM29.8 billion), SDRs allocation (RM29.74 billion), and other liabilities (RM3.73 billion).",
         imagePath: 'assets/mortage.jpg',         
         followers: 3000,
         following: 5500,
@@ -151,22 +151,22 @@ class LocalNewsDatabase {
         }),
     LocalNews(
         title:
-            'US Economy New Today: Unemployment Rate Showing Signs of Slowdown',
-        date: DateTime(2024, 03, 08),
-        author: 'TAYLOR TOMPKINS & DICCON HYATT',
+            'Yinson’s FY2024 net profit jumps 63% to RM964mil',
+        date: DateTime(2024, 03, 22),
+        author: 'Bernama',
         type: 'Economy',
         isBookMarked: false,
-        com: 'Slabdsgn',
+        com: 'FMT',
         text:
-            'A widely-watched measure of consumer sentiment fell slightly in February, headed south but doing little to reverse the recent trend of growing optimism about the economy as inflation cools.',
+            'Yinson Holdings Bhd’s net profit soared 63.6% to RM964 million in the financial year ended Jan 31, 2024 (FY 2024), compared with RM589 million in the previous year.',
         text2:
-            'The University of Michigan’s Index of Consumer Sentiment fell to 76.9 in February from 79 in January, the university said Friday. That’s moving in the other direction than a preliminary survey suggested in mid-February and is eight points below the index’s historical average.',
+            'Revenue for the year under review surged 84% to RM11.65 billion from RM6.32 billion a year ago.',
         text3:
-            "“Consumers perceived few changes in the state of the economy since the start of the new year, and they appear to be assured that inflation will continue on a favorable trajectory,” the university’s surveys of consumers director Joanne Hsu said in a blog post about the data.",
+            "In a Bursa Malaysia filing today, the energy infrastructure and technology company said the increase in profit was mainly due to the higher contribution from the group’s engineering, procurement, construction, installation, and commissioning (EPCIC) business activities.",
         text4:
-            'The index is based on a poll of U.S. households asking people how they feel about the economy and their own finances. Economists watch consumer sentiment measures to gauge how willing people are to spend money—a key bit of information considering consumer spending is the main engine of economic growth.',
+            'Additionally, Yinson said there was a fresh contribution from floating production storage and offloading (FPSO) Anna Nery’s operations since the first oil was achieved on May 7, 2023.',
         text5:
-            'Consumer sentiment plunged in 2022 as inflation surged out of control, but has rebounded in recent months as consumer price increases have slowed.',
+            'It said that for the fourth quarter (Q4) ended Jan 31, 2024, net profit rose to RM278 million from RM171 million from the previous corresponding period, while revenue stood at RM2.7 billion versus RM1.96 billion.',
         imagePath: 'assets/economy.jpg',         
         followers: 3000,
         following: 5500,
