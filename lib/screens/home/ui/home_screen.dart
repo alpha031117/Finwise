@@ -219,7 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                   options: CarouselOptions(
                     enableInfiniteScroll: false,
-                    height: 500, // Adjust height as needed
+                    height: 520, // Adjust height as needed
                     viewportFraction:
                         1.0, // Make each item occupy the entire screen width
                     autoPlay: false, // Auto scroll carousel
