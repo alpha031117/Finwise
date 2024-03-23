@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:vhack_finwise_app/screens/bottom_nav_bar/my_bottom_nav_bar.dart';
 import 'package:vhack_finwise_app/screens/home/ui/home_screen.dart';
+import 'package:vhack_finwise_app/screens/login/ui/widget/divider_line.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -72,7 +73,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           TextSpan(
                             text: ' Sign Up',
                             style: TextStyle(
-                              color: Colors.black,
+                              color: GlobalVariables.skyBlueColor,
                             ),
                           ),
                         ],
@@ -80,7 +81,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   SizedBox(height: 130),
-                  dividerLine(),
+                  DividerLine(text: 'Or onnect with'),
                   SizedBox(height: 20),
                   continueWithApple(),
                   SizedBox(height: 20),
@@ -231,45 +232,7 @@ class continueWithEmailButton extends StatelessWidget {
   }
 }
 
-class dividerLine extends StatelessWidget {
-  const dividerLine({
-    super.key,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(width: 13),
-        Container(
-          width: 120,
-          child: Divider( 
-            color: Colors.white,
-            thickness: 1,
-            endIndent: 10,
-          ),
-        ),
-        Center(
-          child: Text( 
-            'Or connect with',
-            style: TextStyle( 
-              color: Colors.white,
-              fontSize: 14,
-            ),
-          ),
-        ),
-        Container(
-          width: 120,
-          child: Divider( 
-            color: Colors.white,
-            thickness: 1,
-            indent: 10,
-          ),
-        ),
-      ],
-    );
-  }
-}
 
 class continueWithGoogle extends StatelessWidget {
   const continueWithGoogle({

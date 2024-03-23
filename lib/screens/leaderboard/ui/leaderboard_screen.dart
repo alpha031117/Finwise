@@ -20,7 +20,7 @@ class LeaderBoardScreen extends StatefulWidget {
 
 class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
   //only the first place avatar will move based on the container above them
-  double firstPlaceSizedBox = 100;
+  double firstPlaceSizedBox = 50;
   bool isPanelOpen = false;
   late List<MyUser> topThree;
   final _leaderboardBloc = LeaderboardBloc();

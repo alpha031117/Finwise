@@ -62,11 +62,16 @@ class _AddFriendState extends State<AddFriend> {
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        friend.username,
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
+                                      SizedBox(
+                                        width: 130,
+                                        child: Text(
+                                          friend.username,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -92,6 +97,7 @@ class _AddFriendState extends State<AddFriend> {
                           },
                         ),
                       ),
+                      
                     ],
                   ),
                 ),

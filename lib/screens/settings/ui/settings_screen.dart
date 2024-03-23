@@ -10,13 +10,19 @@ import 'package:vhack_finwise_app/screens/settings/ui/setting.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
 import 'package:vhack_finwise_app/data/users.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   SettingsScreen({Key? key});
 
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
   final List<MyUser> users = UserDatabase.users;
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -73,17 +79,25 @@ class SettingsScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
-                    (users[0].username),
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
+                  SizedBox(
+                    
+                    width: 150,
+                    child: Text(
+                      (users[0].username),
+                      overflow: TextOverflow.fade,
+                      maxLines: 2,
+                      style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   Text(
                     (users[0].occupation),
                     style: TextStyle(
                       fontSize: 16,
+                      color: Colors.grey[600],
+                      fontWeight: FontWeight.bold
                     ),
                   ),
                 ]
@@ -218,6 +232,4 @@ class SettingsScreen extends StatelessWidget {
       ),
     );
   }
-  
-  
 }

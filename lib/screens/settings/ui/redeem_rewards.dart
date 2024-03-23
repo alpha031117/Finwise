@@ -74,22 +74,22 @@ class _redeemRewardsState extends State<redeemRewards> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    voucher(context, tngLogoURL, 'RM20 TnG Credit', '14,500'),
-                    voucher(context, tngLogoURL, 'RM20 TnG Credit', '14,500'),
+                    Expanded(child: voucher(context, tngLogoURL, 'RM20 TnG Credit', 800)),
+                    Expanded(child: voucher(context, tngLogoURL, 'RM8 TnG Credit', 40)),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    voucher(context, tngLogoURL, 'RM20 TnG Credit', '14,500'),
-                    voucher(context, tngLogoURL, 'RM20 TnG Credit', '14,500'),
+                    Expanded(child: voucher(context, tngLogoURL, 'RM20 TnG Credit', 158)),
+                    Expanded(child: voucher(context, tngLogoURL, 'RM50 TnG Credit', 1000)),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    voucher(context, tngLogoURL, 'RM20 TnG Credit', '14,500'),
-                    voucher(context, tngLogoURL, 'RM20 TnG Credit', '14,500'),
+                    Expanded(child: voucher(context, tngLogoURL, 'RM100 TnG Credit', 2000)),
+                    Expanded(child: voucher(context, tngLogoURL, 'RM3 TnG Credit', 30)),
                   ],
                 ),
               ],
@@ -100,56 +100,55 @@ class _redeemRewardsState extends State<redeemRewards> {
     );
   }
 
-  GestureDetector voucher(BuildContext context, String logoName, String voucherDescription, String points) {
+  GestureDetector voucher(BuildContext context, String logoName, String voucherDescription, int points) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => voucherDetails()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => voucherDetails(points: points,)));
       },
       child: Stack(
         children: <Widget>[
           Container(
             height: 230,
-            width: 185,
+            
             child: Image.asset( 
               'assets/VoucherBackgroundImage.png',
               fit: BoxFit.fill,
             ),
           ),
+           
           Column( 
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 23, 0, 6),
-                child: Container(
-                  height: 50,
-                  width: 130,
-                  child: Image.network( 
-                    logoName,
-                    fit: BoxFit.fill,
-                  ),
+              SizedBox(height: 20,), 
+              Container(
+                height: 50,
+                width: 130,
+                child: Image.network( 
+                  logoName,
+                  fit: BoxFit.fill,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                child: Text(
-                  voucherDescription,
-                  style: TextStyle(
-                    color: Colors.grey[500],
-                    fontSize: 13,
-                  ),
+              SizedBox(height: 20,),
+              Text(
+                voucherDescription,
+                style: TextStyle(
+                  color: Colors.grey[800],
+                  fontSize: 13,
+                  fontWeight: FontWeight.w800,
                 ),
               ),
+              SizedBox(height: 50,),
               Padding(
-                padding: const EdgeInsets.fromLTRB(17, 50, 0, 0),
+                padding: const EdgeInsets.symmetric(horizontal:15.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      points,
+                      points.toString(),
                       style: TextStyle(
-                        fontSize: 40,
+                        fontSize: 35,
                         fontFamily: GlobalVariables.pointFont().fontFamily,
-                        fontWeight: FontWeight.w900,
+                        fontWeight: FontWeight.bold,
                         color: Color(0xff727070),
                       ),
                     ),

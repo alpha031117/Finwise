@@ -42,8 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: GlobalVariables.primaryColor,
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+
           children: [
             SizedBox(height: 300), // Added SizedBox to create space between the image and the text (line 64
             Container( 
@@ -54,15 +53,15 @@ class _SplashScreenState extends State<SplashScreen> {
                 fit: BoxFit.contain,
               ),
             ),
-            SizedBox(height: 180),
+            SizedBox(height: 130),
             Text(
               textAlign: TextAlign.end,
               'FinWise',
               style: TextStyle( 
                 color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 36,
-                fontFamily: GlobalVariables.titleFont().fontFamily,
+                fontWeight: FontWeight.w500,
+                fontSize: 40,
+                fontFamily: GlobalVariables.finwiseFont().fontFamily,
                 letterSpacing: 5,
               )
             )
