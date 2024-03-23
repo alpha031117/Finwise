@@ -30,16 +30,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  flutter_navigator: ^0.1.4
+  intl_phone_field: ^3.1.0
+  dropdownfield2: ^1.0.7
   http: ^1.2.0
   equatable: ^2.0.5
   flutter_bloc: ^8.1.4
   google_nav_bar: ^5.0.6
   persistent_bottom_nav_bar_v2: any
+  flutter_svg: ^2.0.10+1
+  flutter_svg_provider: ^1.0.7
+  toggle_switch: ^2.1.0
   carousel_slider: ^4.2.1
   google_fonts: 6.1.0
   fl_chart: ^0.66.2
@@ -48,6 +49,7 @@ dependencies:
   intl: ^0.19.0
   audioplayers: ^5.2.1
   percent_indicator: ^4.2.3
+
 
 
 dev_dependencies:
@@ -94,6 +96,7 @@ flutter:
     - assets/podcast/iherng/
     - assets/podcast/mrmoney/
     - assets/podcast/sample.mp3
+
 
 
   # For details regarding adding assets from package dependencies, see
