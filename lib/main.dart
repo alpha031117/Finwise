@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'screens/bottom_nav_bar/my_bottom_nav_bar.dart';
+import 'simple_bloc_observer.dart';
 
 void main() {
+  Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
 }
 

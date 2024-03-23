@@ -6,3 +6,7 @@ sealed class LeaderboardEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+final class LeaderboardInitialEvent extends LeaderboardEvent {}
+
+final class LeaderboardCalculatePointsEvent extends LeaderboardEvent {}
