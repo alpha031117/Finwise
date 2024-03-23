@@ -27,9 +27,12 @@ final class LeaderboardLoadedState extends LeaderboardState {
 final class LeaderboardShowNoFriendState extends LeaderboardState {}
 
 final class LeaderboardCalculatePoints extends LeaderboardState {
-  final List<MyUser> users;
+  
+  final List<MyUser> topThree;
 
-  const LeaderboardCalculatePoints({required this.users});
+  const LeaderboardCalculatePoints(
+      {required this.topThree});
+
   @override
-  List<Object> get props => [users];
+  List<Object> get props => [topThree];
 }
