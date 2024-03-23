@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:vhack_finwise_app/model/user.dart';
+import 'package:vhack_finwise_app/screens/leaderboard/ui/add_friends.dart';
 import 'package:vhack_finwise_app/screens/leaderboard/ui/widgets/big_circular_avatar.dart';
 import 'package:vhack_finwise_app/screens/leaderboard/ui/widgets/leaderboard_panel.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
@@ -65,11 +66,21 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                 elevation: 0,
                 title: const Text(
                   'Leaderboard',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 23,
+                      fontWeight: FontWeight.w700),
                 ),
                 actions: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const AddFriend(),
+                        ),
+                      );
+                    },
                     icon: const Icon(
                       Icons.person_add_alt_1,
                       color: Colors.white70,
@@ -79,7 +90,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
               ),
               backgroundColor: GlobalVariables.secondaryColor,
               body: SlidingUpPanel(
-                minHeight: MediaQuery.of(context).size.height * 0.4,
+                minHeight: MediaQuery.of(context).size.height * 0.35,
                 maxHeight: MediaQuery.of(context).size.height * 0.60,
                 parallaxEnabled: true,
                 parallaxOffset: .2,
@@ -108,13 +119,13 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                 onPanelOpened: () {
                   setState(() {
                     // Increase height gradually
-                    firstPlaceSizedBox = 120;
+                    firstPlaceSizedBox = 75;
                   });
                 },
                 onPanelClosed: () {
                   setState(() {
                     // Increase height gradually
-                    firstPlaceSizedBox = 100;
+                    firstPlaceSizedBox = 50;
                   });
                 },
                 borderRadius: const BorderRadius.only(
@@ -158,7 +169,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                         child: Column(
                           children: [
                             const SizedBox(
-                              height: 150,
+                              height: 100,
                             ),
                             BigCircularAvatar(
                               imageUrl: topThree[1].profileUrl,
@@ -185,7 +196,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                         child: Column(
                           children: [
                             SizedBox(
-                              height: 150,
+                              height: 100,
                             ),
                             BigCircularAvatar(
                               imageUrl: topThree[2].profileUrl,

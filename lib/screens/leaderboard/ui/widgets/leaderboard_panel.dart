@@ -17,7 +17,7 @@ class LeaderboardPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(
-          horizontal: GlobalVariables.horizontalPadding),
+          horizontal: GlobalVariables.horizontalPadding, vertical: 20),
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(20)),
       child: ListView.builder(
@@ -25,7 +25,9 @@ class LeaderboardPanel extends StatelessWidget {
         itemCount: users.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.only(bottom: 10.0),
+            padding: const EdgeInsets.only(
+              bottom: 10.0,
+            ),
             child: ListTile(
               leading: CircleAvatar(
                 maxRadius: 25,
@@ -36,10 +38,24 @@ class LeaderboardPanel extends StatelessWidget {
                   const SizedBox(
                     width: 20,
                   ),
-                  Text(users[index].username),
+                  Text(
+                    users[index].username,
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.grey.shade700,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
                 ],
               ),
-              trailing: Text(users[index].points.toString()),
+              trailing: Text(
+                '${users[index].points.toString()} 🟡',
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.grey.shade700,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ),
           );
         },

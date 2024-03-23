@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:vhack_finwise_app/screens/calculator/ui/widget/years_to_grow.dart';
+import 'package:vhack_finwise_app/utils/global_variables.dart';
 
 import 'individual_bar.dart';
 
@@ -31,7 +32,9 @@ class _BarChartWidgetState extends State<BarChartWidget> {
   }
 
   int getXIntervals(int years) {
-    if (years < 20) {
+    if (years <= 8) {
+      return 1;
+    } else if (years > 8 && years < 20) {
       return 2;
     } else if (years >= 20 && years < 30) {
       return 4;
@@ -46,13 +49,13 @@ class _BarChartWidgetState extends State<BarChartWidget> {
       BarChartData(
         barTouchData: BarTouchData(
           touchTooltipData: BarTouchTooltipData(
-            tooltipBgColor: Colors.grey,
+            tooltipBgColor: GlobalVariables.tertiaryColor,
             getTooltipItem: (group, groupIndex, rod, rodIndex) {
               // Assuming your bars list is accessible here
               if (widget.bars.isNotEmpty && rodIndex < widget.bars.length) {
                 final IndividualBar individualBar = widget.bars[groupIndex];
                 return BarTooltipItem(
-                  'Potential balance: ${individualBar.y.toString()} \n Potential earned interests: ${individualBar.y - widget.initialDeposit}.', // Displaying y-value of IndividualBar
+                  'Potential balance: ${individualBar.y.toString()} \n Potential earned interests: ${individualBar.y - widget.initialDeposit}', // Displaying y-value of IndividualBar
                   TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -113,6 +116,7 @@ class _BarChartWidgetState extends State<BarChartWidget> {
               style: TextStyle(
                 height: 3,
                 color: Colors.white,
+                fontWeight: FontWeight.bold,
               ),
             );
           } else {

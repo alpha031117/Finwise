@@ -61,6 +61,9 @@ class BigCircularAvatar extends StatelessWidget {
                 ),
               ),
         SizedBox(
+          height: 10,
+        ),
+        SizedBox(
           width: 80,
           child: Center(
             child: Text(
@@ -70,11 +73,14 @@ class BigCircularAvatar extends StatelessWidget {
                 fontFamily: GlobalVariables.titleFont().fontFamily,
                 fontSize: 18,
                 color: Colors.white,
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.bold,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
           ),
+        ),
+        SizedBox(
+          height: 10,
         ),
         SizedBox(
           width: 80,
@@ -86,7 +92,7 @@ class BigCircularAvatar extends StatelessWidget {
                 fontFamily: GlobalVariables.titleFont().fontFamily,
                 fontSize: 16,
                 color: Colors.white,
-                fontWeight: FontWeight.w300,
+                fontWeight: FontWeight.w800,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
