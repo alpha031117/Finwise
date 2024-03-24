@@ -5,11 +5,7 @@ import '../../../../utils/global_variables.dart';
 class YearsToGrow extends StatelessWidget {
   const YearsToGrow(
       {super.key, required this.yearsToGrow, required this.onChanged});
-<<<<<<< HEAD
-  final int yearsToGrow;
-=======
   final String yearsToGrow;
->>>>>>> e4277d0 (updated new calculator)
   final Function(int) onChanged;
   @override
   Widget build(BuildContext context) {
@@ -41,11 +37,7 @@ class YearsToGrow extends StatelessWidget {
           height: 5,
         ),
         Slider(
-<<<<<<< HEAD
-          value: yearsToGrow.toDouble(),
-=======
           value: int.parse(yearsToGrow).toDouble(),
->>>>>>> e4277d0 (updated new calculator)
           min: 0,
           max: 50,
           thumbColor: GlobalVariables.secondaryColor,
