@@ -3,7 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:vhack_finwise_app/screens/home/ui/home_screen.dart';
 import 'package:vhack_finwise_app/screens/login/ui/login_screen.dart';
+import 'package:vhack_finwise_app/screens/login/ui/validation.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
+
+import 'widget/continue_with_apple.dart';
+import 'widget/continue_with_email.dart';
+import 'widget/continue_with_google.dart';
+import 'widget/divider_line.dart';
+import 'widget/logo.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -13,6 +20,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  TextEditingController emailController = TextEditingController();
+  bool isEmailValid = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[ 
                   SizedBox(height: 100),
-                  logo(),
+                  Logo(),
                   SizedBox(height: 10),
                   Center(
                     child: Text(
@@ -40,14 +51,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  continueWithApple(),
+                  ContinueWithApple(),
                   SizedBox(height: 20),
-                  continueWithGoogle(),
+                  ContinueWithGoogle(),
                   SizedBox(height: 40),
-                  dividerLine(),
+                  DividerLine(text: 'OR',),
                   SizedBox(height: 40),
-                  emailAddressTextField(),
-                  SizedBox(height: 10),
+                  ContinueWithEmailButton(),
+                  SizedBox(height: 20),
                   Center(
                     child: RichText(
                       text: TextSpan(
@@ -59,15 +70,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           TextSpan(
                             text: 'Sign Up',
                             style: TextStyle(
-                              color: Colors.black,
+                              color: GlobalVariables.skyBlueColor,
                             ),
                           ),
                         ],
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
-                  continueWithEmailButton()
                 ]
               )
             )
@@ -90,6 +99,24 @@ class _LoginScreenState extends State<LoginScreen> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: TextFormField( 
+                  onChanged: (value) {
+                    if (value.isEmpty) {
+                      setState(() {
+                        isEmailValid = true;
+                      });
+                    } else {
+                      final isValid = validateEmailAddress(value);
+                      if (isValid) {
+                        setState(() {
+                          isEmailValid = true;
+                        });
+                      } else {
+                        setState(() {
+                          isEmailValid = false;
+                        });
+                      }
+                    }
+                  },
                   textCapitalization: TextCapitalization.words, // Capitalize first letter of each name
                   decoration: InputDecoration(
                     label: Text('Email Address'),
@@ -118,229 +145,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-class continueWithEmailButton extends StatelessWidget {
-  const continueWithEmailButton({
-    super.key,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: GestureDetector(
-        onTap: () { 
-          Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpScreen()));
-        },
-        child: Container(
-          width: 310,
-          height: 50,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(
-              Radius.circular(10.0),
-            ),
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Color(0xFF000000).withOpacity(0.10),
-                spreadRadius: 5,
-                blurRadius: 5, 
-                offset: Offset(0, 3),
-              ),
-            ],
-          ),
-          child: Center(
-            child: Text(
-              'Continue with Email',
-              style: TextStyle(
-                color: GlobalVariables.primaryColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 17.0,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
 
-class dividerLine extends StatelessWidget {
-  const dividerLine({
-    super.key,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(width: 13),
-        Container(
-          width: 160,
-          child: Divider( 
-            color: Colors.white,
-            thickness: 1,
-            endIndent: 10,
-          ),
-        ),
-        Center(
-          child: Text( 
-            'OR',
-            style: TextStyle( 
-              color: Colors.white,
-              fontSize: 24,
-            ),
-          ),
-        ),
-        Container(
-          width: 160,
-          child: Divider( 
-            color: Colors.white,
-            thickness: 1,
-            indent: 10,
-          ),
-        ),
-      ],
-    );
-  }
-}
 
-class continueWithGoogle extends StatelessWidget {
-  const continueWithGoogle({
-    super.key,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        width: 310,
-        height: 50,
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(10.0),
-          ),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Color(0xFF000000).withOpacity(0.10),
-              spreadRadius: 5,
-              blurRadius: 5, 
-              offset: Offset(0, 3),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Row(
-              children: [
-                Image.asset(
-                  'assets/google.png',
-                  height: 35,
-                  width: 35,
-                ), // The icon
-                SizedBox(width: 10), // Space between icon and text
-                Text(
-                  "Continue with Google",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 17.0, // Adjust font size to match design
-                  ),
-                ),
-                SizedBox(width: 10),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class continueWithApple extends StatelessWidget {
-  const continueWithApple({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        width: 310,
-        height: 50,
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(10.0),
-          ),
-          color: Colors.black,
-          boxShadow: [
-            BoxShadow(
-              color: Color(0xFF000000).withOpacity(0.10),
-              spreadRadius: 5,
-              blurRadius: 5, 
-              offset: Offset(0, 3),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Row(
-              children: [
-                Icon(
-                  Icons.apple, 
-                  color: Colors.white,
-                  size: 35,
-                ), // The icon
-                SizedBox(width: 10), // Space between icon and text
-                Text(
-                  "Continue with Apple",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 17.0, // Adjust font size to match design
-                  ),
-                ),
-                SizedBox(width: 10),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class logo extends StatelessWidget {
-  const logo({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20.0),
-      child: Row( 
-        children: [ 
-          Container( 
-            height: 50,
-            width: 50,
-            child: Image.asset( 
-              'assets/VhackLogo.png',
-              fit: BoxFit.contain,
-            )
-          ),
-          Text( 
-            'FinWise',
-            style: TextStyle( 
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 4,
-            )
-          )
-        ]
-      ),
-    );
-  }
-}

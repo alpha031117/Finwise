@@ -1,8 +1,11 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types, prefer_const_constructors_in_immutables, avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:vhack_finwise_app/screens/bottom_nav_bar/my_bottom_nav_bar.dart';
 import 'package:vhack_finwise_app/screens/home/ui/home_screen.dart';
+import 'package:vhack_finwise_app/screens/login/ui/validation.dart';
+import 'package:vhack_finwise_app/screens/login/ui/widget/divider_line.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -14,7 +17,9 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
 
-   var _isObstruct = true;
+  TextEditingController emailController = TextEditingController();
+  bool isEmailValid = false;
+  bool _isObscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +64,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   SizedBox(height: 40),
-                  continueWithEmailButton(),
+                  logInButton(isEmailValid: isEmailValid),
                   SizedBox(height: 10),
                   Center(
                     child: RichText(
@@ -72,7 +77,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           TextSpan(
                             text: ' Sign Up',
                             style: TextStyle(
-                              color: Colors.black,
+                              color: GlobalVariables.skyBlueColor,
                             ),
                           ),
                         ],
@@ -80,7 +85,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   SizedBox(height: 130),
-                  dividerLine(),
+                  DividerLine(text: 'Or onnect with'),
                   SizedBox(height: 20),
                   continueWithApple(),
                   SizedBox(height: 20),
@@ -107,6 +112,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: TextFormField( 
+                  controller: emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  onChanged: (value) {
+                    if (value.isEmpty) {
+                      setState(() {
+                        isEmailValid = true;
+                      });
+                    } else {
+                      final isValid = validateEmailAddress(value);
+                      if (isValid) {
+                        setState(() {
+                          isEmailValid = true;
+                        });
+                      } else {
+                        setState(() {
+                          isEmailValid = false;
+                        });
+                      }
+                    }
+                  },
                   textCapitalization: TextCapitalization.words, // Capitalize first letter of each name
                   decoration: InputDecoration(
                     label: Text('Email Address'),
@@ -119,7 +144,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.black,
+                        color: emailController.text.isEmpty ? Colors.black : isEmailValid ? Colors.green : Colors.red,
                         width: 2,
                       ),
                       borderRadius: BorderRadius.circular(10)
@@ -148,14 +173,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 child: TextFormField( 
                   focusNode: FocusNode(),
-                  obscureText: true,
+                  obscureText: _isObscureText,
                   decoration: InputDecoration(
-                    suffixIcon: IconButton( 
-                      padding: EdgeInsetsDirectional.only(end: 10),
-                      icon: _isObstruct ? Icon(Icons.visibility_off) : Icon(Icons.visibility_off),
-                      onPressed: () {
+                    suffixIcon: GestureDetector( 
+                      child: Icon(_isObscureText ? Icons.visibility : Icons.visibility_off),
+                      onTap: () {
                         setState(() {
-                          _isObstruct = !_isObstruct;
+                          _isObscureText = !_isObscureText;
                         });
                       },
                     ),
@@ -186,17 +210,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
 }
 
-class continueWithEmailButton extends StatelessWidget {
-  const continueWithEmailButton({
+class logInButton extends StatefulWidget {
+  final bool isEmailValid;
+
+  logInButton({
     super.key,
+    required this.isEmailValid,
   });
+
+  @override
+  State<logInButton> createState() => _logInButtonState();
+}
+
+class _logInButtonState extends State<logInButton> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>(); 
+
+  void _showSnackBar() {
+    final snackBar = SnackBar(content: Text('Invalid Email Or Password'));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar); // Access the currentState and show the SnackBar
+  }
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: GestureDetector(
         onTap: () { 
-          Navigator.push(context, MaterialPageRoute(builder: (context) => MyBottomNavBar()));
+          if (widget.isEmailValid == true) {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => MyBottomNavBar()));
+          } else {
+            _showSnackBar();
+          }
         },
         child: Container(
           width: 310,
@@ -231,45 +274,7 @@ class continueWithEmailButton extends StatelessWidget {
   }
 }
 
-class dividerLine extends StatelessWidget {
-  const dividerLine({
-    super.key,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(width: 13),
-        Container(
-          width: 120,
-          child: Divider( 
-            color: Colors.white,
-            thickness: 1,
-            endIndent: 10,
-          ),
-        ),
-        Center(
-          child: Text( 
-            'Or connect with',
-            style: TextStyle( 
-              color: Colors.white,
-              fontSize: 14,
-            ),
-          ),
-        ),
-        Container(
-          width: 120,
-          child: Divider( 
-            color: Colors.white,
-            thickness: 1,
-            indent: 10,
-          ),
-        ),
-      ],
-    );
-  }
-}
 
 class continueWithGoogle extends StatelessWidget {
   const continueWithGoogle({
