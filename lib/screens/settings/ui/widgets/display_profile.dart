@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vhack_finwise_app/data/users.dart';
 
 import '../../../../model/user.dart';
 
@@ -15,14 +16,22 @@ class DisplayProfile extends StatelessWidget {
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Container(
-            child: Image(
-              image: AssetImage('assets/ProfilePicture.png'),
+            
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: Image(
+                
+                height: 100,
+                width: 100,
+                fit: BoxFit.cover,
+                image: NetworkImage(UserDatabase.users[0].profileUrl, scale: 1),
+              ),
             ),
           ),
-          SizedBox(width: 10),
+          SizedBox(width: 20),
           Container(
             child: Padding(
               padding: const EdgeInsets.only(top: 25.0),

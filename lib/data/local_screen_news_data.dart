@@ -179,6 +179,6 @@ class LocalNewsDatabase {
           'True': true,
           'False': false,
         }),
-    
+
   ];
 }
