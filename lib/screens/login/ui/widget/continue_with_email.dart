@@ -1,12 +1,23 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:vhack_finwise_app/screens/bottom_nav_bar/my_bottom_nav_bar.dart';
+import 'package:vhack_finwise_app/screens/login/ui/sign_up_screen.dart';
 
 import '../../../../utils/global_variables.dart';
 import '../login_screen.dart';
 
-class ContinueWithEmailButton extends StatelessWidget {
-  const ContinueWithEmailButton({
+class ContinueWithEmailButton extends StatefulWidget {
+
+  ContinueWithEmailButton({
     super.key,
   });
+
+  @override
+  State<ContinueWithEmailButton> createState() => _ContinueWithEmailButtonState();
+}
+
+class _ContinueWithEmailButtonState extends State<ContinueWithEmailButton> {
 
   @override
   Widget build(BuildContext context) {

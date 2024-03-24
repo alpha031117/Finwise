@@ -6,173 +6,173 @@ import 'package:vhack_finwise_app/model/user.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/voucher_details.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
 
-class redeemRewards extends StatefulWidget {
-  const redeemRewards({super.key,});
+import 'widgets/voucher_widget.dart';
+
+class RedeemRewards extends StatefulWidget {
+  const RedeemRewards({
+    super.key,
+  });
 
   @override
-  State<redeemRewards> createState() => _redeemRewardsState();
+  State<RedeemRewards> createState() => _RedeemRewardsState();
 }
 
-class _redeemRewardsState extends State<redeemRewards> {
+class _RedeemRewardsState extends State<RedeemRewards> {
+  MyUser user = UserDatabase.users[0];
 
-  final List<MyUser> users = UserDatabase.users;
-  final String tngLogoURL = 'https://cdn.moogold.com/2022/06/tng-ewallet-logo-2-scaled.jpg';
-  final String shopeeLogoURL = 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Shopee.svg/2560px-Shopee.svg.png';
-
+  final String tngLogoURL =
+      'https://cdn.moogold.com/2022/06/tng-ewallet-logo-2-scaled.jpg';
+  final String shopeeLogoURL =
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Shopee.svg/2560px-Shopee.svg.png';
+    bool isVoucher1Redeemed = false;
+    bool isVoucher2Redeemed = false;
+    bool isVoucher3Redeemed = false;
+    bool isVoucher4Redeemed = false;
+    bool isVoucher5Redeemed = false;
+    bool isVoucher6Redeemed = false;
   @override
   Widget build(BuildContext context) {
-    
+    int currentPoints = user.points;
+
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          'Redeem Rewards',
-          style: TextStyle(
-            fontFamily: GlobalVariables.titleFont().fontFamily,
-            fontWeight: FontWeight.bold,
-            fontSize: 25,
-            color: GlobalVariables.tertiaryColor,
-            letterSpacing: 1,
-          ),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
-          child: Align(
-            alignment: Alignment.topCenter,
-            child: Column( 
-              children: <Widget>[
-                Text('Your credit'),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      (users[0].points.toString()),
-                      style: TextStyle(
-                        fontSize: 50,
-                        fontFamily: GlobalVariables.pointFont().fontFamily,
-                        fontWeight: FontWeight.w900,
-                        color: Color(0xff7E89EB),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Text(
-                        ' pts',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontFamily: GlobalVariables.pointFont().fontFamily,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xff7E89EB),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Expanded(child: voucher(context, tngLogoURL, 'RM20 TnG Credit', 800)),
-                    Expanded(child: voucher(context, tngLogoURL, 'RM8 TnG Credit', 40)),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Expanded(child: voucher(context, tngLogoURL, 'RM20 TnG Credit', 158)),
-                    Expanded(child: voucher(context, tngLogoURL, 'RM50 TnG Credit', 1000)),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Expanded(child: voucher(context, tngLogoURL, 'RM100 TnG Credit', 2000)),
-                    Expanded(child: voucher(context, tngLogoURL, 'RM3 TnG Credit', 30)),
-                  ],
-                ),
-              ],
-            ),
-          )
-        ),
-      )
-    );
-  }
-
-  GestureDetector voucher(BuildContext context, String logoName, String voucherDescription, int points) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => voucherDetails(points: points,)));
-      },
-      child: Stack(
-        children: <Widget>[
-          Container(
-            height: 230,
-            
-            child: Image.asset( 
-              'assets/VoucherBackgroundImage.png',
-              fit: BoxFit.fill,
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(
+            'Redeem Rewards',
+            style: TextStyle(
+              fontFamily: GlobalVariables.titleFont().fontFamily,
+              fontWeight: FontWeight.bold,
+              fontSize: 25,
+              color: GlobalVariables.tertiaryColor,
+              letterSpacing: 1,
             ),
           ),
-           
-          Column( 
-            children: <Widget>[
-              SizedBox(height: 20,), 
-              Container(
-                height: 50,
-                width: 130,
-                child: Image.network( 
-                  logoName,
-                  fit: BoxFit.fill,
-                ),
-              ),
-              SizedBox(height: 20,),
-              Text(
-                voucherDescription,
-                style: TextStyle(
-                  color: Colors.grey[800],
-                  fontSize: 13,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-              SizedBox(height: 50,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal:15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Column(
                   children: <Widget>[
-                    Text(
-                      points.toString(),
-                      style: TextStyle(
-                        fontSize: 35,
-                        fontFamily: GlobalVariables.pointFont().fontFamily,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xff727070),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Text(
-                        ' pts',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontFamily: GlobalVariables.pointFont().fontFamily,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xff727070),
+                    Text('Your credit'),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          currentPoints.toString(),
+                          style: TextStyle(
+                            fontSize: 50,
+                            fontFamily: GlobalVariables.pointFont().fontFamily,
+                            fontWeight: FontWeight.w900,
+                            color: Color(0xff7E89EB),
+                          ),
                         ),
-                      ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Text(
+                            ' pts',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontFamily:
+                                  GlobalVariables.pointFont().fontFamily,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xff7E89EB),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(
+                            child: VoucherWidget(
+                          passedBackValue: (newPoints, isRedeem) {
+                            setState(() {
+                              currentPoints = newPoints;
+                              isVoucher1Redeemed = isRedeem;
+                            });
+                          },
+                          logoName: tngLogoURL,
+                          voucherDescription: 'RM20 Tng Credit',
+                          points: 800,
+                          isRedeemed: isVoucher1Redeemed,
+                        )),
+                        Expanded(
+                            child: VoucherWidget(
+                          passedBackValue: (newPoints, isRedeem) {
+                            setState(() {
+                              currentPoints = newPoints;
+                              isVoucher2Redeemed = isRedeem;
+                            });
+                          },
+                          logoName: tngLogoURL,
+                          voucherDescription: 'RM8 Tng Credit',
+                          points: 40,
+                          isRedeemed: isVoucher2Redeemed,
+                        )),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(
+                            child: VoucherWidget(
+                          passedBackValue: (newPoints, isRedeem){
+                            setState(() {
+                              currentPoints = newPoints;
+                              isVoucher3Redeemed = isRedeem;
+                              print('v3 $isVoucher3Redeemed');
+                            });
+                          },
+                          logoName: tngLogoURL,
+                          voucherDescription: 'RM8 Tng Credit',
+                          points: 158, isRedeemed: isVoucher3Redeemed,
+                        )),
+                        Expanded(
+                            child: VoucherWidget(
+                          passedBackValue: (newPoints, isRedeem) {
+                            setState(() {
+                              currentPoints = newPoints;
+                              isVoucher4Redeemed = isRedeem;
+                            });
+                          },
+                          logoName: tngLogoURL,
+                          voucherDescription: 'RM15 Tng Credit',
+                          points: 1000, isRedeemed: isVoucher4Redeemed,
+                        )),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(
+                            child: VoucherWidget(
+                          passedBackValue: (newPoints, isRedeem) {
+                                currentPoints = newPoints;
+                              isVoucher5Redeemed = isRedeem;
+                          },
+                          logoName: tngLogoURL,
+                          voucherDescription: 'RM100 Tng Credit',
+                          points: 2000, isRedeemed: isVoucher5Redeemed,
+                        )),
+                        Expanded(
+                            child: VoucherWidget(
+                          passedBackValue: (newPoints, isRedeem) {
+                                currentPoints = newPoints;
+                              isVoucher6Redeemed = isRedeem;
+                          },
+                          logoName: tngLogoURL,
+                          voucherDescription: 'RM3 Tng Credit',
+                          points: 30, isRedeemed: isVoucher6Redeemed,
+                        )),
+                      ],
                     ),
                   ],
                 ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+              )),
+        ));
   }
-
-  
 }

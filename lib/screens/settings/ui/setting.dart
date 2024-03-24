@@ -10,17 +10,12 @@ import 'package:vhack_finwise_app/screens/settings/ui/terms_and_conditions.dart'
 import 'package:vhack_finwise_app/utils/global_variables.dart';
 
 
-
-void main() {
-  runApp(settingPage());
-}
-
-class settingPage extends StatefulWidget {
+class SettingPage extends StatefulWidget {
   @override
-  _settingPageState createState() => _settingPageState();
+  _SettingPageState createState() => _SettingPageState();
 }
 
-class _settingPageState extends State<settingPage> {
+class _SettingPageState extends State<SettingPage> {
   bool _switchValue1 = false;
   bool _switchValue2 = false;
 
@@ -68,22 +63,38 @@ class _settingPageState extends State<settingPage> {
               space: 152,
             ),
             SizedBox(height: 25),
-            buttonList(Icons.language, 'Language', context, 'Language'),
+            ButtonList(buttonIcon: Icons.language, buttonText: 'Language', context: context, route: 'Language'),
             SizedBox(height: 25),
-            buttonList(Icons.help, 'Help & Support', context, 'Help & Support'),
+            ButtonList(buttonIcon: Icons.help, buttonText: 'Help & Support', context: context, route: 'Help & Support'),
             SizedBox(height: 25),
-            buttonList(Icons.description, 'Terms & Conditions', context, 'Terms & Conditions'),
+            ButtonList(buttonIcon: Icons.description, buttonText: 'Terms & Conditions', context: context, route: 'Terms & Conditions'),
             SizedBox(height: 25),
-            buttonList(Icons.policy_outlined, 'Privacy Policy', context, 'Privacy Policy'),
+            ButtonList(buttonIcon: Icons.policy_outlined, buttonText: 'Privacy Policy', context: context, route: 'Privacy Policy'),
             SizedBox(height: 25),
-            buttonList(Icons.info, 'About Us', context, 'About Us'),
+            ButtonList(buttonIcon: Icons.info, buttonText: 'About Us', context: context, route: 'About Us'),
           ],
         ),
       ),
     );
   }
+}
 
-  Container buttonList(IconData buttonIcon, String buttonText, BuildContext context, String route) {
+class ButtonList extends StatelessWidget {
+  const ButtonList({
+    super.key,
+    required this.buttonIcon,
+    required this.buttonText,
+    required this.context,
+    required this.route,
+  });
+
+  final IconData buttonIcon;
+  final String buttonText;
+  final BuildContext context;
+  final String route;
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       width: 330,
       height: 60, 

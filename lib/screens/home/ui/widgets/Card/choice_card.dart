@@ -29,11 +29,11 @@ class GlobalOrLocalSelection extends StatelessWidget {
               ),
             );
           },
-          child: SizedBox(
+          child: const SizedBox(
             width: 160, // Half of screen width
             child: Card(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(16.0),
                 child: Row(
                   // Use Column for vertical arrangement
                   mainAxisSize: MainAxisSize.min, // Restrict card height

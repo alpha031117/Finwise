@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:vhack_finwise_app/screens/home/ui/home_screen.dart';
 import 'package:vhack_finwise_app/screens/login/ui/login_screen.dart';
+import 'package:vhack_finwise_app/screens/login/ui/validation.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
 
 import 'widget/continue_with_apple.dart';
@@ -19,6 +20,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  TextEditingController emailController = TextEditingController();
+  bool isEmailValid = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,8 +57,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 40),
                   DividerLine(text: 'OR',),
                   SizedBox(height: 40),
-                  emailAddressTextField(),
-                  SizedBox(height: 10),
+                  ContinueWithEmailButton(),
+                  SizedBox(height: 20),
                   Center(
                     child: RichText(
                       text: TextSpan(
@@ -72,8 +77,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
-                  ContinueWithEmailButton()
                 ]
               )
             )
@@ -96,6 +99,24 @@ class _LoginScreenState extends State<LoginScreen> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: TextFormField( 
+                  onChanged: (value) {
+                    if (value.isEmpty) {
+                      setState(() {
+                        isEmailValid = true;
+                      });
+                    } else {
+                      final isValid = validateEmailAddress(value);
+                      if (isValid) {
+                        setState(() {
+                          isEmailValid = true;
+                        });
+                      } else {
+                        setState(() {
+                          isEmailValid = false;
+                        });
+                      }
+                    }
+                  },
                   textCapitalization: TextCapitalization.words, // Capitalize first letter of each name
                   decoration: InputDecoration(
                     label: Text('Email Address'),

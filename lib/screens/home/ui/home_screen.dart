@@ -20,11 +20,8 @@ import 'package:vhack_finwise_app/screens/home/ui/widgets/Card/quiz_card.dart';
 import 'package:vhack_finwise_app/screens/home/ui/widgets/Card/quiz_card_true_false.dart';
 
 import 'package:vhack_finwise_app/screens/home/ui/new_more_screen.dart';
-import 'package:vhack_finwise_app/screens/home/ui/saved_news_screen.dart';
 import 'package:vhack_finwise_app/screens/home/ui/search_screen.dart';
-import 'package:vhack_finwise_app/screens/home/ui/saved_choose_screen.dart';
 
-import 'package:vhack_finwise_app/data/saved_news.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
 
 class HomeScreen extends StatefulWidget {

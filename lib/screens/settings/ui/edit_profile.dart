@@ -9,16 +9,16 @@ import '../../../model/user.dart';
 const List<String> genderList = <String>['Male', 'Female', 'Rather not to say'];
 const List<String> occupationList = <String>['Student', 'Working', 'Others'];
 
-class editProfile extends StatefulWidget {
+class EditProfile extends StatefulWidget {
 
 
-  editProfile({Key? key});
+  const EditProfile({Key? key});
 
   @override
-  State<editProfile> createState() => _editProfileState();
+  State<EditProfile> createState() => _EditProfileState();
 }
 
-class _editProfileState extends State<editProfile> {
+class _EditProfileState extends State<EditProfile> {
 
   final List<MyUser> users = UserDatabase.users;
   String genderFirstValue = genderList.first;

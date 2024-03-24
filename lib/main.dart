@@ -1,14 +1,17 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:vhack_finwise_app/screens/home/ui/splash_screen.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/redeem_rewards.dart';
 import 'screens/bottom_nav_bar/my_bottom_nav_bar.dart';
 import 'simple_bloc_observer.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = SimpleBlocObserver();
-  runApp(const MyApp());
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((value) => runApp(const MyApp()));
+  
 }
 
 class MyApp extends StatelessWidget {

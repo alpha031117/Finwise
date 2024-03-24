@@ -64,7 +64,7 @@ class _CalculatorTextFieldState extends State<CalculatorTextField> {
               message: titleToTooltipMap[widget.title],
               child: Icon(
                 Icons.help,
-                color: Colors.grey[200],
+                color: Colors.grey[400],
                 size: 23,
               ),
             )

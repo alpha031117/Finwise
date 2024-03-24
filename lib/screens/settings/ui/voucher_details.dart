@@ -7,15 +7,16 @@ import 'package:vhack_finwise_app/utils/global_variables.dart';
 import '../../../data/users.dart';
 import '../../../model/user.dart';
 
-class voucherDetails extends StatefulWidget {
+class VoucherDetails extends StatefulWidget {
   final int points;
-  const voucherDetails({super.key, required this.points});
+  final Function(int) passbackPoints;
+  const VoucherDetails({super.key, required this.points, required this.passbackPoints});
 
   @override
-  State<voucherDetails> createState() => _voucherDetailsState();
+  State<VoucherDetails> createState() => _VoucherDetailsState();
 }
 
-class _voucherDetailsState extends State<voucherDetails> {
+class _VoucherDetailsState extends State<VoucherDetails> {
   List<String> bulletList = [
     'RM20 eVhoucher credit to top up to your Tounch n\'Go eWallet.',
     'Not valid with any others discounts and promotions',
@@ -147,11 +148,14 @@ class _voucherDetailsState extends State<voucherDetails> {
                                 });
                           } else {
                             UserDatabase.users[0].points -= widget.points;
+                            
                           }
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => redeemRewards()));
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => RedeemRewards()));
+                          widget.passbackPoints(UserDatabase.users[0].points);
+                          Navigator.pop(context);
                         },
                         style: TextButton.styleFrom(
                             foregroundColor: Colors.white,
