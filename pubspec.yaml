@@ -49,10 +49,6 @@ dependencies:
   intl: ^0.19.0
   audioplayers: ^5.2.1
   percent_indicator: ^4.2.3
-<<<<<<< HEAD
-
-=======
->>>>>>> b939c60 (minimum viable podcast feature)
 
 
 dev_dependencies:
@@ -79,8 +75,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-<<<<<<< HEAD
-
+    - assets/
     - assets/earth.jpg
     - assets/local.jpg
     - assets/stocks.jpg
@@ -95,18 +90,11 @@ flutter:
     - assets/bitcoin.jpg
     - assets/etf.jpg
     - assets/retirement.jpg
-=======
->>>>>>> b939c60 (minimum viable podcast feature)
     - assets/podcast/changemind/
     - assets/podcast/financial faiz/
     - assets/podcast/iherng/
     - assets/podcast/mrmoney/
     - assets/podcast/sample.mp3
-<<<<<<< HEAD
-
-
-=======
->>>>>>> b939c60 (minimum viable podcast feature)
 
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
