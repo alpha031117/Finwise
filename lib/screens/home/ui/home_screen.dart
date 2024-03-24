@@ -40,18 +40,8 @@ class _HomeScreenState extends State<HomeScreen> {
       NewDatabase.newss; // Access articles from data source
   final List<info> infoss = InfoDatabase.infos;
   final List<Quiz> quizz = QuizDatabase.quizz;
+  int _currentQuizIndex = 0;
 
-  late final CarouselController _carouselController1;
-  late final CarouselController _carouselController2;
-  int _currentPage1 = 0;
-  int _currentPage2 = 0;
-
-  @override
-  void initState() {
-    _carouselController1 = CarouselController();
-    _carouselController2 = CarouselController();
-    super.initState();
-  }
   
 
   @override
@@ -242,29 +232,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   enlargeCenterPage: true,
                   onPageChanged: (index, reason) {
                     setState(() {
-                      _currentPage1 = index;
+                      _currentQuizIndex = index; // Update current quiz index
                     });
                   },
-                ),
-                carouselController: _carouselController1
+                ),  
               ),
-
-              // Indicators for CarouselSlider 1
-              Row(
+                Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(
-                  3, // Number of quiz cards in CarouselSlider 1
-                  (index) => Container(
-                    width: 10,
-                    height: 10,
-                    margin: EdgeInsets.symmetric(horizontal: 2.0),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: _currentPage1 == index ? Colors.black : Colors.grey,
-                    ),
-                  ),
+                  3,
+                  (index) => buildIndicator(index),
                 ),
               ),
+
+
                 SizedBox(height: 20),
                 // Indicators for CarouselSlider 1
 
@@ -327,31 +308,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   autoPlay: false,
                   aspectRatio: 16 / 9,
                   enlargeCenterPage: true,
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      _currentPage2 = index;
-                    });
-                  },
                 ),
-                carouselController: _carouselController2
                 ),
-                Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(
-                  3, // Number of quiz cards in CarouselSlider 1
-                  (index) => Container(
-                    width: 10,
-                    height: 10,
-                    margin: EdgeInsets.symmetric(horizontal: 2.0),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: _currentPage2 == index ? Colors.black : Colors.grey,
-                    ),
-                  ),
-                ),
-              ),
+
               ]),
         ),
+      ),
+    );
+  }
+    Widget buildIndicator(int index) {
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 150),
+      margin: EdgeInsets.symmetric(horizontal: 5.0),
+      height: 8,
+      width: _currentQuizIndex == index ? 24 : 8,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: _currentQuizIndex == index ? Colors.blue : Colors.grey,
       ),
     );
   }
