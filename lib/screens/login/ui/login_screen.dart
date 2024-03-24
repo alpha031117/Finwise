@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:vhack_finwise_app/screens/bottom_nav_bar/my_bottom_nav_bar.dart';
 
 import 'package:vhack_finwise_app/screens/home/ui/home_screen.dart';
+import 'package:vhack_finwise_app/screens/login/ui/new_customisation_screen.dart';
 import 'package:vhack_finwise_app/screens/login/ui/validation.dart';
 import 'package:vhack_finwise_app/screens/login/ui/widget/divider_line.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
@@ -237,7 +238,7 @@ class _logInButtonState extends State<logInButton> {
       child: GestureDetector(
         onTap: () { 
           if (widget.isEmailValid == true) {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => MyBottomNavBar()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => NewsCustomisationScreen()));
           } else {
             _showSnackBar();
           }

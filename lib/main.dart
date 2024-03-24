@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: MyBottomNavBar(),
-      home: MyBottomNavBar(),
+      home: SplashScreen(),
     );
   }
 }
