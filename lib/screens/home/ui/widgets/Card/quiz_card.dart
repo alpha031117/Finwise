@@ -6,6 +6,9 @@ import 'package:vhack_finwise_app/screens/home/ui/widgets/Card/option_quiz.dart'
 import 'package:vhack_finwise_app/screens/home/ui/widgets/coins.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
 
+import '../../../../../data/quizz.dart';
+import '../../../../settings/points_bloc/points_bloc.dart';
+
 class QuizCard extends StatefulWidget {
   final Quiz quizz;
 
@@ -18,9 +21,14 @@ class QuizCard extends StatefulWidget {
 class _QuizCardState extends State<QuizCard> {
   bool isPressed = false;
   bool showExplaination = false;
+  int pointsToAdd = 30;
   late final PageController _pageController;
+  final pointsBloc = PointsBloc();
+  void addPoints(PointsBloc bloc) {
+    bloc.add(PointsAddPointsEvent(pointsToAdd));
+  }
 
-  void changeColor() {
+  void doneAnswering() {
     setState(() {
       isPressed = true;
       Future.delayed(Duration(seconds: 3), () {
@@ -30,6 +38,9 @@ class _QuizCardState extends State<QuizCard> {
         });
       });
     });
+    addPoints(pointsBloc);
+     // widget.quizz.isAnswered = true;
+ 
   }
 
   @override
@@ -103,7 +114,7 @@ class _QuizCardState extends State<QuizCard> {
                                     ? Colors.green
                                     : Colors.red
                                 : Colors.white,
-                            onTap: changeColor,
+                            onTap: doneAnswering,
                           ),
                         ),
                     ],

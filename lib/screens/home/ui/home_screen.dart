@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:vhack_finwise_app/data/infos.dart';
 import 'package:vhack_finwise_app/data/users.dart';
 import 'package:vhack_finwise_app/model/info.dart';
+import 'package:vhack_finwise_app/screens/bottom_nav_bar/my_bottom_nav_bar.dart';
 import 'package:vhack_finwise_app/screens/home/ui/widgets/Card/info_card.dart';
 
 import 'package:vhack_finwise_app/screens/home/ui/widgets/Card/choice_card.dart';
@@ -37,10 +38,26 @@ class _HomeScreenState extends State<HomeScreen> {
       NewDatabase.newss; // Access articles from data source
   final List<info> infoss = InfoDatabase.infos;
   final List<Quiz> quizz = QuizDatabase.quizz;
+  // Map<String, Map<String, bool>> isQuizAnswered = {
+  //   'true or false': {
+  //     'Quiz 1': false,
+  //     'Quiz 2': false,
+  //     'Quiz 3': false,
+  //   },
+  //   'options': {
+  //     'Quiz 1': false,
+  //     'Quiz 2': false,
+  //     'Quiz 3': false,
+  //     'Quiz 4': false,
+  //     'Quiz 5': false,
+  //     'Quiz 6': false,
+  //   }
+  // };
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       appBar: AppBar(
         title: Text(
           'FinWise',
@@ -215,11 +232,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                   options: CarouselOptions(
+                    autoPlayInterval: const Duration(seconds: 3),
                     enableInfiniteScroll: false,
                     height: 520, // Adjust height as needed
                     viewportFraction:
                         1.0, // Make each item occupy the entire screen width
-                    autoPlay: false, // Auto scroll carousel
+                    autoPlay: true, // Auto scroll carousel
                     aspectRatio: 16 / 9, // Aspect ratio of carousel items
                     enlargeCenterPage: true, // Enlarge the center item
                   ),
@@ -249,11 +267,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                   options: CarouselOptions(
+                    autoPlayInterval: const Duration(seconds: 4),
                     enableInfiniteScroll: false,
                     height: 250, // Adjust height as needed
                     viewportFraction:
                         1.0, // Make each item occupy the entire screen width
-                    autoPlay: false, // Auto scroll carousel
+                    autoPlay: true, // Auto scroll carousel
                     aspectRatio: 16 / 9, // Aspect ratio of carousel items
                     enlargeCenterPage: true, // Enlarge the center item
                   ),
@@ -278,11 +297,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                   options: CarouselOptions(
+                    autoPlayInterval: const Duration(seconds: 3),
                     enableInfiniteScroll: false,
                     height: 250, // Adjust height as needed
                     viewportFraction:
                         1.0, // Make each item occupy the entire screen width
-                    autoPlay: false, // Auto scroll carousel
+                    autoPlay: true, // Auto scroll carousel
                     aspectRatio: 16 / 9, // Aspect ratio of carousel items
                     enlargeCenterPage: true, // Enlarge the center item
                   ),

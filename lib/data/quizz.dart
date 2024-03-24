@@ -14,7 +14,8 @@ class QuizDatabase {
           'A collection of rare artifacts owned by a group of people': false,
           'A type of personal loan offered by a bank': false,
           'A single stock with high potential for growth': false,
-        }),
+        },
+        isAnswered: false),
     Quiz(
       id: 'savings',
       points: 0,
@@ -25,6 +26,7 @@ class QuizDatabase {
         'Credit card account': false,
         'Investment account': false,
       },
+      isAnswered: false,
     ),
     Quiz(
       id: 'real_estate',
@@ -36,25 +38,30 @@ class QuizDatabase {
         'Market Listing System': false,
         'Mortgage Lender Service': false,
       },
+      isAnswered: false,
     ),
 
     //true pr false quiz
     Quiz(
-        id: 'hello',
-        points: 0,
-        title: "Mutual funds are the guaranteed way to make money.",
-        options: {
-          'True': false,
-          'False': true,
-        }),
+      id: 'hello',
+      points: 0,
+      title: "Mutual funds are the guaranteed way to make money.",
+      options: {
+        'True': false,
+        'False': true,
+      },
+      isAnswered: false,
+    ),
     Quiz(
-        id: 'hello',
-        points: 0,
-        title: "Investing in stocks guarantees a profit.",
-        options: {
-          'True': false,
-          'False': true,
-        }),
+      id: 'hello',
+      points: 0,
+      title: "Investing in stocks guarantees a profit.",
+      options: {
+        'True': false,
+        'False': true,
+      },
+      isAnswered: false,
+    ),
 
     Quiz(
       id: 'mutual_funds_risk',
@@ -64,6 +71,7 @@ class QuizDatabase {
         'True': false,
         'False': true,
       },
+      isAnswered: false,
     ),
     Quiz(
       id: 'diversification',
@@ -73,6 +81,7 @@ class QuizDatabase {
         'True': true,
         'False': false,
       },
+      isAnswered: false,
     ),
     Quiz(
       id: 'stock_dividends',
@@ -82,6 +91,7 @@ class QuizDatabase {
         'True': false,
         'False': true,
       },
+      isAnswered: false,
     ),
     Quiz(
       id: 'real_estate_appreciation',
@@ -91,6 +101,7 @@ class QuizDatabase {
         'True': false,
         'False': true,
       },
+      isAnswered: false,
     ),
   ];
 }

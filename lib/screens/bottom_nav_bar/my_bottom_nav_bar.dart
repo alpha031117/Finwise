@@ -20,10 +20,10 @@ class MyBottomNavBar extends StatefulWidget {
 }
 
 class _MyBottomNavBarState extends State<MyBottomNavBar> {
-
   List<Widget> pages = [
     const HomeScreen(),
     const LeaderBoardScreen(),
+    const PodcastScreen(),
     const CalculatorScreen(),
     SettingsScreen(),
   ];
@@ -72,6 +72,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
           inactiveColorPrimary: Colors.black,
         ),
         PersistentBottomNavBarItem(
+          
           inactiveIcon: CircleAvatar(
             radius: 12,
             backgroundImage: NetworkImage(
@@ -91,6 +92,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
     }
 
     return PersistentTabView(
+    
       context,
       controller: controller,
       screens: buildScreens(),

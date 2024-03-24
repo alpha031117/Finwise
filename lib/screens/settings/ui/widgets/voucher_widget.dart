@@ -4,7 +4,7 @@ import 'package:vhack_finwise_app/screens/settings/ui/voucher_details.dart';
 import '../../../../utils/global_variables.dart';
 
 class VoucherWidget extends StatefulWidget {
-  final Function(int, bool) passedBackValue;
+  final Function(bool) passedBackValue;
   bool isRedeemed;
   final String logoName;
   final String voucherDescription;
@@ -25,24 +25,21 @@ class VoucherWidget extends StatefulWidget {
 class _VoucherWidgetState extends State<VoucherWidget> {
   @override
   Widget build(BuildContext context) {
-    
     return GestureDetector(
       onTap: () {
-        
         print('isRedeemed: ${widget.isRedeemed}');
         widget.isRedeemed
             ? null
             : Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => VoucherDetails(
+                  builder: (context) => VoucherDetailsScreen(
                     points: widget.points,
-                    passbackPoints: (passedBackPoints) {
-                      
-                      widget.passedBackValue(
-                        passedBackPoints,
-                        true,
-                      );
+                    isRedeemed: (isRedeemedBool) {
+                      setState(() {
+                        widget.isRedeemed = isRedeemedBool;
+                        widget.passedBackValue( widget.isRedeemed);
+                      });
                     },
                   ),
                 ),
@@ -93,16 +90,17 @@ class _VoucherWidgetState extends State<VoucherWidget> {
                     Text(
                       widget.isRedeemed ? 'Redeemed' : widget.points.toString(),
                       style: TextStyle(
-                        fontSize:widget.isRedeemed ? 20 : 35,
+                        fontSize: widget.isRedeemed ? 20 : 35,
                         fontFamily: GlobalVariables.pointFont().fontFamily,
                         fontWeight: FontWeight.bold,
-                        color: widget.isRedeemed? Colors.red : Color(0xff727070),
+                        color:
+                            widget.isRedeemed ? Colors.red : Color(0xff727070),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: Text(
-                        widget.isRedeemed ? '' :' pts',
+                        widget.isRedeemed ? '' : ' pts',
                         style: TextStyle(
                           fontSize: 15,
                           fontFamily: GlobalVariables.pointFont().fontFamily,

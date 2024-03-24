@@ -8,6 +8,7 @@ import 'package:vhack_finwise_app/screens/leaderboard/ui/widgets/leaderboard_pan
 import 'package:vhack_finwise_app/utils/global_variables.dart';
 import 'dart:async';
 
+import '../../settings/points_bloc/points_bloc.dart';
 import '../bloc/leaderboard_bloc.dart';
 import 'widgets/leaderboard_bar.dart';
 
@@ -35,8 +36,10 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
     _leaderboardBloc.add(LeaderboardCalculatePointsEvent());
   }
 
+ 
   @override
   Widget build(BuildContext context) {
+   
     final panelController =
         PanelController(); //initialize panel Controller to have the drag handler
     return BlocConsumer<LeaderboardBloc, LeaderboardState>(

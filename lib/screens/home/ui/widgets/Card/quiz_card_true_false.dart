@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:vhack_finwise_app/data/quizz.dart';
+import 'package:vhack_finwise_app/data/users.dart';
 
 import 'package:vhack_finwise_app/model/quiz.dart';
 import 'package:vhack_finwise_app/screens/home/ui/widgets/Card/option_quiz_true_false.dart';
 
 import '../../../../../utils/global_variables.dart';
+import '../../../../settings/points_bloc/points_bloc.dart';
 import '../coins.dart';
 
 class QuizTrueFalseCard extends StatefulWidget {
@@ -19,18 +22,27 @@ class QuizTrueFalseCard extends StatefulWidget {
 class _QuizTrueFalseCardState extends State<QuizTrueFalseCard> {
   bool isPressed = false;
   bool showExplaination = false;
+  int pointsToAdd = 30;
+  
   late final PageController _pageController;
+  final pointsBloc = PointsBloc();
 
-  void changeColor() {
+  void addPoints(PointsBloc bloc) {
+    bloc.add(PointsAddPointsEvent(pointsToAdd));
+  }
+
+  void doneAnswering() {
     setState(() {
       isPressed = true;
-      Future.delayed(Duration(seconds: 3), () {
+      Future.delayed(const Duration(seconds: 3), () {
         setState(() {
           showExplaination = true;
           print(showExplaination);
         });
       });
     });
+    addPoints(pointsBloc);
+   
   }
 
   @override
@@ -58,7 +70,9 @@ class _QuizTrueFalseCardState extends State<QuizTrueFalseCard> {
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15),
-            child: showExplaination == false
+            child: widget.quizz.isAnswered == true? Container(
+              child: Text('You already answered this question', style: TextStyle(color: Colors.white),)
+            ) : showExplaination == false
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -99,7 +113,7 @@ class _QuizTrueFalseCardState extends State<QuizTrueFalseCard> {
                                       ? Colors.green
                                       : Colors.red
                                   : Colors.white,
-                              onTap: changeColor,
+                              onTap: doneAnswering,
                             ),
                             SizedBox(width: 10.0),
                             OptionWidget(
@@ -110,7 +124,7 @@ class _QuizTrueFalseCardState extends State<QuizTrueFalseCard> {
                                       ? Colors.green
                                       : Colors.red
                                   : Colors.white,
-                              onTap: changeColor,
+                              onTap: doneAnswering,
                             ),
                           ])
                     ],

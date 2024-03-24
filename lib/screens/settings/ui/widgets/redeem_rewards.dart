@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../utils/global_variables.dart';
-import '../redeem_rewards.dart';
+import '../redeem_rewards_screen.dart';
 class RedeemRewardsButton extends StatelessWidget {
   const RedeemRewardsButton({
     super.key,
@@ -15,7 +15,7 @@ class RedeemRewardsButton extends StatelessWidget {
     return Center(
       child: TextButton(
         onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const RedeemRewards()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const RedeemRewardsScreen(),),);
         } ,
         style: TextButton.styleFrom(
           foregroundColor: Colors.white,

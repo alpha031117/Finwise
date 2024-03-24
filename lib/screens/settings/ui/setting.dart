@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:vhack_finwise_app/screens/settings/points_bloc/points_bloc.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/about_us.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/help_center.dart';
 import 'package:vhack_finwise_app/screens/settings/ui/privacy_policy.dart';
@@ -21,6 +22,7 @@ class _SettingPageState extends State<SettingPage> {
 
   @override
   Widget build(BuildContext context) {
+   
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

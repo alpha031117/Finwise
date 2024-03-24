@@ -1,28 +1,34 @@
 // ignore_for_file: camel_case_types, sized_box_for_whitespace, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:vhack_finwise_app/screens/settings/ui/redeem_rewards.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vhack_finwise_app/screens/settings/points_bloc/points_bloc.dart';
+import 'package:vhack_finwise_app/utils/error_handle.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
 
-import '../../../data/users.dart';
-import '../../../model/user.dart';
 
-class VoucherDetails extends StatefulWidget {
+class VoucherDetailsScreen extends StatefulWidget {
   final int points;
-  final Function(int) passbackPoints;
-  const VoucherDetails({super.key, required this.points, required this.passbackPoints});
+  final Function(bool) isRedeemed;
+  const VoucherDetailsScreen({
+    super.key,
+    required this.points,
+    required this.isRedeemed,
+  });
 
   @override
-  State<VoucherDetails> createState() => _VoucherDetailsState();
+  State<VoucherDetailsScreen> createState() => _VoucherDetailsScreenState();
 }
 
-class _VoucherDetailsState extends State<VoucherDetails> {
+class _VoucherDetailsScreenState extends State<VoucherDetailsScreen> {
   List<String> bulletList = [
     'RM20 eVhoucher credit to top up to your Tounch n\'Go eWallet.',
     'Not valid with any others discounts and promotions',
     'No cash value.',
     'Merchant\'s Terms and Conditions apply. Visit their website for more information.'
   ];
+
+  final pointsBloc = PointsBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -124,49 +130,71 @@ class _VoucherDetailsState extends State<VoucherDetails> {
                         ),
                       ),
                       SizedBox(height: 60),
-                      TextButton(
-                        onPressed: () {
-                          final int currentUserPoints =
-                              UserDatabase.users[0].points;
-                          if (currentUserPoints < widget.points) {
-                            showDialog(
+                      BlocConsumer<PointsBloc, PointsState>(
+                        bloc: pointsBloc,
+                        listener: (context, state) {
+                          if (state is PointsMinusPointsSuccessfulState) {
+                            widget.isRedeemed(true);
+                            showSnackBar(
                                 context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    title: Text('Insufficient Points'),
-                                    content: Text(
-                                        'You do not have enough points to redeem this voucher.'),
-                                    actions: <Widget>[
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                        child: Text('OK'),
-                                      ),
-                                    ],
-                                  );
-                                });
-                          } else {
-                            UserDatabase.users[0].points -= widget.points;
+                                text: 'Voucher Redeemed Successfully!');
                             
+                          } else if (state
+                              is PointsMinusPointsNotSuccessfulState) {
+                            final String errorMessage = state.errorMessage;
+                            widget.isRedeemed(false);
+
+                            showSnackBar(context: context, text: errorMessage);
                           }
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => RedeemRewards()));
-                          widget.passbackPoints(UserDatabase.users[0].points);
                           Navigator.pop(context);
                         },
-                        style: TextButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            backgroundColor: GlobalVariables.primaryColor,
-                            fixedSize: Size(300, 50)),
-                        child: Text(
-                          'Redeem Now',
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
-                        ),
+                        builder: (context, state) {
+                          return TextButton(
+                            onPressed: () {
+                              // final int currentUserPoints =
+                              //     UserDatabase.users[0].points;
+                              pointsBloc.add(PointsMinusPointsEvent(
+                                  points: widget.points));
+
+                              // if (currentUserPoints < widget.points) {
+                              //   showDialog(
+                              //       context: context,
+                              //       builder: (BuildContext context) {
+                              //         return AlertDialog(
+                              //           title: Text('Insufficient Points'),
+                              //           content: Text(
+                              //               'You do not have enough points to redeem this voucher.'),
+                              //           actions: <Widget>[
+                              //             TextButton(
+                              //               onPressed: () {
+                              //                 Navigator.of(context).pop();
+                              //               },
+                              //               child: Text('OK'),
+                              //             ),
+                              //           ],
+                              //         );
+                              //       });
+                              // } else {
+                              //   UserDatabase.users[0].points -= widget.points;
+
+                              // }
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) => RedeemRewards()));
+                            },
+                            style: TextButton.styleFrom(
+                                foregroundColor: Colors.white,
+                                backgroundColor: GlobalVariables.primaryColor,
+                                fixedSize: Size(300, 50)),
+                            child: Text(
+                              'Redeem Now',
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                          );
+                        },
                       ),
                       SizedBox(height: 10),
                       Text(

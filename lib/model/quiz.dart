@@ -3,6 +3,7 @@ class Quiz {
   int points;
   String id;
   Map<String, bool> options;
+  bool isAnswered = false;
 
   static var length;
 
@@ -11,6 +12,7 @@ class Quiz {
     required this.title,
     required this.points,
     required this.options,
+    required this.isAnswered,
   });
 
   bool checkAnswer(String optionKey) {

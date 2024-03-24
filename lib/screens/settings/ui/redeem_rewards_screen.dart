@@ -1,39 +1,38 @@
 // ignore_for_file: camel_case_types, prefer_const_constructors, prefer_const_literals_to_create_immutables, depend_on_referenced_packages, sized_box_for_whitespace, non_constant_identifier_names, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
-import 'package:vhack_finwise_app/data/users.dart';
-import 'package:vhack_finwise_app/model/user.dart';
-import 'package:vhack_finwise_app/screens/settings/ui/voucher_details.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
 
+import '../points_bloc/points_bloc.dart';
 import 'widgets/voucher_widget.dart';
 
-class RedeemRewards extends StatefulWidget {
-  const RedeemRewards({
+class RedeemRewardsScreen extends StatefulWidget {
+  const RedeemRewardsScreen({
     super.key,
   });
 
   @override
-  State<RedeemRewards> createState() => _RedeemRewardsState();
+  State<RedeemRewardsScreen> createState() => _RedeemRewardsScreenState();
 }
 
-class _RedeemRewardsState extends State<RedeemRewards> {
-  MyUser user = UserDatabase.users[0];
-
+class _RedeemRewardsScreenState extends State<RedeemRewardsScreen> {
+  final pointsBloc = PointsBloc();
   final String tngLogoURL =
       'https://cdn.moogold.com/2022/06/tng-ewallet-logo-2-scaled.jpg';
   final String shopeeLogoURL =
       'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Shopee.svg/2560px-Shopee.svg.png';
-    bool isVoucher1Redeemed = false;
-    bool isVoucher2Redeemed = false;
-    bool isVoucher3Redeemed = false;
-    bool isVoucher4Redeemed = false;
-    bool isVoucher5Redeemed = false;
-    bool isVoucher6Redeemed = false;
+  bool isVoucher1Redeemed = false;
+  bool isVoucher2Redeemed = false;
+  bool isVoucher3Redeemed = false;
+  bool isVoucher4Redeemed = false;
+  bool isVoucher5Redeemed = false;
+  bool isVoucher6Redeemed = false;
+
   @override
   Widget build(BuildContext context) {
-    int currentPoints = user.points;
-
+    //every time screen rebuilt, intialize points
+    pointsBloc.add(PointsInitializePointsEvent());
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -60,14 +59,34 @@ class _RedeemRewardsState extends State<RedeemRewards> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
-                          currentPoints.toString(),
-                          style: TextStyle(
-                            fontSize: 50,
-                            fontFamily: GlobalVariables.pointFont().fontFamily,
-                            fontWeight: FontWeight.w900,
-                            color: Color(0xff7E89EB),
-                          ),
+                        BlocBuilder<PointsBloc, PointsState>(
+                          bloc: pointsBloc,
+                          builder: (context, state) {
+                            if (state is PointsInitializeSuccessfulState) {
+                              final currentPoints = state.points;
+                              return Text(
+                                currentPoints.toString(),
+                                style: TextStyle(
+                                  fontSize: 50,
+                                  fontFamily:
+                                      GlobalVariables.pointFont().fontFamily,
+                                  fontWeight: FontWeight.w900,
+                                  color: Color(0xff7E89EB),
+                                ),
+                              );
+                            } else {
+                              return Text(
+                                'Error ',
+                                style: TextStyle(
+                                  fontSize: 30,
+                                  fontFamily:
+                                      GlobalVariables.pointFont().fontFamily,
+                                  fontWeight: FontWeight.w900,
+                                  color: Color(0xff7E89EB),
+                                ),
+                              );
+                            }
+                          },
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
@@ -89,9 +108,8 @@ class _RedeemRewardsState extends State<RedeemRewards> {
                       children: <Widget>[
                         Expanded(
                             child: VoucherWidget(
-                          passedBackValue: (newPoints, isRedeem) {
+                          passedBackValue: (isRedeem) {
                             setState(() {
-                              currentPoints = newPoints;
                               isVoucher1Redeemed = isRedeem;
                             });
                           },
@@ -102,9 +120,8 @@ class _RedeemRewardsState extends State<RedeemRewards> {
                         )),
                         Expanded(
                             child: VoucherWidget(
-                          passedBackValue: (newPoints, isRedeem) {
+                          passedBackValue: (isRedeem) {
                             setState(() {
-                              currentPoints = newPoints;
                               isVoucher2Redeemed = isRedeem;
                             });
                           },
@@ -120,28 +137,28 @@ class _RedeemRewardsState extends State<RedeemRewards> {
                       children: <Widget>[
                         Expanded(
                             child: VoucherWidget(
-                          passedBackValue: (newPoints, isRedeem){
+                          passedBackValue: (isRedeem) {
                             setState(() {
-                              currentPoints = newPoints;
                               isVoucher3Redeemed = isRedeem;
                               print('v3 $isVoucher3Redeemed');
                             });
                           },
                           logoName: tngLogoURL,
                           voucherDescription: 'RM8 Tng Credit',
-                          points: 158, isRedeemed: isVoucher3Redeemed,
+                          points: 158,
+                          isRedeemed: isVoucher3Redeemed,
                         )),
                         Expanded(
                             child: VoucherWidget(
-                          passedBackValue: (newPoints, isRedeem) {
+                          passedBackValue: (isRedeem) {
                             setState(() {
-                              currentPoints = newPoints;
                               isVoucher4Redeemed = isRedeem;
                             });
                           },
                           logoName: tngLogoURL,
                           voucherDescription: 'RM15 Tng Credit',
-                          points: 1000, isRedeemed: isVoucher4Redeemed,
+                          points: 1000,
+                          isRedeemed: isVoucher4Redeemed,
                         )),
                       ],
                     ),
@@ -150,23 +167,23 @@ class _RedeemRewardsState extends State<RedeemRewards> {
                       children: <Widget>[
                         Expanded(
                             child: VoucherWidget(
-                          passedBackValue: (newPoints, isRedeem) {
-                                currentPoints = newPoints;
-                              isVoucher5Redeemed = isRedeem;
+                          passedBackValue: (isRedeem) {
+                            isVoucher5Redeemed = isRedeem;
                           },
                           logoName: tngLogoURL,
                           voucherDescription: 'RM100 Tng Credit',
-                          points: 2000, isRedeemed: isVoucher5Redeemed,
+                          points: 2000,
+                          isRedeemed: isVoucher5Redeemed,
                         )),
                         Expanded(
                             child: VoucherWidget(
-                          passedBackValue: (newPoints, isRedeem) {
-                                currentPoints = newPoints;
-                              isVoucher6Redeemed = isRedeem;
+                          passedBackValue: (isRedeem) {
+                            isVoucher6Redeemed = isRedeem;
                           },
                           logoName: tngLogoURL,
                           voucherDescription: 'RM3 Tng Credit',
-                          points: 30, isRedeemed: isVoucher6Redeemed,
+                          points: 30,
+                          isRedeemed: isVoucher6Redeemed,
                         )),
                       ],
                     ),
