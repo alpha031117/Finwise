@@ -5,10 +5,10 @@ import '../news_screen.dart';
 class LazyToRead extends StatefulWidget {
   const LazyToRead({
     Key? key,
-    required this.widget,
+   
   }) : super(key: key);
 
-  final NewsScreen widget;
+  
 
   @override
   _LazyToReadState createState() => _LazyToReadState();
@@ -46,7 +46,7 @@ class _LazyToReadState extends State<LazyToRead> {
                 }
               });
             },
-            child: Text('Lazy to read?',
+            child: Text('Too Lazy to read?',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 13.0,

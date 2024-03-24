@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vhack_finwise_app/model/local_screen_news_model.dart';
 import 'package:vhack_finwise_app/screens/home/ui/widgets/Card/option_news_card.dart';
 import 'package:vhack_finwise_app/data/saved_news.dart';
+import 'package:vhack_finwise_app/screens/home/ui/widgets/lazy_to_read.dart';
 
 String getMonthName(int month) {
   switch (month) {
@@ -214,47 +215,7 @@ class  _local_news_screen_State extends State<LocalNewsScreen> {
               Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Container(
-                          width: 150.0, // Adjust image width as needed
-                          height: 50.0, // Adjust image height as needed
-                          decoration: BoxDecoration(
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          child: TextButton(
-                              onPressed: () {
-                                showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    title: Text(
-                                      '',
-                                      style: TextStyle(),
-                                    ),
-                                    content: Text(
-                                      '${widget.localnews.explanation}',
-                                      style: TextStyle(),
-                                      ),
-                                    actions: [
-                                      SizedBox(height: 20),
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.of(context)
-                                              .pop(); // Close the dialog
-                                        },
-                                        child: Text("Close"),
-                                      )
-                                    ],
-                                  );
-                                }
-                                );
-                              },
-                              child: Text(
-                                'TO LAZY TO READ ?',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 10.0),
-                              )),
-                        ),
+                       LazyToRead(),
                       ],
                     ),
               SizedBox(height: 10.0),

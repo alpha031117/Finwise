@@ -138,7 +138,7 @@ class _news_screenState extends State<NewsScreen> {
                   ),
                 ),
                 SizedBox(height: 10.0),
-                LazyToRead(widget: widget),
+                LazyToRead(),
                 SizedBox(height: 10.0),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 15.0),
