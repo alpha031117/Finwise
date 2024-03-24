@@ -8,6 +8,8 @@ import 'package:vhack_finwise_app/screens/login/ui/validation.dart';
 import 'package:vhack_finwise_app/screens/login/ui/widget/divider_line.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
 
+import 'cuztomize_screen.dart';
+
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
@@ -223,7 +225,6 @@ class logInButton extends StatefulWidget {
 }
 
 class _logInButtonState extends State<logInButton> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>(); 
 
   void _showSnackBar() {
     final snackBar = SnackBar(content: Text('Invalid Email Or Password'));
@@ -236,7 +237,7 @@ class _logInButtonState extends State<logInButton> {
       child: GestureDetector(
         onTap: () { 
           if (widget.isEmailValid == true) {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => MyBottomNavBar()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => CuztomizeScreen()));
           } else {
             _showSnackBar();
           }

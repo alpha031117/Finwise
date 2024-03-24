@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:vhack_finwise_app/screens/bottom_nav_bar/my_bottom_nav_bar.dart';
 import 'package:vhack_finwise_app/utils/global_variables.dart';
 
 class CuztomizeScreen extends StatefulWidget {
@@ -121,6 +122,7 @@ class _CuztomizeScreenState extends State<CuztomizeScreen> {
                   // SizedBox(height: 20),
                   GestureDetector(
                     onTap: () { 
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => MyBottomNavBar()));
                     },
                     child: Center(
                       child: Container(
@@ -143,7 +145,7 @@ class _CuztomizeScreenState extends State<CuztomizeScreen> {
                         ),
                         child: Center(
                           child: Text(
-                            'Log In',
+                            'Completed',
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
